@@ -1,0 +1,16 @@
+.GenreSelect {
+    display: flex;
+    column-gap: 20px;
+}
+
+.GenreSelect__item {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    padding-bottom: 5px;
+}
+
+.GenreSelect__item.selected {
+    border-bottom: 4px solid #F65261;
+}

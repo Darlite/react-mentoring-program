@@ -22,8 +22,7 @@ export default function App() {
             <SearchForm initialSearch={"What do you want to watch?"} onSearch={handleSearch}/>
             <GenreSelect genreNames={genreNames}
                          selectedGenre={selectedGenre}
-                         onSelect={handleGenreSelect}>
-            </GenreSelect>
+                         onSelect={handleGenreSelect} />
         </div>
     );
 }

@@ -2,15 +2,12 @@ import './App.css';
 import Counter from "./components/Counter";
 import SearchForm from "./components/SearchForm";
 import GenreSelect from "./components/GenreSelect";
+import {genreNames, selectedGenre} from "./constants";
 
 export default function App() {
     function handleSearch(searchInput) {
         console.log("Input from the search bar: ", searchInput);
     }
-
-    const genreNames = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];
-
-    const selectedGenre = 'Documentary';
 
     function handleGenreSelect(genre) {
         console.log("Selected genre: ", genre)

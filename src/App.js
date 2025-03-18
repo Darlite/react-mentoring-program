@@ -2,15 +2,18 @@ import './App.css';
 import Counter from "./components/Counter";
 import SearchForm from "./components/SearchForm";
 import GenreSelect from "./components/GenreSelect";
-import {genreNames, selectedGenre} from "./constants";
+import {genreNames} from "./constants";
+import {useState} from "react";
 
 export default function App() {
+    const [selectedGenre, setSelectedGenre] = useState("Documentary");
+
     function handleSearch(searchInput) {
         console.log("Input from the search bar: ", searchInput);
     }
 
     function handleGenreSelect(genre) {
-        console.log("Selected genre: ", genre)
+        setSelectedGenre(genre);
     }
 
     return (
@@ -19,7 +22,7 @@ export default function App() {
             <SearchForm initialSearch={"What do you want to watch?"} onSearch={handleSearch}/>
             <GenreSelect genreNames={genreNames}
                          selectedGenre={selectedGenre}
-                         onSelect={handleGenreSelect} />
+                         onSelect={handleGenreSelect}/>
         </div>
     );
 }

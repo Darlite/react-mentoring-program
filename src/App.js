@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Counter from "./components/Counter";
+import SearchForm from "./components/SearchForm";
+import GenreSelect from "./components/GenreSelect";
+import {genreNames} from "./constants";
+import {useState} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    const [selectedGenre, setSelectedGenre] = useState("Documentary");
+
+    function handleSearch(searchInput) {
+        console.log("Input from the search bar: ", searchInput);
+    }
+
+    function handleGenreSelect(genre) {
+        setSelectedGenre(genre);
+    }
+
+    return (
+        <div className="App">
+            <Counter initialCount={3}/>
+            <SearchForm initialSearch={"What do you want to watch?"} onSearch={handleSearch}/>
+            <GenreSelect genreNames={genreNames}
+                         selectedGenre={selectedGenre}
+                         onSelect={handleGenreSelect}/>
+        </div>
+    );
 }
-
-export default App;

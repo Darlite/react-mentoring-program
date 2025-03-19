@@ -1,1 +1,0 @@
-export const genreNames = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];

@@ -6,20 +6,21 @@ import {genreNames} from "./constants";
 import {useState} from "react";
 
 export default function App() {
-    const [selectedGenre, setSelectedGenre] = useState("Documentary");
+    const [selectedGenre, setSelectedGenre] = useState<string>("Documentary");
 
-    function handleSearch(searchInput) {
+    function handleSearch(searchInput: string) {
         console.log("Input from the search bar: ", searchInput);
     }
 
-    function handleGenreSelect(genre) {
+    function handleGenreSelect(genre: string) {
         setSelectedGenre(genre);
     }
 
     return (
         <div className="App">
             <Counter initialCount={3}/>
-            <SearchForm initialSearch={"What do you want to watch?"} onSearch={handleSearch}/>
+            <SearchForm initialSearch={"What do you want to watch?"}
+                        onSearch={handleSearch}/>
             <GenreSelect genreNames={genreNames}
                          selectedGenre={selectedGenre}
                          onSelect={handleGenreSelect}/>

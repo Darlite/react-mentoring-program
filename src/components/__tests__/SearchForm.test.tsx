@@ -2,7 +2,6 @@ import SearchForm from "../SearchForm";
 import '@testing-library/jest-dom';
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import * as sea from "node:sea";
 
 test('has initial value', () => {
     const initialSearchText = "What do you want to watch?";

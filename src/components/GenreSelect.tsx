@@ -11,7 +11,8 @@ const GenreSelect: React.FC<GenreSelectProps> = ({genreNames, selectedGenre, onS
     return (
         <div className="GenreSelect">
             {genreNames.map((genreName, i) => {
-                return (<span className={`GenreSelect__item ${genreName === selectedGenre ? "selected" : ""}`}
+                return (<span role="button"
+                              className={`GenreSelect__item ${genreName === selectedGenre ? "selected" : ""}`}
                               key={i}
                               onClick={() => onSelect(genreName)}>
                     {genreName}

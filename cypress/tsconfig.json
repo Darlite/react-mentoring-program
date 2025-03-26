@@ -1,11 +1,12 @@
 {
+  "extends": "../tsconfig.json",
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": [],
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
+    "types": ["cypress"],
+    "lib": ["es2015", "dom"],
     "isolatedModules": false,
-  }
+    "allowJs": true,
+    "noEmit": true,
+  },
 }

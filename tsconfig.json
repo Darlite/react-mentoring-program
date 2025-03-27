@@ -9,7 +9,11 @@
     "moduleResolution": "node",
     "target": "es2015",
     "types": [],
-
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -21,6 +25,6 @@
     "skipLibCheck": true,
     "strict": true
   },
-  "include": ["src/**/*", "src/**/*.test.ts", "src/**/*.test.tsx"], // Scope Jest tests
-  "exclude": ["cypress/**/*"] // Exclude Cypress files
+  "include": ["src/**/*", "src/**/*.test.ts", "src/**/*.test.tsx"],
+  "exclude": ["cypress/**/*"]
 }

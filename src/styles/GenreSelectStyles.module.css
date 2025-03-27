@@ -3,7 +3,7 @@
     column-gap: 20px;
 }
 
-.GenreSelect__item {
+.GenreSelectItem {
     text-transform: uppercase;
     font-weight: 500;
     font-size: 16px;
@@ -11,6 +11,6 @@
     padding-bottom: 5px;
 }
 
-.GenreSelect__item.selected {
+.selected {
     border-bottom: 4px solid #F65261;
 }

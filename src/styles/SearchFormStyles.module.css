@@ -1,9 +1,9 @@
-.searchForm__input {
+.searchFormInput {
     width: 400px;
     padding: 10px;
 }
 
-.searchForm__button {
+.searchFormButton {
     background-color: #F65261;
     color: white;
     font-size: 20px;

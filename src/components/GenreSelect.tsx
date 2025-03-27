@@ -1,4 +1,4 @@
-import '../styles/GenreSelectStyles.css';
+import styles from '../styles/GenreSelectStyles.module.css';
 import React from "react";
 
 interface GenreSelectProps {
@@ -9,10 +9,10 @@ interface GenreSelectProps {
 
 const GenreSelect: React.FC<GenreSelectProps> = ({genreNames, selectedGenre, onSelect}) => {
     return (
-        <div className="GenreSelect">
+        <div className={styles.GenreSelect}>
             {genreNames.map((genreName, i) => {
                 return (<span role="button"
-                              className={`GenreSelect__item ${genreName === selectedGenre ? "selected" : ""}`}
+                              className={`${styles.GenreSelectItem} ${genreName === selectedGenre ? styles.selected : ""}`}
                               key={i}
                               onClick={() => onSelect(genreName)}>
                     {genreName}

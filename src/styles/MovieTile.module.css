@@ -1,0 +1,29 @@
+.movieTile {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 323px;
+}
+
+.movieTitleAndYear {
+    display: flex;
+}
+
+.title {
+    color: #bdbdbd;
+    font-size: 18px;
+    margin: 0;
+    flex-basis: 100%;
+}
+
+.year {
+    font-size: 14px;
+    padding: 5px 15px;
+    border: 1px solid #979797;
+    border-radius: 4px;
+}
+
+.genres {
+    margin: 0;
+    color: #cacaca;
+}

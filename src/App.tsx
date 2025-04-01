@@ -20,6 +20,10 @@ export default function App() {
         setSelectedGenre(genre);
     }
 
+    function handleTileClick(movieName: string) {
+        console.log("Clicked on: ", movieName);
+    }
+
     function handleSortControlChange(option: string) {
         setSelectedSortControl(option);
     }
@@ -45,7 +49,7 @@ export default function App() {
             <SortControl currentSelection={selectedSortControl}
                          onSelect={handleSortControlChange}/>
             <MovieTile movieDetails={moviesData}
-                       onClick={() => {}}
+                       onClick={handleTileClick}
             />
             <MovieDetails movieDetails={moviesData} />
         </div>

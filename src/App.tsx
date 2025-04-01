@@ -6,9 +6,11 @@ import {genreNames} from "./constants";
 import {useState} from "react";
 import MovieTile from "./components/MovieTile";
 import MovieDetails from "./components/MovieDetails";
+import SortControl from "./components/SortControl";
 
 export default function App() {
     const [selectedGenre, setSelectedGenre] = useState<string>("Documentary");
+    const [selectedSortControl, setSelectedSortControl] = useState<string>("Release Date");
 
     function handleSearch(searchInput: string) {
         console.log("Input from the search bar: ", searchInput);
@@ -16,6 +18,10 @@ export default function App() {
 
     function handleGenreSelect(genre: string) {
         setSelectedGenre(genre);
+    }
+
+    function handleSortControlChange(option: string) {
+        setSelectedSortControl(option);
     }
 
     const moviesData = {
@@ -36,6 +42,8 @@ export default function App() {
             <GenreSelect genreNames={genreNames}
                          selectedGenre={selectedGenre}
                          onSelect={handleGenreSelect}/>
+            <SortControl currentSelection={selectedSortControl}
+                         onSelect={handleSortControlChange}/>
             <MovieTile movieDetails={moviesData}
                        onClick={() => {}}
             />

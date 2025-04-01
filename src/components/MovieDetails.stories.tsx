@@ -1,16 +1,15 @@
 import { Meta, StoryObj } from "@storybook/react";
-import MovieTile from "./MovieTile";
-import {fn} from "@storybook/test";
+import MovieDetails from "./MovieDetails";
 
 
 const meta = {
-    component: MovieTile,
-    title: 'MovieTile',
+    component: MovieDetails,
+    title: 'MovieDetails',
     tags: ['autodocs'],
     //👇 Our exports that end in "Data" are not stories.
     excludeStories: /.*Data$/,
     args: {},
-} satisfies Meta<typeof MovieTile>;
+} satisfies Meta<typeof MovieDetails>;
 
 export default meta;
 
@@ -29,6 +28,5 @@ const moviesData = {
 export const Default: Story = {
     args: {
         movieDetails: moviesData,
-        onClick: fn(),
     },
 };

@@ -1,15 +1,14 @@
 import styles from '../styles/MovieTile.module.css';
 import React from "react";
+import {MovieDetailsData} from "../types/MovieDetailsData";
 
 interface MovieTileProps {
-    imageUrl: string;
-    movieName: string;
-    releaseYear: number;
-    relevantGenres: string[];
+    movieDetails: MovieDetailsData,
     onClick?: () => void;
 }
 
-const MovieTile: React.FC<MovieTileProps> = ({imageUrl, movieName, releaseYear, relevantGenres, onClick}) => {
+const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick}) => {
+    const { imageUrl, movieName, releaseYear, relevantGenres } = movieDetails;
     return (
         <div className={styles.movieTile}>
             <img src={imageUrl} alt={movieName} onClick={() => onClick} />

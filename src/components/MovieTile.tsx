@@ -4,7 +4,7 @@ import {MovieDetailsData} from "../types/MovieDetailsData";
 
 interface MovieTileProps {
     movieDetails: MovieDetailsData,
-    onClick: (movieName:string ) => void;
+    onClick: (movieDetails:MovieDetailsData ) => void;
 }
 
 const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick}) => {
@@ -27,7 +27,7 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick}) => {
             <img
                  src={imageUrl}
                  alt={movieName}
-                 onClick={() => onClick(movieName)} />
+                 onClick={() => onClick(movieDetails)} />
             {isHovered && (
                 <span className={styles.kebabMenu}
                       onClick={showPopUp}

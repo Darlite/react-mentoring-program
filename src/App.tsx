@@ -7,10 +7,12 @@ import {useState} from "react";
 import MovieTile from "./components/MovieTile";
 import MovieDetails from "./components/MovieDetails";
 import SortControl from "./components/SortControl";
+import {MovieDetailsData} from "./types/MovieDetailsData";
 
 export default function App() {
     const [selectedGenre, setSelectedGenre] = useState<string>("Documentary");
     const [selectedSortControl, setSelectedSortControl] = useState<string>("Release Date");
+    const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
 
     function handleSearch(searchInput: string) {
         console.log("Input from the search bar: ", searchInput);
@@ -20,8 +22,9 @@ export default function App() {
         setSelectedGenre(genre);
     }
 
-    function handleTileClick(movieName: string) {
-        console.log("Clicked on: ", movieName);
+    function handleTileClick(movieDetails: MovieDetailsData) {
+        console.log("Clicked on: ", movieDetails);
+        setSelectedMovie(movieDetails);
     }
 
     function handleSortControlChange(option: string) {
@@ -41,8 +44,9 @@ export default function App() {
     return (
         <div className={styles.app}>
             <Counter initialCount={3}/>
-            <SearchForm initialSearch={"What do you want to watch?"}
-                        onSearch={handleSearch}/>
+            {selectedMovie ? <MovieDetails movieDetails={selectedMovie}/> :
+                <SearchForm initialSearch={"What do you want to watch?"}
+                            onSearch={handleSearch}/>}
             <GenreSelect genreNames={genreNames}
                          selectedGenre={selectedGenre}
                          onSelect={handleGenreSelect}/>
@@ -51,7 +55,6 @@ export default function App() {
             <MovieTile movieDetails={moviesData}
                        onClick={handleTileClick}
             />
-            <MovieDetails movieDetails={moviesData} />
         </div>
     );
 }

@@ -49,7 +49,7 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick}) => {
             </span>
             <p className={styles.genres}>
                 {relevantGenres.map(genre => (
-                    <span key={Math.random()}>{genre} </span>
+                    <span key={genre}>{genre} </span>
                 ))}
             </p>
         </div>

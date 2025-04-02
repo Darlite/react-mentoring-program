@@ -16,7 +16,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({movieDetails}) => {
                 <span className={styles.rating}>{rating}</span>
                 <p className={styles.genres}>
                     {relevantGenres.map(genre => (
-                        <span key={Math.random()}>{genre} </span>
+                        <span key={genre}>{genre} </span>
                     ))}
                 </p>
                 <span className={styles.releaseYear}>{releaseYear}</span>

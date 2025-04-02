@@ -22,7 +22,9 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick}) => {
     }
 
     return (
-        <div className={styles.movieTile} onMouseEnter={() => setHovered(true)}
+        <div className={styles.movieTile}
+             data-testid="movieTile"
+             onMouseEnter={() => setHovered(true)}
              onMouseLeave={() => setHovered(false)}>
             <img
                  src={imageUrl}
@@ -30,11 +32,12 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick}) => {
                  onClick={() => onClick(movieDetails)} />
             {isHovered && (
                 <span className={styles.kebabMenu}
+                      role="button"
                       onClick={showPopUp}
                 >︙</span>
             )}
             {showContextMenu && (
-                <div className={styles.contextMenu}>
+                <div className={styles.contextMenu} data-testid="contextMenu">
                     <div className={styles.contextMenuClose} onClick={closePopUp}>X</div>
                     <div className={styles.contextMenuOption}>Edit</div>
                     <div className={styles.contextMenuOption}>Delete</div>
@@ -46,7 +49,7 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick}) => {
             </span>
             <p className={styles.genres}>
                 {relevantGenres.map(genre => (
-                    <span>{genre} </span>
+                    <span key={Math.random()}>{genre} </span>
                 ))}
             </p>
         </div>

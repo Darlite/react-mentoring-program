@@ -2,3 +2,8 @@
     background-color: #232323;
     color: #FFFFFF;
 }
+
+.movieList {
+    display: flex;
+    gap: 55px;
+}

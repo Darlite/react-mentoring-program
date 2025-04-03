@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieTile renders correctly 1`] = `
+<div>
+  <div
+    class="movieTile"
+    data-testid="movieTile"
+  >
+    <img
+      alt="Pulp Fiction"
+      src="images/Pulp_Fiction.png"
+    />
+    <span
+      class="movieTitleAndYear"
+    >
+      <h2
+        class="title"
+      >
+        Pulp Fiction
+      </h2>
+      <span
+        class="year"
+      >
+        1994
+      </span>
+    </span>
+    <p
+      class="genres"
+    >
+      <span>
+        Crime
+         
+      </span>
+      <span>
+        Thriller
+         
+      </span>
+    </p>
+  </div>
+</div>
+`;

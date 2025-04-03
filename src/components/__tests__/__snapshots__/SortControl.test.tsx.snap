@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortControl renders correctly 1`] = `
+<div>
+  <div
+    class="sortControl"
+  >
+    <label>
+      Sort By
+    </label>
+    <select>
+      <option
+        value="Release Date"
+      >
+        Release Date
+      </option>
+      <option
+        value="Title"
+      >
+        Title
+      </option>
+    </select>
+  </div>
+</div>
+`;

@@ -1,4 +1,4 @@
-import styles from '../../styles/SearchFormStyles.module.css';
+import styles from './SearchFormStyles.module.css';
 import React from "react";
 
 interface SearchFormProps {

@@ -1,4 +1,4 @@
-import styles from '../../styles/MovieDetails.module.css';
+import styles from './MovieDetails.module.css';
 import React from "react";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 

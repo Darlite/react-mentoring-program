@@ -1,4 +1,4 @@
-import styles from '../../styles/MovieTile.module.css';
+import styles from './MovieTile.module.css';
 import React, {useState} from "react";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 

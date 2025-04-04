@@ -10,7 +10,7 @@ const SearchForm: React.FC<SearchFormProps> = ({initialSearch, onSearch}) => {
     return (
         <div className={styles.searchFormContainer}>
             <h1 className={styles.formTittle}>Find your movie</h1>
-            <form
+            <form className={styles.searchForm}
                 onSubmit={(e) => {
                     e.preventDefault();
                     const form = e.target as HTMLFormElement;

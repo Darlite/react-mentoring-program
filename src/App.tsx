@@ -8,6 +8,7 @@ import MovieTile from "./components/MovieTile/MovieTile";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import SortControl from "./components/SortControl/SortControl";
 import {MovieDetailsData} from "./types/MovieDetailsData";
+import Dialog from "./components/Dialog/Dialog";
 
 export default function App() {
     const [selectedGenre, setSelectedGenre] = useState<string>("Documentary");
@@ -66,15 +67,16 @@ export default function App() {
 
     return (
         <div className={styles.app}>
-            <Counter initialCount={3}/>
             {selectedMovie ? <MovieDetails movieDetails={selectedMovie}/> :
                 <SearchForm initialSearch={"What do you want to watch?"}
                             onSearch={handleSearch}/>}
-            <GenreSelect genreNames={genreNames}
-                         selectedGenre={selectedGenre}
-                         onSelect={handleGenreSelect}/>
-            <SortControl currentSelection={selectedSortControl}
-                         onSelect={handleSortControlChange}/>
+            <div className={styles.genreAndSortControls}>
+                <GenreSelect genreNames={genreNames}
+                             selectedGenre={selectedGenre}
+                             onSelect={handleGenreSelect}/>
+                <SortControl currentSelection={selectedSortControl}
+                             onSelect={handleSortControlChange}/>
+            </div>
             <div className={styles.movieList}>
                 {moviesDataList.map((movie) => (
                     <MovieTile key={movie.id}
@@ -83,6 +85,8 @@ export default function App() {
                     />
                 ))}
             </div>
+            <Dialog message={"Hello, I am a portal"}/>
+            <Counter initialCount={3}/>
         </div>
     );
 }

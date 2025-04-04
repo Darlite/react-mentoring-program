@@ -1,9 +1,23 @@
 .app {
     background-color: #232323;
     color: #FFFFFF;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
 }
 
 .movieList {
     display: flex;
     gap: 55px;
+    flex-basis: 100%;
+    justify-content: center;
+}
+
+.genreAndSortControls {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 60px;
 }

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import GenreSelect from "./GenreSelect";
-import { genreNames } from "../constants";
+import { genreNames } from "../../constants";
 import {fn} from "@storybook/test";
 
 

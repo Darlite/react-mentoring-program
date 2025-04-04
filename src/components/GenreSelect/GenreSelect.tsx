@@ -1,4 +1,4 @@
-import styles from '../styles/GenreSelectStyles.module.css';
+import styles from '../../styles/GenreSelectStyles.module.css';
 import React from "react";
 
 interface GenreSelectProps {

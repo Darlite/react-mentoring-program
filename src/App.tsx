@@ -1,12 +1,12 @@
 import styles from './App.module.css';
-import Counter from "./components/Counter";
-import SearchForm from "./components/SearchForm";
-import GenreSelect from "./components/GenreSelect";
+import Counter from "./components/Counter/Counter";
+import SearchForm from "./components/SearchForm/SearchForm";
+import GenreSelect from "./components/GenreSelect/GenreSelect";
 import {genreNames} from "./constants";
 import {useState} from "react";
-import MovieTile from "./components/MovieTile";
-import MovieDetails from "./components/MovieDetails";
-import SortControl from "./components/SortControl";
+import MovieTile from "./components/MovieTile/MovieTile";
+import MovieDetails from "./components/MovieDetails/MovieDetails";
+import SortControl from "./components/SortControl/SortControl";
 import {MovieDetailsData} from "./types/MovieDetailsData";
 
 export default function App() {

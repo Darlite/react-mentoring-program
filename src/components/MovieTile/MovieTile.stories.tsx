@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import MovieTile from "./MovieTile";
 import {fn} from "@storybook/test";
-import {moviesData} from "../mocks/mockMovieData";
+import {moviesData} from "../../mocks/mockMovieData";
 
 
 const meta = {

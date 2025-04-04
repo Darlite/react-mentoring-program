@@ -1,4 +1,4 @@
-import GenreSelect from "../../components/GenreSelect";
+import GenreSelect from "../GenreSelect/GenreSelect";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 

@@ -1,4 +1,4 @@
-import MovieTile from "../MovieTile";
+import MovieTile from "../MovieTile/MovieTile";
 import React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

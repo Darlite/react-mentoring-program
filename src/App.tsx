@@ -13,11 +13,11 @@ import {createPortal} from "react-dom";
 import MovieForm from "./components/MovieForm/MovieForm";
 
 export default function App() {
-    const [selectedGenre, setSelectedGenre] = useState<string>("Documentary");
-    const [selectedSortControl, setSelectedSortControl] = useState<string>("Release Date");
-    const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | undefined>(undefined);
-    const [showDialog, setShowDialog] = useState<boolean>(false);
-    const [currentDialog, setCurrentDialog] = useState<string>("");
+    const [selectedGenre, setSelectedGenre] = useState("Documentary");
+    const [selectedSortControl, setSelectedSortControl] = useState("Release Date");
+    const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
+    const [showDialog, setShowDialog] = useState(false);
+    const [currentDialog, setCurrentDialog] = useState("");
 
     function handleSearch(searchInput: string) {
         console.log("Input from the search bar: ", searchInput);

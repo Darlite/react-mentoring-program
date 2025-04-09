@@ -5,3 +5,4 @@ export const genreNames: string[] = [
     'Horror',
     'Crime'
 ];
+

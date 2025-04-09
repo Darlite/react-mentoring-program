@@ -8,7 +8,7 @@ exports[`Dialog component renders correctly for Delete Dialog 1`] = `
     <h1
       class="dialogTitle"
     >
-      Delete movie
+      DELETE MOVIE
     </h1>
     <p
       class="deleteMessage"

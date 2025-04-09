@@ -2,7 +2,7 @@ import styles from './App.module.css';
 import Counter from "./components/Counter/Counter";
 import SearchForm from "./components/SearchForm/SearchForm";
 import GenreSelect from "./components/GenreSelect/GenreSelect";
-import {genreNames} from "./constants";
+import {genreNames} from "./constants/GenreNames";
 import React, {useState} from "react";
 import MovieTile from "./components/MovieTile/MovieTile";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
@@ -11,6 +11,7 @@ import {MovieDetailsData} from "./types/MovieDetailsData";
 import Dialog from "./components/Dialog/Dialog";
 import {createPortal} from "react-dom";
 import MovieForm from "./components/MovieForm/MovieForm";
+import {DialogType} from "./constants/DialogType";
 
 export default function App() {
     const [selectedGenre, setSelectedGenre] = useState("Documentary");
@@ -43,7 +44,7 @@ export default function App() {
     function handleShowDialog(dialogOption: string, movieDetails?: MovieDetailsData) {
         setCurrentDialog(dialogOption);
 
-        if (dialogOption === "Edit movie" && movieDetails) {
+        if (dialogOption === DialogType.EditMovie && movieDetails) {
             setSelectedMovie(movieDetails);
         }
 
@@ -96,7 +97,7 @@ export default function App() {
             <span className={styles.addMovieButton}
                   id="addMovieButton"
                   role="button"
-                  onClick={() => handleShowDialog("Add movie")}>+ Add movie</span>
+                  onClick={() => handleShowDialog(DialogType.AddMovie)}>+ Add movie</span>
             {selectedMovie ? <MovieDetails movieDetails={selectedMovie}/> :
                 <SearchForm initialSearch={"What do you want to watch?"}
                             onSearch={handleSearch}/>}
@@ -112,17 +113,17 @@ export default function App() {
                     <MovieTile key={movie.id}
                                movieDetails={movie}
                                onClick={handleTileClick}
-                               handleEdit={() => handleShowDialog("Edit movie", movie)}
-                               handleDelete={() => handleShowDialog("Delete movie")}
+                               handleEdit={() => handleShowDialog(DialogType.EditMovie, movie)}
+                               handleDelete={() => handleShowDialog(DialogType.DeleteMovie)}
                     />
                 ))}
             </div>
             {showDialog && createPortal(<Dialog dialogTitle={currentDialog}
                                                 content={
-                                                    currentDialog === "Edit movie" ? (
+                                                    currentDialog === DialogType.EditMovie ? (
                                                         <MovieForm initialMovieInfo={selectedMovie}
                                                                    handleSubmit={handleSubmit}/>
-                                                        ) : currentDialog === "Add movie" ? (
+                                                        ) : currentDialog === DialogType.AddMovie ? (
                                                             <MovieForm handleSubmit={handleSubmit}/>
                                                         ) : (<p>Deleting movie</p>)
                                                 }

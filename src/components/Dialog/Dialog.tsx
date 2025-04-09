@@ -1,6 +1,7 @@
 import styles from "./Dialog.module.css";
 import React, {ReactNode} from "react";
 import {FocusTrap} from "focus-trap-react";
+import {DialogType} from "../../constants/DialogType";
 
 interface DialogProps {
     dialogTitle: string;
@@ -9,7 +10,7 @@ interface DialogProps {
 }
 
 const Dialog: React.FC<DialogProps> = ({dialogTitle, content, handleToggleDialog}) => {
-    const isDeleteDialog = dialogTitle === "Delete movie";
+    const isDeleteDialog = dialogTitle === DialogType.DeleteMovie;
 
     return (
         <FocusTrap focusTrapOptions={{}}>

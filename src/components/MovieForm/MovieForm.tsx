@@ -3,7 +3,7 @@ import React from "react";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 
 interface MovieFormProps {
-    initialMovieInfo?: MovieDetailsData,
+    initialMovieInfo?: MovieDetailsData | null,
     handleSubmit: (movieData: MovieDetailsData) => void;
 }
 

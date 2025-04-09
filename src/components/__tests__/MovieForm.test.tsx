@@ -1,7 +1,6 @@
 import MovieForm from "../MovieForm/MovieForm";
 import React from "react";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import {moviesData} from "../../mocks/mockMovieData";
 
 describe("MovieForm component", () => {

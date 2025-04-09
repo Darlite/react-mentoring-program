@@ -15,8 +15,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const movieForm  = <MovieForm handleSubmit={() => {}}/>;
-
 export const AddMovie: Story = {
     args: {
         dialogTitle: "Add movie",

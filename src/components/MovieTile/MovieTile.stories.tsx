@@ -21,5 +21,7 @@ export const Default: Story = {
     args: {
         movieDetails: moviesData,
         onClick: fn(),
+        handleEdit: fn(),
+        handleDelete: fn()
     },
 };

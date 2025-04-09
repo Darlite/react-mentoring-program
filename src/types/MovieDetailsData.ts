@@ -1,9 +1,11 @@
 export interface MovieDetailsData {
+    id: number;
     imageUrl: string;
-    movieName: string;
-    releaseYear: number;
-    relevantGenres: string[];
-    duration: string;
-    rating: number;
+    title: string;
+    releaseDate: string;
+    movieUrl: string;
+    genres: string[];
+    runtime: string;
+    rating: string;
     description: string;
 }

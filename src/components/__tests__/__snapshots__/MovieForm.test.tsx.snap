@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieForm component renders correctly 1`] = `
+<div>
+  <form
+    class="movieForm"
+  >
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="movieTitle"
+      >
+        Title
+      </label>
+      <input
+        aria-label="Movie title"
+        class="input"
+        id="movieTitle"
+        name="title"
+        placeholder="Movie title"
+        required=""
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="releaseDate"
+      >
+        Release Date
+      </label>
+      <input
+        aria-label="Release Date"
+        class="input"
+        id="releaseDate"
+        name="releaseDate"
+        placeholder="Select Date"
+        required=""
+        type="date"
+        value=""
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="movieUrl"
+      >
+        Movie URL
+      </label>
+      <input
+        aria-label="Movie URL"
+        class="input"
+        id="movieUrl"
+        name="movieUrl"
+        placeholder="https://"
+        required=""
+        type="url"
+        value=""
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="rating"
+      >
+        Rating
+      </label>
+      <input
+        aria-label="Movie Rating"
+        class="input"
+        id="rating"
+        name="rating"
+        placeholder="7.8"
+        required=""
+        type="number"
+        value=""
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="genres"
+      >
+        Genre
+      </label>
+      <select
+        aria-label="Movie Genres"
+        class="input"
+        id="genres"
+        multiple=""
+        name="genres"
+        required=""
+      >
+        <option
+          value="Action"
+        >
+          Action
+        </option>
+        <option
+          value="Crime"
+        >
+          Crime
+        </option>
+        <option
+          value="Documentary"
+        >
+          Documentary
+        </option>
+        <option
+          value="Thriller"
+        >
+          Thriller
+        </option>
+        <option
+          value="Musical"
+        >
+          Musical
+        </option>
+      </select>
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="runtime"
+      >
+        Runtime
+      </label>
+      <input
+        aria-label="Movie Runtime"
+        class="input"
+        id="runtime"
+        name="runtime"
+        placeholder="minutes"
+        required=""
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="overviewContainer"
+    >
+      <label
+        class="inputLabel"
+        for="description"
+      >
+        Overview
+      </label>
+      <textarea
+        aria-label="Movie Description"
+        class="input"
+        id="description"
+        name="description"
+        placeholder="Movie description"
+      />
+    </div>
+    <div
+      class="buttonsContainer"
+    >
+      <button
+        class="resetButton"
+        type="reset"
+      >
+        Reset
+      </button>
+      <button
+        class="submitButton"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+`;

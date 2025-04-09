@@ -7,13 +7,19 @@ import {moviesData} from "../../mocks/mockMovieData";
 describe("MovieTile", () => {
     it("renders correctly", () => {
         const { container } = render(<MovieTile movieDetails={moviesData}
-                          onClick={() => {}}
+                                                onClick={() => {}}
+                                                handleDelete={() => {}}
+                                                handleEdit={() => {}}
         />);
         expect(container).toMatchSnapshot();
     });
 
     it("shows the kebab menu on hover", () => {
-        render(<MovieTile movieDetails={moviesData} onClick={() => {}} />);
+        render(<MovieTile
+            movieDetails={moviesData}
+            onClick={() => {}}
+            handleDelete={() => {}}
+            handleEdit={() => {}} />);
         const movieTile = screen.getByTestId("movieTile");
         userEvent.hover(movieTile);
         expect(screen.getByText("︙")).toBeInTheDocument();
@@ -22,7 +28,10 @@ describe("MovieTile", () => {
     });
 
     it("shows and closes the context menu", () => {
-        render(<MovieTile movieDetails={moviesData} onClick={() => {}} />);
+        render(<MovieTile movieDetails={moviesData}
+                          onClick={() => {}}
+                          handleDelete={() => {}}
+                          handleEdit={() => {}} />);
         const movieTile = screen.getByTestId("movieTile");
         userEvent.hover(movieTile);
 
@@ -39,7 +48,10 @@ describe("MovieTile", () => {
 
     it("handle click on the movie tile image", () => {
         const onClick = jest.fn();
-        render(<MovieTile movieDetails={moviesData} onClick={onClick} />);
+        render(<MovieTile movieDetails={moviesData}
+                          onClick={onClick}
+                          handleDelete={() => {}}
+                          handleEdit={() => {}} />);
         userEvent.click(screen.getByRole("img"));
         expect(onClick).toBeCalled();
     });

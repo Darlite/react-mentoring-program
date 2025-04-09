@@ -1,0 +1,73 @@
+.movieForm {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 2fr 1fr;
+}
+
+.inputLabel {
+    text-transform: uppercase;
+    color: #F65261;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.89px;
+}
+
+.input {
+    background: rgba(50, 50, 50, 0.95);
+    color: #FFFFFF;
+    padding: 15px;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+}
+
+.selectInput {
+    color: #000000;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+}
+
+.resetButton {
+    border: 1px solid #F65261;
+    font-size: 20px;
+    color: #F65261;
+    text-transform: uppercase;
+    background: #232323;
+    padding: 16px 35px;
+    cursor: pointer;
+}
+
+.submitButton {
+    background-color: #F65261;
+    font-size: 20px;
+    color: #FFF;
+    text-transform: uppercase;
+    border: 1px solid #F65261;
+    padding: 16px 35px;
+    cursor: pointer;
+}
+
+.labelAndInputContainer {
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+}
+
+.overviewContainer {
+    display: grid;
+    row-gap: 10px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.overviewContainer textarea {
+    min-height: 150px;
+}
+
+.buttonsContainer {
+    display: flex;
+    gap: 15px;
+    justify-content: end;
+    grid-column-start: 2;
+}

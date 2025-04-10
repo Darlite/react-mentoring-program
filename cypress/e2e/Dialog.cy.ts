@@ -1,3 +1,5 @@
+import {DialogType} from "../../src/constants/DialogType";
+
 describe('Dialog test', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000/');
@@ -6,7 +8,7 @@ describe('Dialog test', () => {
     it('opens Add Movie dialog', () => {
         cy.contains('+ Add movie').click();
 
-        cy.get('h1').should('contain', 'Add movie');
+        cy.get('h1').should('contain', DialogType.AddMovie);
 
         cy.get('form').should('exist');
         cy.get('input[name=title]').should('exist');

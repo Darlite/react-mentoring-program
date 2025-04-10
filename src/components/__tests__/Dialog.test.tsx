@@ -3,12 +3,14 @@ import React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {DialogType} from "../../constants/DialogType";
+import ModalContent from "../ModalContent/ModalContent";
 
 describe("Dialog component", () => {
     it("renders correctly for Delete Dialog", () => {
         const { container } = render(<Dialog dialogTitle={DialogType.DeleteMovie}
-                                             content={""}
-                                             handleToggleDialog={() => {}}
+                                             content={<ModalContent currentDialog={DialogType.DeleteMovie}
+                                                                    handleSubmit={jest.fn()} />}
+                                             handleToggleDialog={jest.fn()}
         />);
         expect(container).toMatchSnapshot();
     });

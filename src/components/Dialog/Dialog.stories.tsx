@@ -4,6 +4,8 @@ import Dialog from "./Dialog";
 import MovieForm from "../MovieForm/MovieForm";
 import React from "react";
 import {moviesData} from "../../mocks/mockMovieData";
+import {DialogType} from "../../constants/DialogType";
+import ModalContent from "../ModalContent/ModalContent";
 
 const meta = {
     component: Dialog,
@@ -17,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 
 export const AddMovie: Story = {
     args: {
-        dialogTitle: "Add movie",
+        dialogTitle: DialogType.AddMovie,
         content: <MovieForm handleSubmit={fn()}/>,
         handleToggleDialog: fn(),
     },
@@ -25,7 +27,7 @@ export const AddMovie: Story = {
 
 export const EditMovie: Story = {
     args: {
-        dialogTitle: "Edit movie",
+        dialogTitle: DialogType.EditMovie,
         content: <MovieForm initialMovieInfo={moviesData} handleSubmit={fn()}/>,
         handleToggleDialog: fn(),
     },
@@ -33,8 +35,9 @@ export const EditMovie: Story = {
 
 export const DeleteMovie: Story = {
     args: {
-        dialogTitle: "Delete movie",
-        content: "",
+        dialogTitle: DialogType.DeleteMovie,
+        content: <ModalContent currentDialog={DialogType.DeleteMovie}
+                               handleSubmit={fn()} /> ,
         handleToggleDialog: fn(),
     },
 };

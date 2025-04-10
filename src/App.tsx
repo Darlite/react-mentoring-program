@@ -1,8 +1,8 @@
 import styles from './App.module.css';
 import Counter from "./components/Counter/Counter";
 import SearchForm from "./components/SearchForm/SearchForm";
-import GenreSelect from "./components/GenreSelect/GenreSelect";
-import {genreNames} from "./constants/GenreNames";
+import GenreSort from "./components/GenreSort/GenreSort";
+import {GenreNames} from "./constants/GenreNames";
 import React, {useState} from "react";
 import MovieTile from "./components/MovieTile/MovieTile";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
@@ -10,8 +10,9 @@ import SortControl from "./components/SortControl/SortControl";
 import {MovieDetailsData} from "./types/MovieDetailsData";
 import Dialog from "./components/Dialog/Dialog";
 import {createPortal} from "react-dom";
-import MovieForm from "./components/MovieForm/MovieForm";
 import {DialogType} from "./constants/DialogType";
+import ModalContent from "./components/ModalContent/ModalContent";
+import {GenreType} from "./constants/GenreType";
 
 export default function App() {
     const [selectedGenre, setSelectedGenre] = useState("Documentary");
@@ -51,7 +52,7 @@ export default function App() {
         handleToggleDialog();
     }
 
-    function handleSubmit(MovieData: Object) {
+    function handleSubmit(MovieData: MovieDetailsData) {
         console.log(MovieData);
     }
 
@@ -62,7 +63,7 @@ export default function App() {
             title: "Pulp Fiction",
             releaseDate: "1994-09-23",
             movieUrl: "https://www.imdb.com/title/tt0110912",
-            genres: ["Crime", "Thriller"],
+            genres: [GenreType.Crime, GenreType.Thriller],
             runtime: "2h 34m",
             rating: "8.9",
             description: "Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra",
@@ -73,7 +74,7 @@ export default function App() {
             title: "Bohemian Rhapsody",
             releaseDate: "2018-10-30",
             movieUrl: "https://www.imdb.com/title/tt1727824",
-            genres: ["Musical", "Documentary"],
+            genres: [GenreType.Musical, GenreType.Documentary],
             runtime: "2h 15m",
             rating: "8.5",
             description: "With his impeccable vocal abilities, Freddie Mercury and his rock band, Queen, achieve superstardom. However, amidst his skyrocketing success, he grapples with his ego, sexuality and a fatal illness.",
@@ -84,7 +85,7 @@ export default function App() {
             title: "Kill Bill: Vol. 2",
             releaseDate: "2004-04-08",
             movieUrl: "https://www.imdb.com/title/tt0378194",
-            genres: ["Action", "Thriller"],
+            genres: [GenreType.Action, GenreType.Thriller],
             runtime: "2h 17m",
             rating: "8.9",
             description: "A pregnant woman, codenamed the Bride, sets out on a journey to kill her ex-boss, Bill, and targets his brother, Budd, and Elle Driver, the only two survivors of the Deadly Vipers Assassination Squad.",
@@ -102,9 +103,9 @@ export default function App() {
                 <SearchForm initialSearch={"What do you want to watch?"}
                             onSearch={handleSearch}/>}
             <div className={styles.genreAndSortControls}>
-                <GenreSelect genreNames={genreNames}
-                             selectedGenre={selectedGenre}
-                             onSelect={handleGenreSelect}/>
+                <GenreSort genreNames={GenreNames}
+                           selectedGenre={selectedGenre}
+                           onSelect={handleGenreSelect}/>
                 <SortControl currentSelection={selectedSortControl}
                              onSelect={handleSortControlChange}/>
             </div>
@@ -119,14 +120,9 @@ export default function App() {
                 ))}
             </div>
             {showDialog && createPortal(<Dialog dialogTitle={currentDialog}
-                                                content={
-                                                    currentDialog === DialogType.EditMovie ? (
-                                                        <MovieForm initialMovieInfo={selectedMovie}
-                                                                   handleSubmit={handleSubmit}/>
-                                                        ) : currentDialog === DialogType.AddMovie ? (
-                                                            <MovieForm handleSubmit={handleSubmit}/>
-                                                        ) : (<p>Deleting movie</p>)
-                                                }
+                                                content={<ModalContent currentDialog={currentDialog}
+                                                                       selectedMovie={selectedMovie}
+                                                                       handleSubmit={handleSubmit} />}
                                                 handleToggleDialog={handleToggleDialog}/>, document.body)}
             <Counter initialCount={3}/>
         </div>

@@ -1,6 +1,7 @@
 import styles from './MovieTile.module.css';
 import React, {useState} from "react";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
+import {GenreType} from "../../constants/GenreType";
 
 interface MovieTileProps {
     movieDetails: MovieDetailsData,
@@ -52,7 +53,7 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit,
                 <span className={styles.year}>{releaseDate}</span>
             </span>
             <p className={styles.genres}>
-                {genres.map(genre => (
+                {genres.map((genre: GenreType) => (
                     <span key={genre}>{genre} </span>
                 ))}
             </p>

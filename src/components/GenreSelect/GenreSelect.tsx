@@ -1,24 +1,36 @@
-import styles from './GenreSelectStyles.module.css';
+import {GenreType} from "../../constants/GenreType";
+import styles from "../GenreSelect/GenreSelect.module.css";
 import React from "react";
 
 interface GenreSelectProps {
-    genreNames: string[];
-    selectedGenre: string;
-    onSelect: (genreName: string) => void;
+    defaultOptions?: GenreType[],
 }
 
-const GenreSelect: React.FC<GenreSelectProps> = ({genreNames, selectedGenre, onSelect}) => {
+const GenreSelect: React.FC<GenreSelectProps> = ({
+    defaultOptions
+}) => {
     return (
-        <div className={styles.GenreSelect}>
-            {genreNames.map((genreName, i) => {
-                return (<span role="button"
-                              className={`${styles.GenreSelectItem} ${genreName === selectedGenre ? styles.selected : ""}`}
-                              key={i}
-                              onClick={() => onSelect(genreName)}>
-                    {genreName}
-                </span>)
-            })}
-        </div>);
+        <div className={styles.labelAndInputContainer}>
+            <label className={styles.inputLabel}
+                   htmlFor="genres">Genre</label>
+            <select className={styles.input}
+                    id="genres"
+                    name="genres"
+                    aria-label="Movie Genres"
+                    defaultValue={defaultOptions || [""]}
+                    multiple={true}
+                    required={true}
+            >
+                {
+                    Object.values(GenreType).map((genre) => (
+                        <option key={genre} value={genre}>
+                            {genre}
+                        </option>
+                    ))
+                }
+            </select>
+        </div>
+    )
 }
 
 export default GenreSelect;

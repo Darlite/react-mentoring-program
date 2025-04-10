@@ -3,7 +3,7 @@ import {fn} from "@storybook/test";
 import Dialog from "./Dialog";
 import MovieForm from "../MovieForm/MovieForm";
 import React from "react";
-import {moviesData} from "../../mocks/mockMovieData";
+import {mockMoviesData} from "../../mocks/mockMoviesData";
 import {DialogType} from "../../constants/DialogType";
 import ModalContent from "../ModalContent/ModalContent";
 
@@ -28,7 +28,7 @@ export const AddMovie: Story = {
 export const EditMovie: Story = {
     args: {
         dialogTitle: DialogType.EditMovie,
-        content: <MovieForm initialMovieInfo={moviesData} handleSubmit={fn()}/>,
+        content: <MovieForm initialMovieInfo={mockMoviesData} handleSubmit={fn()}/>,
         handleToggleDialog: fn(),
     },
 };

@@ -170,12 +170,14 @@ exports[`MovieForm component renders correctly 1`] = `
       class="buttonsContainer"
     >
       <button
+        aria-label="Reset"
         class="resetButton"
         type="reset"
       >
         Reset
       </button>
       <button
+        aria-label="Submit"
         class="submitButton"
         type="submit"
       >

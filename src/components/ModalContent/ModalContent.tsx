@@ -25,7 +25,9 @@ const ModalContent: React.FC<ModalContentProps> = ({ currentDialog, selectedMovi
                         <p className={styles.deleteMessage}>
                             Are you sure you want to delete this movie?
                         </p>
-                        <button className={styles.confirmDeleteMovieButton}>
+                        <button className={styles.confirmDeleteMovieButton}
+                                aria-label="Confirm"
+                        >
                             Confirm
                         </button>
                     </>

@@ -106,11 +106,17 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
 
             <div className={styles.buttonsContainer}>
                 <button className={styles.resetButton}
-                        type="reset">Reset</button>
+                        type="reset"
+                        aria-label="Reset"
+                >
+                    Reset
+                </button>
                 <button className={styles.submitButton}
                         type="submit"
+                        aria-label="Submit"
                 >
-                    Submit</button>
+                    Submit
+                </button>
             </div>
         </form>
     )

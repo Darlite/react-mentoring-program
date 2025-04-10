@@ -1,6 +1,6 @@
 import {GenreType} from "../constants/GenreType";
 
-export const moviesData = {
+export const mockMoviesData = {
     id: 1,
     imageUrl: "images/Pulp_Fiction.png",
     title: "Pulp Fiction",

@@ -16,6 +16,7 @@ exports[`Dialog component renders correctly for Delete Dialog 1`] = `
       Are you sure you want to delete this movie?
     </p>
     <button
+      aria-label="Confirm"
       class="confirmDeleteMovieButton"
     >
       Confirm

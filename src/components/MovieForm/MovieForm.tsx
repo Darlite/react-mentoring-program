@@ -1,6 +1,9 @@
 import styles from "../MovieForm/MovieForm.module.css";
-import React from "react";
+import React, {FormEvent} from "react";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
+import {GenreType} from "../../constants/GenreType";
+import InputField from "../InputField/InputField";
+import GenreSelect from "../GenreSelect/GenreSelect";
 
 interface MovieFormProps {
     initialMovieInfo?: MovieDetailsData | null,
@@ -8,122 +11,86 @@ interface MovieFormProps {
 }
 
 const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit }) => {
+    function onSubmit(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
+        const formDataObject = Object.fromEntries(formData) as Record<string, string>;
+
+        const genres = formData.getAll("genres") as string[] as GenreType[];
+
+        const id = initialMovieInfo?.id ?? Math.floor(Math.random() * 10000);
+
+        const movieData = {
+            id,
+            imageUrl: initialMovieInfo?.imageUrl || "",
+            title: formDataObject.title,
+            releaseDate: formDataObject.releaseDate,
+            movieUrl: formDataObject.movieUrl,
+            rating: formDataObject.rating,
+            genres,
+            runtime: formDataObject.runtime,
+            description: formDataObject.description,
+        };
+
+        handleSubmit(movieData);
+    }
+
     return (
         <form className={styles.movieForm}
-              onSubmit={(e) => {
-                  e.preventDefault();
-                  const form = e.target as HTMLFormElement;
-                  const formData = new FormData(form);
-                  const formDataObject = Object.fromEntries(formData) as Record<string, string>;
-
-                  const genres = formData.getAll("genres") as string[];
-
-                  const id = initialMovieInfo?.id ?? Math.floor(Math.random() * 10000);
-
-                  const movieData = {
-                      id,
-                      imageUrl: initialMovieInfo?.imageUrl || "",
-                      title: formDataObject.title,
-                      releaseDate: formDataObject.releaseDate,
-                      movieUrl: formDataObject.movieUrl,
-                      rating: formDataObject.rating,
-                      genres,
-                      runtime: formDataObject.runtime,
-                      description: formDataObject.description,
-                  };
-
-                  handleSubmit(movieData);
-              }
-            }
+              onSubmit={onSubmit}
         >
-            <div className={styles.labelAndInputContainer}>
-                <label className={styles.inputLabel}
-                       htmlFor="movieTitle">Title</label>
-                <input className={styles.input}
-                       type="text"
-                       id="movieTitle"
-                       name="title"
-                       aria-label="Movie title"
-                       defaultValue={initialMovieInfo?.title || ""}
-                       placeholder="Movie title"
-                       required={true}
-                />
-            </div>
-
-            <div className={styles.labelAndInputContainer}>
-                <label className={styles.inputLabel}
-                       htmlFor="releaseDate">Release Date</label>
-                <input className={styles.input}
-                       type="date"
-                       id="releaseDate"
-                       name="releaseDate"
-                       aria-label="Release Date"
-                       defaultValue={initialMovieInfo?.releaseDate || ""}
-                       placeholder="Select Date"
-                       required={true}
-                />
-            </div>
-
-            <div className={styles.labelAndInputContainer}>
-                <label className={styles.inputLabel}
-                       htmlFor="movieUrl">Movie URL</label>
-                <input className={styles.input}
-                       type="url"
-                       id="movieUrl"
-                       name="movieUrl"
-                       aria-label="Movie URL"
-                       defaultValue={initialMovieInfo?.movieUrl || ""}
-                       placeholder="https://"
-                       required={true}
-                />
-            </div>
-
-            <div className={styles.labelAndInputContainer}>
-                <label className={styles.inputLabel}
-                       htmlFor="rating">Rating</label>
-                <input className={styles.input}
-                       type="number"
-                       id="rating"
-                       name="rating"
-                       aria-label="Movie Rating"
-                       defaultValue={initialMovieInfo?.rating || ""}
-                       placeholder="7.8"
-                       required={true}
-                />
-            </div>
-
-            <div className={styles.labelAndInputContainer}>
-                <label className={styles.inputLabel}
-                       htmlFor="genres">Genre</label>
-                <select className={styles.input}
-                        id="genres"
-                        name="genres"
-                        aria-label="Movie Genres"
-                        defaultValue={initialMovieInfo?.genres || [""]}
-                        multiple={true}
+            <InputField id="movieTitle"
+                        label="Title"
+                        type="text"
+                        name="title"
+                        placeholder="Movie title"
+                        defaultValue={initialMovieInfo?.title || ""}
                         required={true}
-                >
-                    <option value="Action">Action</option>
-                    <option value="Crime">Crime</option>
-                    <option value="Documentary">Documentary</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Musical">Musical</option>
-                </select>
-            </div>
+                        ariaLabel="Movie title"
+            />
 
-            <div className={styles.labelAndInputContainer}>
-                <label className={styles.inputLabel}
-                       htmlFor="runtime">Runtime</label>
-                <input className={styles.input}
-                       type="text"
-                       id="runtime"
-                       name="runtime"
-                       aria-label="Movie Runtime"
-                       defaultValue={initialMovieInfo?.runtime || ""}
-                       placeholder="minutes"
-                       required={true}
-                />
-            </div>
+            <InputField id="releaseDate"
+                        label="Release Date"
+                        type="date"
+                        name="releaseDate"
+                        placeholder="Select Date"
+                        defaultValue={initialMovieInfo?.releaseDate || ""}
+                        required={true}
+                        ariaLabel="Release Date"
+            />
+
+            <InputField id="movieUrl"
+                        label="Movie URL"
+                        type="url"
+                        name="movieUrl"
+                        placeholder="https://"
+                        defaultValue={initialMovieInfo?.movieUrl || ""}
+                        required={true}
+                        ariaLabel="Movie URL"
+            />
+
+            <InputField id="rating"
+                        label="Rating"
+                        type="number"
+                        name="rating"
+                        placeholder="7.8"
+                        defaultValue={initialMovieInfo?.rating || ""}
+                        required={true}
+                        ariaLabel="Movie Rating"
+            />
+
+            <GenreSelect defaultOptions={initialMovieInfo?.genres} />
+
+            <InputField id="runtime"
+                        label="Runtime"
+                        type="text"
+                        name="runtime"
+                        placeholder="minutes"
+                        defaultValue={initialMovieInfo?.runtime || ""}
+                        required={true}
+                        ariaLabel="Movie Runtime"
+            />
 
             <div className={styles.overviewContainer}>
                 <label className={styles.inputLabel}

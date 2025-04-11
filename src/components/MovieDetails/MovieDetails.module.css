@@ -40,14 +40,14 @@
     flex-basis: 100%;
 }
 
-.releaseYear {
+.releaseDate {
     color: #F65261;
     font-size: 24px;
     font-weight: 300;
     margin-right: 40px;
 }
 
-.duration {
+.runtime {
     color: #F65261;
     font-size: 24px;
     font-weight: 300;

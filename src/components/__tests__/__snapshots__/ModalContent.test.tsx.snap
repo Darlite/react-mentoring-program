@@ -1,0 +1,397 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalContent matches snapshot for Add Movie dialog 1`] = `
+<div>
+  <form
+    class="movieForm"
+  >
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="movieTitle"
+      >
+        Title
+      </label>
+      <input
+        aria-label="Movie title"
+        class="input"
+        id="movieTitle"
+        name="title"
+        placeholder="Movie title"
+        required=""
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="releaseDate"
+      >
+        Release Date
+      </label>
+      <input
+        aria-label="Release Date"
+        class="input"
+        id="releaseDate"
+        name="releaseDate"
+        placeholder="Select Date"
+        required=""
+        type="date"
+        value=""
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="movieUrl"
+      >
+        Movie URL
+      </label>
+      <input
+        aria-label="Movie URL"
+        class="input"
+        id="movieUrl"
+        name="movieUrl"
+        placeholder="https://"
+        required=""
+        type="url"
+        value=""
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="rating"
+      >
+        Rating
+      </label>
+      <input
+        aria-label="Movie Rating"
+        class="input"
+        id="rating"
+        name="rating"
+        placeholder="7.8"
+        required=""
+        type="number"
+        value=""
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="genres"
+      >
+        Genre
+      </label>
+      <select
+        aria-label="Movie Genres"
+        class="input"
+        id="genres"
+        multiple=""
+        name="genres"
+        required=""
+      >
+        <option
+          value="Action"
+        >
+          Action
+        </option>
+        <option
+          value="Crime"
+        >
+          Crime
+        </option>
+        <option
+          value="Documentary"
+        >
+          Documentary
+        </option>
+        <option
+          value="Thriller"
+        >
+          Thriller
+        </option>
+        <option
+          value="Musical"
+        >
+          Musical
+        </option>
+      </select>
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="runtime"
+      >
+        Runtime
+      </label>
+      <input
+        aria-label="Movie Runtime"
+        class="input"
+        id="runtime"
+        name="runtime"
+        placeholder="minutes"
+        required=""
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="overviewContainer"
+    >
+      <label
+        class="inputLabel"
+        for="description"
+      >
+        Overview
+      </label>
+      <textarea
+        aria-label="Movie Description"
+        class="input"
+        id="description"
+        name="description"
+        placeholder="Movie description"
+      />
+    </div>
+    <div
+      class="buttonsContainer"
+    >
+      <button
+        aria-label="Reset"
+        class="resetButton"
+        type="reset"
+      >
+        Reset
+      </button>
+      <button
+        aria-label="Submit"
+        class="submitButton"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`ModalContent matches snapshot for Delete Movie dialog 1`] = `
+<div>
+  <p
+    class="deleteMessage"
+  >
+    Are you sure you want to delete this movie?
+  </p>
+  <button
+    aria-label="Confirm"
+    class="confirmDeleteMovieButton"
+  >
+    Confirm
+  </button>
+</div>
+`;
+
+exports[`ModalContent matches snapshot for Edit Movie dialog 1`] = `
+<div>
+  <form
+    class="movieForm"
+  >
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="movieTitle"
+      >
+        Title
+      </label>
+      <input
+        aria-label="Movie title"
+        class="input"
+        id="movieTitle"
+        name="title"
+        placeholder="Movie title"
+        required=""
+        type="text"
+        value="Pulp Fiction"
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="releaseDate"
+      >
+        Release Date
+      </label>
+      <input
+        aria-label="Release Date"
+        class="input"
+        id="releaseDate"
+        name="releaseDate"
+        placeholder="Select Date"
+        required=""
+        type="date"
+        value="1994-09-23"
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="movieUrl"
+      >
+        Movie URL
+      </label>
+      <input
+        aria-label="Movie URL"
+        class="input"
+        id="movieUrl"
+        name="movieUrl"
+        placeholder="https://"
+        required=""
+        type="url"
+        value="https://www.imdb.com/title/tt0110912"
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="rating"
+      >
+        Rating
+      </label>
+      <input
+        aria-label="Movie Rating"
+        class="input"
+        id="rating"
+        name="rating"
+        placeholder="7.8"
+        required=""
+        type="number"
+        value="8.9"
+      />
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="genres"
+      >
+        Genre
+      </label>
+      <select
+        aria-label="Movie Genres"
+        class="input"
+        id="genres"
+        multiple=""
+        name="genres"
+        required=""
+      >
+        <option
+          value="Action"
+        >
+          Action
+        </option>
+        <option
+          selected=""
+          value="Crime"
+        >
+          Crime
+        </option>
+        <option
+          value="Documentary"
+        >
+          Documentary
+        </option>
+        <option
+          selected=""
+          value="Thriller"
+        >
+          Thriller
+        </option>
+        <option
+          value="Musical"
+        >
+          Musical
+        </option>
+      </select>
+    </div>
+    <div
+      class="labelAndInputContainer"
+    >
+      <label
+        class="inputLabel"
+        for="runtime"
+      >
+        Runtime
+      </label>
+      <input
+        aria-label="Movie Runtime"
+        class="input"
+        id="runtime"
+        name="runtime"
+        placeholder="minutes"
+        required=""
+        type="text"
+        value="2h 34m"
+      />
+    </div>
+    <div
+      class="overviewContainer"
+    >
+      <label
+        class="inputLabel"
+        for="description"
+      >
+        Overview
+      </label>
+      <textarea
+        aria-label="Movie Description"
+        class="input"
+        id="description"
+        name="description"
+        placeholder="Movie description"
+      >
+        Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra
+      </textarea>
+    </div>
+    <div
+      class="buttonsContainer"
+    >
+      <button
+        aria-label="Reset"
+        class="resetButton"
+        type="reset"
+      >
+        Reset
+      </button>
+      <button
+        aria-label="Submit"
+        class="submitButton"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+`;

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import MovieTile from "./MovieTile";
 import {fn} from "@storybook/test";
-import {moviesData} from "../../mocks/mockMovieData";
+import {mockMoviesData} from "../../mocks/mockMoviesData";
 
 
 const meta = {
@@ -19,7 +19,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        movieDetails: moviesData,
+        movieDetails: mockMoviesData,
         onClick: fn(),
+        handleEdit: fn(),
+        handleDelete: fn()
     },
 };

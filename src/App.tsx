@@ -1,5 +1,4 @@
 import styles from './App.module.css';
-import Counter from "./components/Counter/Counter";
 import SearchForm from "./components/SearchForm/SearchForm";
 import GenreSort from "./components/GenreSort/GenreSort";
 import {GenreNames} from "./constants/GenreNames";
@@ -124,7 +123,6 @@ export default function App() {
                                                                        selectedMovie={selectedMovie}
                                                                        handleSubmit={handleSubmit} />}
                                                 handleToggleDialog={handleToggleDialog}/>, document.body)}
-            <Counter initialCount={3}/>
         </div>
     );
 }

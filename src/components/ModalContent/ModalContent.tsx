@@ -2,7 +2,7 @@ import React from "react";
 import {DialogType} from "../../constants/DialogType";
 import MovieForm from "../MovieForm/MovieForm";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
-import styles from "../ModalContent/ModalContent.module.css";
+import DeleteDialog from "../DeleteDialog/DeleteDialog";
 
 interface ModalContentProps {
     currentDialog: string,
@@ -21,16 +21,7 @@ const ModalContent: React.FC<ModalContentProps> = ({ currentDialog, selectedMovi
                 currentDialog === DialogType.AddMovie ? (
                     <MovieForm handleSubmit={handleSubmit}/>
                 ) : (
-                    <>
-                        <p className={styles.deleteMessage}>
-                            Are you sure you want to delete this movie?
-                        </p>
-                        <button className={styles.confirmDeleteMovieButton}
-                                aria-label="Confirm"
-                        >
-                            Confirm
-                        </button>
-                    </>
+                    <DeleteDialog/>
                 )
             }
         </>

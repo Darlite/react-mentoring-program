@@ -8,7 +8,6 @@ import MovieDetails from "./components/MovieDetails/MovieDetails";
 import SortControl from "./components/SortControl/SortControl";
 import {MovieDetailsData} from "./types/MovieDetailsData";
 import Dialog from "./components/Dialog/Dialog";
-import {createPortal} from "react-dom";
 import {DialogType} from "./constants/DialogType";
 import ModalContent from "./components/ModalContent/ModalContent";
 import {GenreType} from "./constants/GenreType";
@@ -94,13 +93,16 @@ export default function App() {
     return (
         <div id="App"
              className={showDialog ? styles.app + " " + styles.appBlured : styles.app}>
+
             <span className={styles.addMovieButton}
                   id="addMovieButton"
                   role="button"
                   onClick={() => handleShowDialog(DialogType.AddMovie)}>+ Add movie</span>
+
             {selectedMovie ? <MovieDetails movieDetails={selectedMovie}/> :
                 <SearchForm initialSearch={"What do you want to watch?"}
                             onSearch={handleSearch}/>}
+
             <div className={styles.genreAndSortControls}>
                 <GenreSort genreNames={GenreNames}
                            selectedGenre={selectedGenre}
@@ -108,6 +110,7 @@ export default function App() {
                 <SortControl currentSelection={selectedSortControl}
                              onSelect={handleSortControlChange}/>
             </div>
+
             <div className={styles.movieList}>
                 {moviesDataList.map((movie) => (
                     <MovieTile key={movie.id}
@@ -118,11 +121,13 @@ export default function App() {
                     />
                 ))}
             </div>
-            {showDialog && createPortal(<Dialog dialogTitle={currentDialog}
-                                                content={<ModalContent currentDialog={currentDialog}
-                                                                       selectedMovie={selectedMovie}
-                                                                       handleSubmit={handleSubmit} />}
-                                                handleToggleDialog={handleToggleDialog}/>, document.body)}
+
+            <Dialog dialogTitle={currentDialog}
+                    content={<ModalContent currentDialog={currentDialog}
+                                           selectedMovie={selectedMovie}
+                                           handleSubmit={handleSubmit} />}
+                    handleToggleDialog={handleToggleDialog}
+                    showDialog={showDialog}/>
         </div>
     );
 }

@@ -22,6 +22,7 @@ export const AddMovie: Story = {
         dialogTitle: DialogType.AddMovie,
         content: <MovieForm handleSubmit={fn()}/>,
         handleToggleDialog: fn(),
+        showDialog: true,
     },
 };
 
@@ -30,6 +31,7 @@ export const EditMovie: Story = {
         dialogTitle: DialogType.EditMovie,
         content: <MovieForm initialMovieInfo={mockMoviesData} handleSubmit={fn()}/>,
         handleToggleDialog: fn(),
+        showDialog: true,
     },
 };
 
@@ -39,5 +41,6 @@ export const DeleteMovie: Story = {
         content: <ModalContent currentDialog={DialogType.DeleteMovie}
                                handleSubmit={fn()} /> ,
         handleToggleDialog: fn(),
+        showDialog: true,
     },
 };

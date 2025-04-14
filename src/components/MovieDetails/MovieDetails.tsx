@@ -12,7 +12,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({movieDetails}) => {
         <div className={styles.movieDetails}>
             <img src={imageUrl} alt={title}/>
             <div className={styles.movieInfo}>
-                <h1 className={styles.movieTitle}>{<title></title>}</h1>
+                <h1 className={styles.movieTitle}>{title}</h1>
                 <span className={styles.rating}>{rating}</span>
                 <p className={styles.genres}>
                     {genres.map(genre => (
@@ -22,6 +22,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({movieDetails}) => {
                 <span className={styles.releaseDate}>{releaseDate}</span>
                 <span className={styles.runtime}>{runtime}</span>
                 <p className={styles.description}>{description}</p>
+                <span role="button"></span>
             </div>
         </div>
     )

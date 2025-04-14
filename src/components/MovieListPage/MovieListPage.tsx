@@ -98,14 +98,16 @@ export default function MovieListPage() {
     return (
         <div className={showDialog ? styles.movieListPageContainer + " " + styles.movieListPageContainerBlured : styles.movieListPageContainer}>
 
-            <span className={styles.addMovieButton}
-                  id="addMovieButton"
-                  role="button"
-                  onClick={() => handleShowDialog(DialogType.AddMovie)}>+ Add movie</span>
-
             {selectedMovie ? <MovieDetails movieDetails={selectedMovie}/> :
-                <SearchForm initialSearch={"What do you want to watch?"}
-                            onSearch={handleSearch}/>}
+                <>
+                    <SearchForm initialSearch={"What do you want to watch?"}
+                                onSearch={handleSearch}/>
+                    <span className={styles.addMovieButton}
+                          id="addMovieButton"
+                          role="button"
+                          onClick={() => handleShowDialog(DialogType.AddMovie)}>+ Add movie</span>
+                </>
+            }
 
             <div className={styles.genreAndSortControls}>
                 <GenreSort genreNames={GenreNames}

@@ -16,6 +16,7 @@ import {DialogType} from "../../constants/DialogType";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 
 export default function MovieListPage() {
+    const [seachQuery, setSeachQuery] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("Documentary");
     const [selectedSortControl, setSelectedSortControl] = useState("Release Date");
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
@@ -24,6 +25,7 @@ export default function MovieListPage() {
 
     function handleSearch(searchInput: string) {
         console.log("Input from the search bar: ", searchInput);
+        setSeachQuery(searchInput);
     }
 
     function handleGenreSelect(genre: string) {

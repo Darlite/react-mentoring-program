@@ -62,5 +62,11 @@
 }
 
 .searchButton {
-    background: url("../../../assets/images/searchIcon.svg") 0 0 no-repeat;
+    background: url("../../../assets/images/searchIcon.svg") 100% 50% no-repeat;
+    width: 130px;
+    height: 50px;
+    line-height: 24px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-top: 30px;
 }

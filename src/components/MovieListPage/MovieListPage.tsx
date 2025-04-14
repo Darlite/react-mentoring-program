@@ -59,6 +59,10 @@ export default function MovieListPage() {
         console.log(MovieData);
     }
 
+    function handleBackToSearch() {
+        setSelectedMovie(null);
+    }
+
     const moviesDataList = [
         {
             id: 1,
@@ -98,7 +102,7 @@ export default function MovieListPage() {
     return (
         <div className={showDialog ? styles.movieListPageContainer + " " + styles.movieListPageContainerBlured : styles.movieListPageContainer}>
 
-            {selectedMovie ? <MovieDetails movieDetails={selectedMovie}/> :
+            {selectedMovie ? <MovieDetails movieDetails={selectedMovie} handleBackToSearch={handleBackToSearch}/> :
                 <>
                     <SearchForm initialSearch={"What do you want to watch?"}
                                 onSearch={handleSearch}/>

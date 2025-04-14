@@ -11,7 +11,7 @@ interface CounterState {
 export default class Counter extends React.Component<CounterProps, CounterState> {
     constructor(props: CounterProps) {
         super(props);
-        this.state = { count: props.initialCount || 0 }
+        this.state = { count: props.initialCount }
     }
 
     increment = () => {

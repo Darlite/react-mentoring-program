@@ -1,0 +1,30 @@
+.dialogContainer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-488px, 100px);
+    width: 976px;
+    background: #232323;
+    padding: 40px;
+    color: #FFFFFF;
+}
+
+.closeButton {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    color: #FFF;
+    border: none;
+}
+
+.dialogTitle {
+    font-size: 40px;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-top: 10px;
+}

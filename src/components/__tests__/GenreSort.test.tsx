@@ -1,14 +1,14 @@
-import GenreSelect from "../GenreSelect/GenreSelect";
+import GenreSort from "../GenreSort/GenreSort";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 const genreNames = ['Comedy', 'Horror', 'Crime'];
 
-describe('GenreSelect component', () => {
+describe('GenreSort component', () => {
     it('renders props correctly', () => {
-        render(<GenreSelect genreNames={genreNames}
-                            selectedGenre={""}
-                            onSelect={() => {
+        render(<GenreSort genreNames={genreNames}
+                          selectedGenre={""}
+                          onSelect={() => {
                             }}/>);
         const buttons = screen.getAllByRole("button");
         expect(buttons).toHaveLength(genreNames.length);
@@ -19,9 +19,9 @@ describe('GenreSelect component', () => {
 
     it('initial button highlighting', () => {
         const selectedGenre = "Horror";
-        render(<GenreSelect genreNames={genreNames}
-                            selectedGenre={selectedGenre}
-                            onSelect={() => {
+        render(<GenreSort genreNames={genreNames}
+                          selectedGenre={selectedGenre}
+                          onSelect={() => {
                             }}/>);
         const buttons = screen.getAllByRole("button");
         let selectedButton = buttons.find(button => button.textContent === selectedGenre);
@@ -36,9 +36,9 @@ describe('GenreSelect component', () => {
     it('changing the highlighted button on click', () => {
         const onSelect = jest.fn();
         const genreToSelect = "Comedy";
-        render(<GenreSelect genreNames={genreNames}
-                            selectedGenre={""}
-                            onSelect={onSelect}/>);
+        render(<GenreSort genreNames={genreNames}
+                          selectedGenre={""}
+                          onSelect={onSelect}/>);
         const buttons = screen.getAllByRole("button");
         let selectedButton = buttons.find(button => button.textContent === genreToSelect);
 

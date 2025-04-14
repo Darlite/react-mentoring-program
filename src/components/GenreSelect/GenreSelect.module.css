@@ -1,0 +1,21 @@
+.labelAndInputContainer {
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+}
+.inputLabel {
+    text-transform: uppercase;
+    color: #F65261;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.89px;
+}
+
+.input {
+    background: rgba(50, 50, 50, 0.95);
+    color: #FFFFFF;
+    padding: 15px;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+}

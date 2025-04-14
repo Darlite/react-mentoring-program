@@ -14,9 +14,7 @@ exports[`MovieDetails renders correctly 1`] = `
     >
       <h1
         class="movieTitle"
-      >
-        Pulp Fiction
-      </h1>
+      />
       <span
         class="rating"
       >
@@ -35,12 +33,12 @@ exports[`MovieDetails renders correctly 1`] = `
         </span>
       </p>
       <span
-        class="releaseYear"
+        class="releaseDate"
       >
-        1994
+        1994-09-23
       </span>
       <span
-        class="duration"
+        class="runtime"
       >
         2h 34m
       </span>

@@ -18,18 +18,20 @@ import AddMovieButton from "../../components/AddMovieButton/AddMovieButton";
 
 export default function MovieListPage() {
     const [movieList, setMovieList] = useState<MovieDetailsData[]>([]);
-    const [searchQuery, setSearchQuery] = useState("");
-    const [selectedGenre, setSelectedGenre] = useState("");
-    const [selectedSortControl, setSelectedSortControl] = useState("release_date");
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentDialog, setCurrentDialog] = useState("");
+    const [filters, setFilters] = useState({
+        searchQuery: "",
+        selectedGenre: "",
+        selectedSortControl: "release_date",
+    });
 
     useEffect(() => {
         async function getMoviesList() {
             try {
                 const response = await axios.get(
-                    `http://localhost:4000/movies?limit=12&searchBy=title&search=${searchQuery}&filter=${selectedGenre}&sortBy=${selectedSortControl}&sortOrder=asc`);
+                    `http://localhost:4000/movies?limit=12&searchBy=title&search=${filters.searchQuery}&filter=${filters.selectedGenre}&sortBy=${filters.selectedSortControl}&sortOrder=asc`);
                 setMovieList(response.data.data);
             }
             catch (error) {
@@ -37,28 +39,36 @@ export default function MovieListPage() {
             }
         }
         getMoviesList();
-    }, [searchQuery, selectedGenre, selectedSortControl]);
+    }, [filters.searchQuery, filters.selectedGenre, filters.selectedSortControl]);
+
+    function updateFilters(key: string, value: string) {
+        setFilters((prevState) => ({
+            ...prevState,
+            [key] : value,
+        }));
+    }
 
     function handleSearch(searchInput: string) {
-        setSearchQuery(searchInput);
+        updateFilters("searchQuery", searchInput);
     }
 
     function handleGenreSelect(genre: string) {
         if (genre === "All") {
-            setSelectedGenre("");
+            updateFilters("selectedGenre", "");
             return;
         }
 
-        setSelectedGenre(genre);
+        updateFilters("selectedGenre", genre);
+    }
+
+    function handleSortControlChange(option: string) {
+        updateFilters("selectedSortControl", option);
     }
 
     function handleTileClick(movieDetails: MovieDetailsData) {
         setSelectedMovie(movieDetails);
     }
 
-    function handleSortControlChange(option: string) {
-        setSelectedSortControl(option);
-    }
 
     function handleToggleDialog() {
         setShowDialog(!showDialog);
@@ -102,9 +112,9 @@ export default function MovieListPage() {
 
             <div className={styles.genreAndSortControls}>
                 <GenreSort genreNames={GenreNames}
-                           selectedGenre={selectedGenre}
+                           selectedGenre={filters.selectedGenre}
                            onSelect={handleGenreSelect}/>
-                <SortControl currentSelection={selectedSortControl}
+                <SortControl currentSelection={filters.selectedSortControl}
                              onSelect={handleSortControlChange}/>
             </div>
 

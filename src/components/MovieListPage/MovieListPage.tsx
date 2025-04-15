@@ -16,50 +16,42 @@ import {DialogType} from "../../constants/DialogType";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 
 export default function MovieListPage() {
-    const [movieList, setMovieList] = useState<any[]>([]);
+    const [movieList, setMovieList] = useState<MovieDetailsData[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedGenre, setSelectedGenre] = useState("All");
-    const [selectedSortControl, setSelectedSortControl] = useState("Release Date");
+    const [selectedGenre, setSelectedGenre] = useState("");
+    const [selectedSortControl, setSelectedSortControl] = useState("release_date");
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentDialog, setCurrentDialog] = useState("");
 
     useEffect(() => {
-        async function getInitialMovieList() {
+        async function getMoviesList() {
             try {
-                const response = await axios.get("http://localhost:4000/movies?limit=12");
-                console.log("Response from getInitialMovieList: ", response.data.data);
+                const response = await axios.get(
+                    `http://localhost:4000/movies?limit=12&searchBy=title&search=${searchQuery}&filter=${selectedGenre}&sortBy=${selectedSortControl}&sortOrder=asc`);
                 setMovieList(response.data.data);
             }
             catch (error) {
-                console.log("Error getting initial movie list ", error);
+                console.log("Error getting movie list ", error);
             }
         }
-        getInitialMovieList();
-    }, []);
-
-    useEffect(() => {
-        console.log("The state has been changed: ", searchQuery);
-        async function fetchData () {
-            const response = await axios.get("http://localhost:4000/movies?searchBy=title&search=" + searchQuery);
-            console.log("Response: ", response.data);
-            setMovieList(response.data.data);
-        }
-
-        fetchData();
-    }, [searchQuery]);
+        getMoviesList();
+    }, [searchQuery, selectedGenre, selectedSortControl]);
 
     function handleSearch(searchInput: string) {
-        console.log("Input from the search bar: ", searchInput);
         setSearchQuery(searchInput);
     }
 
     function handleGenreSelect(genre: string) {
+        if (genre === "All") {
+            setSelectedGenre("");
+            return;
+        }
+
         setSelectedGenre(genre);
     }
 
     function handleTileClick(movieDetails: MovieDetailsData) {
-        console.log("Clicked on: ", movieDetails);
         setSelectedMovie(movieDetails);
     }
 
@@ -90,18 +82,28 @@ export default function MovieListPage() {
     }
 
     return (
-        <div className={showDialog ? styles.movieListPageContainer + " " + styles.movieListPageContainerBlured : styles.movieListPageContainer}>
+        <div className={
+            showDialog
+                ? styles.movieListPageContainer + " " + styles.movieListPageContainerBlured
+                : styles.movieListPageContainer
+            }
+        >
 
-            {selectedMovie ? <MovieDetails movieDetails={selectedMovie} handleBackToSearch={handleBackToSearch}/> :
+            {selectedMovie ? (
+                <MovieDetails movieDetails={selectedMovie} handleBackToSearch={handleBackToSearch}/>
+            ) : (
                 <>
                     <SearchForm initialSearch={"What do you want to watch?"}
                                 onSearch={handleSearch}/>
                     <span className={styles.addMovieButton}
                           id="addMovieButton"
                           role="button"
-                          onClick={() => handleShowDialog(DialogType.AddMovie)}>+ Add movie</span>
+                          onClick={() => handleShowDialog(DialogType.AddMovie)}
+                    >
+                        + Add movie
+                    </span>
                 </>
-            }
+            )}
 
             <div className={styles.genreAndSortControls}>
                 <GenreSort genreNames={GenreNames}

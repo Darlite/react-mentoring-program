@@ -6,6 +6,11 @@
     width: 323px;
 }
 
+.movieTileImage {
+    min-height: 485px;
+    object-fit: cover;
+}
+
 .kebabMenu {
     font-weight: bold;
     font-size: 26px;

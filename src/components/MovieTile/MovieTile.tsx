@@ -30,8 +30,8 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit,
              data-testid="movieTile"
              onMouseEnter={() => setHovered(true)}
              onMouseLeave={() => setHovered(false)}>
-            <img
-                 src={poster_path}
+            <img className={styles.movieTileImage}
+                 src={!poster_path ? placeholderImage : poster_path}
                  alt={title}
                  onClick={() => onClick(movieDetails)}
                  onError={(e) => {
@@ -56,7 +56,7 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit,
             )}
             <span className={styles.movieTitleAndYear}>
                 <h2 className={styles.title}>{title}</h2>
-                <span className={styles.year}>{release_date}</span>
+                <span className={styles.year}>{release_date.slice(0, 4)}</span>
             </span>
             <p className={styles.genres}>
                 {genres.map((genre: GenreType) => (

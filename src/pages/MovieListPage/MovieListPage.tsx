@@ -14,6 +14,7 @@ import ModalContent from "../../components/ModalContent/ModalContent";
 import {GenreNames} from "../../constants/GenreNames";
 import {DialogType} from "../../constants/DialogType";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
+import AddMovieButton from "../../components/AddMovieButton/AddMovieButton";
 
 export default function MovieListPage() {
     const [movieList, setMovieList] = useState<MovieDetailsData[]>([]);
@@ -95,13 +96,7 @@ export default function MovieListPage() {
                 <>
                     <SearchForm initialSearch={"What do you want to watch?"}
                                 onSearch={handleSearch}/>
-                    <span className={styles.addMovieButton}
-                          id="addMovieButton"
-                          role="button"
-                          onClick={() => handleShowDialog(DialogType.AddMovie)}
-                    >
-                        + Add movie
-                    </span>
+                    <AddMovieButton handleShowDialog={handleShowDialog} />
                 </>
             )}
 

@@ -3,13 +3,13 @@ import axios from "axios";
 
 import styles from './MovieListPage.module.css';
 
-import SearchForm from "../SearchForm/SearchForm";
-import GenreSort from "../GenreSort/GenreSort";
-import MovieTile from "../MovieTile/MovieTile";
-import MovieDetails from "../MovieDetails/MovieDetails";
-import SortControl from "../SortControl/SortControl";
-import Dialog from "../Dialog/Dialog";
-import ModalContent from "../ModalContent/ModalContent";
+import SearchForm from "../../components/SearchForm/SearchForm";
+import GenreSort from "../../components/GenreSort/GenreSort";
+import MovieTile from "../../components/MovieTile/MovieTile";
+import MovieDetails from "../../components/MovieDetails/MovieDetails";
+import SortControl from "../../components/SortControl/SortControl";
+import Dialog from "../../components/Dialog/Dialog";
+import ModalContent from "../../components/ModalContent/ModalContent";
 
 import {GenreNames} from "../../constants/GenreNames";
 import {DialogType} from "../../constants/DialogType";

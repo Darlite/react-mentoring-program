@@ -2,12 +2,12 @@ import {GenreType} from "../constants/GenreType";
 
 export interface MovieDetailsData {
     id: number;
-    imageUrl: string;
+    poster_path: string;
     title: string;
-    releaseDate: string;
+    release_date: string;
     movieUrl: string;
     genres: GenreType[];
     runtime: string;
-    rating: string;
-    description: string;
+    vote_average: string;
+    overview: string;
 }

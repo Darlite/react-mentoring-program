@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 import styles from './MovieListPage.module.css';
 
@@ -11,21 +12,46 @@ import Dialog from "../Dialog/Dialog";
 import ModalContent from "../ModalContent/ModalContent";
 
 import {GenreNames} from "../../constants/GenreNames";
-import {GenreType} from "../../constants/GenreType";
 import {DialogType} from "../../constants/DialogType";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 
 export default function MovieListPage() {
-    const [seachQuery, setSeachQuery] = useState("");
-    const [selectedGenre, setSelectedGenre] = useState("Documentary");
+    const [movieList, setMovieList] = useState<any[]>([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [selectedGenre, setSelectedGenre] = useState("All");
     const [selectedSortControl, setSelectedSortControl] = useState("Release Date");
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentDialog, setCurrentDialog] = useState("");
 
+    useEffect(() => {
+        async function getInitialMovieList() {
+            try {
+                const response = await axios.get("http://localhost:4000/movies?limit=12");
+                console.log("Response from getInitialMovieList: ", response.data.data);
+                setMovieList(response.data.data);
+            }
+            catch (error) {
+                console.log("Error getting initial movie list ", error);
+            }
+        }
+        getInitialMovieList();
+    }, []);
+
+    useEffect(() => {
+        console.log("The state has been changed: ", searchQuery);
+        async function fetchData () {
+            const response = await axios.get("http://localhost:4000/movies?searchBy=title&search=" + searchQuery);
+            console.log("Response: ", response.data);
+            setMovieList(response.data.data);
+        }
+
+        fetchData();
+    }, [searchQuery]);
+
     function handleSearch(searchInput: string) {
         console.log("Input from the search bar: ", searchInput);
-        setSeachQuery(searchInput);
+        setSearchQuery(searchInput);
     }
 
     function handleGenreSelect(genre: string) {
@@ -63,42 +89,6 @@ export default function MovieListPage() {
         setSelectedMovie(null);
     }
 
-    const moviesDataList = [
-        {
-            id: 1,
-            imageUrl: "images/Pulp_Fiction.png",
-            title: "Pulp Fiction",
-            releaseDate: "1994-09-23",
-            movieUrl: "https://www.imdb.com/title/tt0110912",
-            genres: [GenreType.Crime, GenreType.Thriller],
-            runtime: "2h 34m",
-            rating: "8.9",
-            description: "Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra",
-        },
-        {
-            id: 2,
-            imageUrl: "images/Bohemian_Rhapsody.png",
-            title: "Bohemian Rhapsody",
-            releaseDate: "2018-10-30",
-            movieUrl: "https://www.imdb.com/title/tt1727824",
-            genres: [GenreType.Musical, GenreType.Documentary],
-            runtime: "2h 15m",
-            rating: "8.5",
-            description: "With his impeccable vocal abilities, Freddie Mercury and his rock band, Queen, achieve superstardom. However, amidst his skyrocketing success, he grapples with his ego, sexuality and a fatal illness.",
-        },
-        {
-            id: 3,
-            imageUrl: "images/Kill_Bill_Volume_2.png",
-            title: "Kill Bill: Vol. 2",
-            releaseDate: "2004-04-08",
-            movieUrl: "https://www.imdb.com/title/tt0378194",
-            genres: [GenreType.Action, GenreType.Thriller],
-            runtime: "2h 17m",
-            rating: "8.9",
-            description: "A pregnant woman, codenamed the Bride, sets out on a journey to kill her ex-boss, Bill, and targets his brother, Budd, and Elle Driver, the only two survivors of the Deadly Vipers Assassination Squad.",
-        },
-    ]
-
     return (
         <div className={showDialog ? styles.movieListPageContainer + " " + styles.movieListPageContainerBlured : styles.movieListPageContainer}>
 
@@ -122,7 +112,7 @@ export default function MovieListPage() {
             </div>
 
             <div className={styles.movieList}>
-                {moviesDataList.map((movie) => (
+                {movieList.map((movie) => (
                     <MovieTile key={movie.id}
                                movieDetails={movie}
                                onClick={handleTileClick}

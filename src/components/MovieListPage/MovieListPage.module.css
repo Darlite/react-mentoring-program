@@ -12,10 +12,9 @@
 }
 
 .movieList {
-    display: flex;
+    display: grid;
     gap: 55px;
-    flex-basis: 100%;
-    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .genreAndSortControls {

@@ -154,16 +154,16 @@ exports[`MovieForm component renders correctly 1`] = `
     >
       <label
         class="inputLabel"
-        for="description"
+        for="overview"
       >
         Overview
       </label>
       <textarea
-        aria-label="Movie Description"
+        aria-label="Movie overview"
         class="input"
-        id="description"
-        name="description"
-        placeholder="Movie description"
+        id="overview"
+        name="overview"
+        placeholder="Movie overview"
       />
     </div>
     <div

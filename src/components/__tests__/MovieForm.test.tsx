@@ -20,13 +20,13 @@ describe("MovieForm component", () => {
         expect(inputTitle).toHaveValue(mockMoviesData.title);
 
         const inputReleaseDate = screen.getByLabelText(/release date/i);
-        expect(inputReleaseDate).toHaveValue(mockMoviesData.releaseDate);
+        expect(inputReleaseDate).toHaveValue(mockMoviesData.release_date);
 
         const inputMovieURL = screen.getByRole("textbox", { name: /movie url/i });
         expect(inputMovieURL).toHaveValue(mockMoviesData.movieUrl);
 
         const inputMovieRating = screen.getByRole("spinbutton", { name: /movie rating/i });
-        expect(inputMovieRating).toHaveValue(parseFloat(mockMoviesData.rating));
+        expect(inputMovieRating).toHaveValue(parseFloat(mockMoviesData.vote_average));
 
         const selectGenres = screen.getAllByRole("option", { selected: true });
         const selectedGenres = selectGenres.map((option) => (option as HTMLOptionElement).value);
@@ -35,8 +35,8 @@ describe("MovieForm component", () => {
         const inputRuntime = screen.getByRole("textbox", { name: /movie runtime/i });
         expect(inputRuntime).toHaveValue(mockMoviesData.runtime);
 
-        const inputDescription = screen.getByRole("textbox", { name: /movie description/i });
-        expect(inputDescription).toHaveValue(mockMoviesData.description);
+        const inputoverview = screen.getByRole("textbox", { name: /movie overview/i });
+        expect(inputoverview).toHaveValue(mockMoviesData.overview);
     });
 
     it("calls the handleSubmit function with proper MovieData", () => {

@@ -2,6 +2,7 @@ import styles from './MovieTile.module.css';
 import React, {useState} from "react";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 import {GenreType} from "../../constants/GenreType";
+import placeholderImage from "../../assets/images/placeholderPoster.jpg"
 
 interface MovieTileProps {
     movieDetails: MovieDetailsData,
@@ -11,7 +12,7 @@ interface MovieTileProps {
 }
 
 const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit, handleDelete}) => {
-    const { imageUrl, title, releaseDate, genres } = movieDetails;
+    const { poster_path, title, release_date, genres } = movieDetails;
 
     const [isHovered, setHovered] = useState(false);
     const [showContextMenu, setShowContextMenu] = useState(false);
@@ -30,9 +31,14 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit,
              onMouseEnter={() => setHovered(true)}
              onMouseLeave={() => setHovered(false)}>
             <img
-                 src={imageUrl}
+                 src={poster_path}
                  alt={title}
-                 onClick={() => onClick(movieDetails)} />
+                 onClick={() => onClick(movieDetails)}
+                 onError={(e) => {
+                     e.currentTarget.src = placeholderImage;
+                     e.currentTarget.onerror = null;
+                 }
+                 } />
             {isHovered && (
                 <span className={styles.kebabMenu}
                       role="button"
@@ -50,7 +56,7 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit,
             )}
             <span className={styles.movieTitleAndYear}>
                 <h2 className={styles.title}>{title}</h2>
-                <span className={styles.year}>{releaseDate}</span>
+                <span className={styles.year}>{release_date}</span>
             </span>
             <p className={styles.genres}>
                 {genres.map((genre: GenreType) => (

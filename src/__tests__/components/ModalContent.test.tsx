@@ -64,4 +64,13 @@ describe("ModalContent", () => {
         expect(screen.getByText(/Are you sure you want to delete/)).toBeInTheDocument();
         expect(screen.getByRole("button", { name: "Confirm" })).toBeInTheDocument();
     });
+
+    it('renders nothing if the proper DialogType is not provided', () => {
+        const { container } = render(<ModalContent currentDialog={""}
+                                                   selectedMovie={mockMoviesData}
+                                                   handleSubmit={jest.fn()} />
+        );
+
+        expect(container).toBeEmptyDOMElement();
+    })
 })

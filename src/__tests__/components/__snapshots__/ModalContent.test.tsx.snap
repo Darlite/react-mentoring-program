@@ -195,6 +195,7 @@ exports[`ModalContent matches snapshot for Delete Movie dialog 1`] = `
   >
     Are you sure you want to delete
     <span
+      aria-label="movie title"
       class="movieToDeleteTitle"
     >
        

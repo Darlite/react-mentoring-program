@@ -3,7 +3,7 @@ import styles from "../DeleteDialog/DeleteDialog.module.css";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 
 interface DeleteDialogProps {
-    movieToDelete: MovieDetailsData | null,
+    movieToDelete: MovieDetailsData,
 }
 
 const DeleteDialog: React.FC<DeleteDialogProps> = ({ movieToDelete }) => {
@@ -11,7 +11,7 @@ const DeleteDialog: React.FC<DeleteDialogProps> = ({ movieToDelete }) => {
         <>
             <p className={styles.deleteMessage}>
                 Are you sure you want to delete
-                <span className={styles.movieToDeleteTitle}> {movieToDelete?.title} </span>
+                <span className={styles.movieToDeleteTitle} aria-label="movie title"> {movieToDelete.title} </span>
                 movie?
             </p>
             <button className={styles.confirmDeleteMovieButton}

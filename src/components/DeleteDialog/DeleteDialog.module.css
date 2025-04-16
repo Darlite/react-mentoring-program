@@ -13,3 +13,7 @@
     align-self: flex-end;
     cursor: pointer;
 }
+
+.movieToDeleteTitle {
+    font-weight: bold;
+}

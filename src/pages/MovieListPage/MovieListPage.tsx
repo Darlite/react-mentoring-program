@@ -5,7 +5,6 @@ import styles from './MovieListPage.module.css';
 
 import SearchForm from "../../components/SearchForm/SearchForm";
 import GenreSort from "../../components/GenreSort/GenreSort";
-import MovieTile from "../../components/MovieTile/MovieTile";
 import MovieDetails from "../../components/MovieDetails/MovieDetails";
 import SortControl from "../../components/SortControl/SortControl";
 import Dialog from "../../components/Dialog/Dialog";
@@ -15,6 +14,7 @@ import {GenreNames} from "../../constants/GenreNames";
 import {DialogType} from "../../constants/DialogType";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 import AddMovieButton from "../../components/AddMovieButton/AddMovieButton";
+import MovieList from "../../components/MovieList/MovieList";
 
 export default function MovieListPage() {
     const [movieList, setMovieList] = useState<MovieDetailsData[]>([]);
@@ -81,6 +81,10 @@ export default function MovieListPage() {
             setSelectedMovie(movieDetails);
         }
 
+        if (dialogOption === DialogType.DeleteMovie && movieDetails) {
+            setSelectedMovie(movieDetails);
+        }
+
         handleToggleDialog();
     }
 
@@ -118,16 +122,11 @@ export default function MovieListPage() {
                              onSelect={handleSortControlChange}/>
             </div>
 
-            <div className={styles.movieList}>
-                {movieList.map((movie) => (
-                    <MovieTile key={movie.id}
-                               movieDetails={movie}
-                               onClick={handleTileClick}
-                               handleEdit={() => handleShowDialog(DialogType.EditMovie, movie)}
-                               handleDelete={() => handleShowDialog(DialogType.DeleteMovie)}
-                    />
-                ))}
-            </div>
+            <MovieList movieList={movieList}
+                       handleTileClick={handleTileClick}
+                       handleEditMovie={handleShowDialog}
+                       handleDeleteMovie={handleShowDialog}
+            />
 
             <Dialog dialogTitle={currentDialog}
                     content={<ModalContent currentDialog={currentDialog}

@@ -11,12 +11,6 @@
     filter: blur(2px);
 }
 
-.movieList {
-    display: grid;
-    gap: 55px;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
 .genreAndSortControls {
     display: flex;
     flex-basis: 100%;

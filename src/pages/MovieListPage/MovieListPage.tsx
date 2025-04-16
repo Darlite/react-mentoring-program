@@ -56,12 +56,7 @@ export default function MovieListPage() {
     }
 
     function handleGenreSelect(genre: string) {
-        if (genre === "All") {
-            updateFilters("selectedGenre", "");
-            return;
-        }
-
-        updateFilters("selectedGenre", genre);
+        updateFilters("selectedGenre", genre === "All" ? "" : genre);
     }
 
     function handleSortControlChange(option: string) {

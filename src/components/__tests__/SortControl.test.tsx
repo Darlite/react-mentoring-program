@@ -12,7 +12,7 @@ describe('SortControl', () => {
         const onSelect = jest.fn();
         render(<SortControl currentSelection={"Release Date"} onSelect={onSelect} />);
         const sortControlSelect = screen.getByRole("combobox");
-        expect(sortControlSelect).toHaveValue("Release Date");
+        expect(sortControlSelect).toHaveValue("release_date");
     });
 
     it("handles the other selection", () => {
@@ -20,6 +20,6 @@ describe('SortControl', () => {
         render(<SortControl currentSelection={"Release Date"} onSelect={onSelect} />);
         const sortControlSelect = screen.getByRole("combobox");
         userEvent.selectOptions(sortControlSelect, "Title");
-        expect(onSelect).toHaveBeenCalledWith("Title");
+        expect(onSelect).toHaveBeenCalledWith("title");
     });
 })

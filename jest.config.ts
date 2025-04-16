@@ -6,7 +6,7 @@ const config: Config.InitialOptions = {
     setupFilesAfterEnv: ['<rootDir>/src/setupTests.tsx'],
     testPathIgnorePatterns: ['/node_modules/'],
     moduleNameMapper: {
-        '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+        '\\.(css|less|scss|sass|png|jpg)$': 'identity-obj-proxy',
     },
     moduleFileExtensions: [ 'js', 'jsx', 'ts', 'tsx'],
 };

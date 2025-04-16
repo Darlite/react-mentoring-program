@@ -10,12 +10,12 @@ exports[`SortControl renders correctly 1`] = `
     </label>
     <select>
       <option
-        value="Release Date"
+        value="release_date"
       >
         Release Date
       </option>
       <option
-        value="Title"
+        value="title"
       >
         Title
       </option>

@@ -8,6 +8,7 @@ exports[`MovieTile renders correctly 1`] = `
   >
     <img
       alt="Pulp Fiction"
+      class="movieTileImage"
       src="images/Pulp_Fiction.png"
     />
     <span
@@ -21,7 +22,7 @@ exports[`MovieTile renders correctly 1`] = `
       <span
         class="year"
       >
-        1994-09-23
+        1994
       </span>
     </span>
     <p

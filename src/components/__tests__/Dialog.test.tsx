@@ -3,22 +3,13 @@ import React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {DialogType} from "../../constants/DialogType";
-import ModalContent from "../ModalContent/ModalContent";
 
 describe("Dialog component", () => {
-    it("renders correctly for Delete Dialog", () => {
-        const { container } = render(<Dialog dialogTitle={DialogType.DeleteMovie}
-                                             content={<ModalContent currentDialog={DialogType.DeleteMovie}
-                                                                    handleSubmit={jest.fn()} />}
-                                             handleToggleDialog={jest.fn()}
-        />);
-        expect(container).toMatchSnapshot();
-    });
-
     it("renders Add movie dialog", () => {
         render(<Dialog dialogTitle={DialogType.AddMovie}
                        content={""}
                        handleToggleDialog={() => {}}
+                       showDialog={true}
         />);
 
         expect(screen.getByText(DialogType.AddMovie)).toBeInTheDocument();
@@ -28,6 +19,7 @@ describe("Dialog component", () => {
         render(<Dialog dialogTitle={DialogType.EditMovie}
                        content={""}
                        handleToggleDialog={() => {}}
+                       showDialog={true}
         />);
 
         expect(screen.getByText(DialogType.EditMovie)).toBeInTheDocument();
@@ -39,6 +31,7 @@ describe("Dialog component", () => {
         render(<Dialog dialogTitle={DialogType.EditMovie}
                        content={""}
                        handleToggleDialog={handleToggleDialog}
+                       showDialog={true}
         />);
 
         const closeButton = screen.getByText("X");

@@ -4,7 +4,8 @@ import {mockMoviesData} from "../../mocks/mockMoviesData";
 
 describe('MovieDetails', () => {
     it("renders correctly", () => {
-        const { container } = render(<MovieDetails movieDetails={mockMoviesData} />);
+        const { container } = render(<MovieDetails movieDetails={mockMoviesData}
+                                                   handleBackToSearch={jest.fn} />);
         expect(container).toMatchSnapshot();
     });
 })

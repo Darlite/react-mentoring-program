@@ -1,5 +1,5 @@
 import {render, screen} from "@testing-library/react";
-import SortControl from "../SortControl/SortControl";
+import SortControl from "../../components/SortControl/SortControl";
 import userEvent from "@testing-library/user-event";
 
 describe('SortControl', () => {

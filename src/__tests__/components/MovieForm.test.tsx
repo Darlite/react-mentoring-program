@@ -1,4 +1,4 @@
-import MovieForm from "../MovieForm/MovieForm";
+import MovieForm from "../../components/MovieForm/MovieForm";
 import React from "react";
 import {render, screen} from "@testing-library/react";
 import {mockMoviesData} from "../../mocks/mockMoviesData";

@@ -1,4 +1,4 @@
-import Dialog from "../Dialog/Dialog";
+import Dialog from "../../components/Dialog/Dialog";
 import React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

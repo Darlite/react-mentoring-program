@@ -1,5 +1,5 @@
 import {render} from "@testing-library/react";
-import MovieDetails from "../MovieDetails/MovieDetails";
+import MovieDetails from "../../components/MovieDetails/MovieDetails";
 import {mockMoviesData} from "../../mocks/mockMoviesData";
 
 describe('MovieDetails', () => {

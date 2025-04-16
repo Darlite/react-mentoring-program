@@ -1,4 +1,4 @@
-import InputField from "../InputField/InputField";
+import InputField from "../../components/InputField/InputField";
 import {render, screen} from "@testing-library/react";
 
 describe('InputField', () => {

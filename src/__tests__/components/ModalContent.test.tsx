@@ -1,4 +1,4 @@
-import ModalContent from "../ModalContent/ModalContent";
+import ModalContent from "../../components/ModalContent/ModalContent";
 import {render, screen} from "@testing-library/react";
 import {DialogType} from "../../constants/DialogType";
 import {mockMoviesData} from "../../mocks/mockMoviesData";

@@ -1,6 +1,6 @@
 import React from "react";
 import {render} from "@testing-library/react";
-import DeleteDialog from "../DeleteDialog/DeleteDialog";
+import DeleteDialog from "../../components/DeleteDialog/DeleteDialog";
 import {mockMoviesData} from "../../mocks/mockMoviesData";
 
 describe("DeleteDialog", () => {

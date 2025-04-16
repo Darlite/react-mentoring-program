@@ -1,4 +1,4 @@
-import GenreSort from "../GenreSort/GenreSort";
+import GenreSort from "../../components/GenreSort/GenreSort";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 

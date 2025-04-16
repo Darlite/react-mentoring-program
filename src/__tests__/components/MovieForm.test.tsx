@@ -35,8 +35,8 @@ describe("MovieForm component", () => {
         const inputRuntime = screen.getByRole("textbox", { name: /movie runtime/i });
         expect(inputRuntime).toHaveValue(mockMoviesData.runtime);
 
-        const inputoverview = screen.getByRole("textbox", { name: /movie overview/i });
-        expect(inputoverview).toHaveValue(mockMoviesData.overview);
+        const inputOverview = screen.getByRole("textbox", { name: /movie overview/i });
+        expect(inputOverview).toHaveValue(mockMoviesData.overview);
     });
 
     it("calls the handleSubmit function with proper MovieData", () => {

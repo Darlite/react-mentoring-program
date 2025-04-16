@@ -27,7 +27,7 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit,
 
     return (
         <div className={styles.movieTile}
-             data-testid="movieTile"
+             data-testid="movie-tile"
              onMouseEnter={() => setHovered(true)}
              onMouseLeave={() => setHovered(false)}>
             <img className={styles.movieTileImage}
@@ -46,7 +46,7 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit,
                 >︙</span>
             )}
             {showContextMenu && (
-                <div className={styles.contextMenu} data-testid="contextMenu">
+                <div className={styles.contextMenu} data-testid="context-menu">
                     <div className={styles.contextMenuClose} onClick={closePopUp}>X</div>
                     <div className={styles.contextMenuOption}
                          onClick={handleEdit}>Edit</div>

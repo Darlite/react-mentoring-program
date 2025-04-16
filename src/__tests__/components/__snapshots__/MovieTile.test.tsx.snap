@@ -4,7 +4,7 @@ exports[`MovieTile renders correctly 1`] = `
 <div>
   <div
     class="movieTile"
-    data-testid="movieTile"
+    data-testid="movie-tile"
   >
     <img
       alt="Pulp Fiction"

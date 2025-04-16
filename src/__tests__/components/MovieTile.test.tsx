@@ -20,7 +20,7 @@ describe("MovieTile", () => {
             onClick={() => {}}
             handleDelete={() => {}}
             handleEdit={() => {}} />);
-        const movieTile = screen.getByTestId("movieTile");
+        const movieTile = screen.getByTestId("movie-tile");
         userEvent.hover(movieTile);
         expect(screen.getByText("︙")).toBeInTheDocument();
         userEvent.unhover(movieTile);
@@ -32,18 +32,18 @@ describe("MovieTile", () => {
                           onClick={() => {}}
                           handleDelete={() => {}}
                           handleEdit={() => {}} />);
-        const movieTile = screen.getByTestId("movieTile");
+        const movieTile = screen.getByTestId("movie-tile");
         userEvent.hover(movieTile);
 
         const kebabMenu = screen.getByText("︙");
         userEvent.click(kebabMenu);
-        expect(screen.getByTestId("contextMenu")).toBeInTheDocument();
+        expect(screen.getByTestId("context-menu")).toBeInTheDocument();
         expect(screen.getByText("Edit")).toBeInTheDocument();
         expect(screen.getByText("Delete")).toBeInTheDocument();
 
         const closeButton = screen.getByText("X");
         userEvent.click(closeButton);
-        expect(screen.queryByTestId("contextMenu")).not.toBeInTheDocument();
+        expect(screen.queryByTestId("context-menu")).not.toBeInTheDocument();
     });
 
     it("handle click on the movie tile image", () => {

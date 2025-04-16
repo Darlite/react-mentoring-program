@@ -15,7 +15,7 @@ const GenreSort: React.FC<GenreSortProps> = ({genreNames, selectedGenre, onSelec
                               className={`${styles.GenreSelectItem} ${(genreName === selectedGenre) || (selectedGenre.length === 0 && genreName === "All") ? styles.selected : ""}`}
                               key={i}
                               onClick={() => onSelect(genreName)}>
-                    {genreName === "" ? "All" : genreName}
+                    {genreName || "All"}
                 </span>)
             })}
         </div>);

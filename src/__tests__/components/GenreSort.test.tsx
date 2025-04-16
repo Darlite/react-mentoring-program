@@ -49,4 +49,15 @@ describe('GenreSort component', () => {
         userEvent.click(selectedButton);
         expect(onSelect).toHaveBeenCalledWith(genreToSelect);
     });
+
+    it("renders All option if the genre is empty", () => {
+        const genreNames = ["", "Comedy", "Horror"];
+        const buttonName = "All";
+        render(<GenreSort genreNames={genreNames}
+                          selectedGenre={""}
+                          onSelect={jest.fn}/>);
+        const buttons = screen.getAllByRole("button");
+        const buttonAll = buttons.find(button => button.textContent === buttonName);
+        expect(buttonAll).toBeInTheDocument();
+    })
 })

@@ -20,6 +20,7 @@ export default function MovieListPage() {
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentDialog, setCurrentDialog] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const [filters, setFilters] = useState({
         searchQuery: "",
         selectedGenre: "",
@@ -28,6 +29,7 @@ export default function MovieListPage() {
 
     useEffect(() => {
         async function getMoviesList() {
+            setIsLoading(true);
             try {
                 const response = await axios.get(
                     `http://localhost:4000/movies?limit=12&searchBy=title&search=${filters.searchQuery}&filter=${filters.selectedGenre}&sortBy=${filters.selectedSortControl}&sortOrder=asc`);
@@ -35,6 +37,8 @@ export default function MovieListPage() {
             }
             catch (error) {
                 console.log("Error getting movie list ", error);
+            } finally {
+                setIsLoading(false);
             }
         }
         getMoviesList();
@@ -117,13 +121,14 @@ export default function MovieListPage() {
                              onSelect={handleSortControlChange}/>
             </div>
 
-
+            {isLoading ? <p>Loading movies...</p> :
                 <MovieList movieList={movieList}
                            handleTileClick={handleTileClick}
                            handleEditMovie={handleShowDialog}
                            handleDeleteMovie={handleShowDialog}
                 />
-            {movieList.length === 0 && <p>No movies found</p>}
+            }
+            {(!isLoading && movieList.length === 0) && <p>No movies found</p>}
 
             <Dialog dialogTitle={currentDialog}
                     content={<ModalContent currentDialog={currentDialog}

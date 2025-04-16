@@ -11,7 +11,6 @@ import Dialog from "../../components/Dialog/Dialog";
 import ModalContent from "../../components/ModalContent/ModalContent";
 
 import {GenreNames} from "../../constants/GenreNames";
-import {DialogType} from "../../constants/DialogType";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 import AddMovieButton from "../../components/AddMovieButton/AddMovieButton";
 import MovieList from "../../components/MovieList/MovieList";
@@ -41,7 +40,7 @@ export default function MovieListPage() {
         getMoviesList();
     }, [filters.searchQuery, filters.selectedGenre, filters.selectedSortControl]);
 
-    function updateFilters(key: string, value: string) {
+    function updateFilters(key: "searchQuery" | "selectedGenre" | "selectedSortControl", value: string) {
         setFilters((prevState) => ({
             ...prevState,
             [key] : value,
@@ -77,11 +76,7 @@ export default function MovieListPage() {
     function handleShowDialog(dialogOption: string, movieDetails?: MovieDetailsData) {
         setCurrentDialog(dialogOption);
 
-        if (dialogOption === DialogType.EditMovie && movieDetails) {
-            setSelectedMovie(movieDetails);
-        }
-
-        if (dialogOption === DialogType.DeleteMovie && movieDetails) {
+        if (movieDetails) {
             setSelectedMovie(movieDetails);
         }
 
@@ -122,11 +117,13 @@ export default function MovieListPage() {
                              onSelect={handleSortControlChange}/>
             </div>
 
-            <MovieList movieList={movieList}
-                       handleTileClick={handleTileClick}
-                       handleEditMovie={handleShowDialog}
-                       handleDeleteMovie={handleShowDialog}
-            />
+
+                <MovieList movieList={movieList}
+                           handleTileClick={handleTileClick}
+                           handleEditMovie={handleShowDialog}
+                           handleDeleteMovie={handleShowDialog}
+                />
+            {movieList.length === 0 && <p>No movies found</p>}
 
             <Dialog dialogTitle={currentDialog}
                     content={<ModalContent currentDialog={currentDialog}

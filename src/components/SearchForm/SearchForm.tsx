@@ -21,7 +21,8 @@ const SearchForm: React.FC<SearchFormProps> = ({initialSearch, onSearch}) => {
                        className={styles.searchFormInput}
                        type="text"
                        autoComplete="none"
-                       placeholder={initialSearch}/>
+                       placeholder={initialSearch}
+                       aria-label="Search movie"/>
                 <button type="submit" className={styles.searchFormButton}>Search</button>
             </form>
         </div>

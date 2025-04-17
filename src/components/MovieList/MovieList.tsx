@@ -14,7 +14,8 @@ interface MovieListProps {
 const MovieList: React.FC<MovieListProps> = ({movieList, handleTileClick, handleEditMovie, handleDeleteMovie}) => {
 
     return (
-        <div className={styles.movieList}>
+        <div data-testid="movie-list"
+             className={styles.movieList}>
             {movieList.map((movie) => (
                 <MovieTile key={movie.id}
                        movieDetails={movie}

@@ -37,7 +37,7 @@ describe('MovieListPage', () => {
 
         render(<MovieListPage />);
 
-        const consoleLogSpy = jest.spyOn(console, "log");
+        const consoleLogSpy = jest.spyOn(console, "error");
 
         expect(screen.getByText("Loading movies...")).toBeInTheDocument();
 
@@ -73,7 +73,7 @@ describe('MovieListPage', () => {
 
     it("should open edit dialog window and submit", async () => {
         const movie = mockMovieList[0];
-        const consoleLogSpy = jest.spyOn(console, "log");
+        const consoleLogSpy = jest.spyOn(console, "error");
 
         render(<MovieListPage />);
 

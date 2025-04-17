@@ -27,26 +27,44 @@ export default function MovieListPage() {
         selectedSortControl: "release_date",
     });
 
-    async function fetchMovies(filters: any) {
+    async function fetchMovies(filters: any, signal: AbortSignal) {
         const response = await axios.get(
-            `http://localhost:4000/movies?limit=12&searchBy=title&search=${filters.searchQuery}&filter=${filters.selectedGenre}&sortBy=${filters.selectedSortControl}&sortOrder=asc`);
+            `http://localhost:4000/movies?limit=12&searchBy=title&search=${filters.searchQuery}&filter=${filters.selectedGenre}&sortBy=${filters.selectedSortControl}&sortOrder=asc`,
+            { signal }
+        );
         return response.data.data;
     }
 
     useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+
         async function getMoviesList() {
             setIsLoading(true);
             try {
-                const movies = await fetchMovies(filters);
+                const movies = await fetchMovies(filters, signal);
                 setMovieList(movies);
             }
             catch (error) {
-                console.log("Error getting movie list: ", error);
+                if (axios.isAxiosError(error)) {
+                    if (error.name === "Canceled error") {
+                        console.log("Previous request has been canceled: ", error.message);
+                    } else {
+                        console.log("Axios Error: ", error.message);
+                    }
+                } else {
+                    console.error("Error getting movie list: ", error);
+                }
             } finally {
                 setIsLoading(false);
             }
         }
+
         getMoviesList();
+
+        return () => {
+            controller.abort();
+        };
     }, [filters]);
 
     function updateFilters(key: "searchQuery" | "selectedGenre" | "selectedSortControl", value: string) {

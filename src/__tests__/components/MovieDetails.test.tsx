@@ -2,7 +2,6 @@ import {fireEvent, render, screen} from "@testing-library/react";
 import MovieDetails from "../../components/MovieDetails/MovieDetails";
 import {mockMoviesData} from "../../mocks/mockMoviesData";
 import placeholderImage from "../../assets/images/placeholderPoster.jpg";
-import MovieTile from "../../components/MovieTile/MovieTile";
 import React from "react";
 
 describe('MovieDetails', () => {

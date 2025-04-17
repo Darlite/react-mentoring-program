@@ -1,8 +1,9 @@
 import MovieTile from "../../components/MovieTile/MovieTile";
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {mockMoviesData} from "../../mocks/mockMoviesData";
+import placeholderImage from "../../assets/images/placeholderPoster.jpg";
 
 describe("MovieTile", () => {
     it("renders correctly", () => {
@@ -54,6 +55,34 @@ describe("MovieTile", () => {
                           handleEdit={() => {}} />);
         userEvent.click(screen.getByRole("img"));
         expect(onClick).toBeCalled();
+    });
+
+    it("renders with fallback image on error", () => {
+        render(<MovieTile
+            movieDetails={mockMoviesData}
+            onClick={() => {}}
+            handleDelete={() => {}}
+            handleEdit={() => {}} />);
+
+        const image = screen.getByAltText(mockMoviesData.title);
+        expect(image).toHaveAttribute("src", mockMoviesData.poster_path);
+        fireEvent.error(image);
+        expect(image).toHaveAttribute("src", placeholderImage);
+    });
+
+    it("renders with fallback image on null", () => {
+        const mockMoviesDataWithNullPoster = {
+            ...mockMoviesData,
+            poster_path: null,
+        }
+        render(<MovieTile
+            movieDetails={mockMoviesDataWithNullPoster}
+            onClick={() => {}}
+            handleDelete={() => {}}
+            handleEdit={() => {}} />);
+
+        const image = screen.getByAltText(mockMoviesData.title);
+        expect(image).toHaveAttribute("src", placeholderImage);
     });
 
 })

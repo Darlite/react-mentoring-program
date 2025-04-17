@@ -12,7 +12,7 @@ interface MovieDetailsProps {
 const MovieDetails: React.FC<MovieDetailsProps> = ({movieDetails, handleBackToSearch}) => {
     const {poster_path, title, release_date, genres, runtime, vote_average, overview} = movieDetails;
     return (
-        <div className={styles.movieDetails}>
+        <div className={styles.movieDetails} data-testid="movie-details">
             <img className={styles.movieDetailsImage}
                  src={!poster_path ? placeholderImage : poster_path}
                  alt={title}

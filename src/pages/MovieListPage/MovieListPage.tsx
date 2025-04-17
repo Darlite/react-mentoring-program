@@ -27,22 +27,27 @@ export default function MovieListPage() {
         selectedSortControl: "release_date",
     });
 
+    async function fetchMovies(filters: any) {
+        const response = await axios.get(
+            `http://localhost:4000/movies?limit=12&searchBy=title&search=${filters.searchQuery}&filter=${filters.selectedGenre}&sortBy=${filters.selectedSortControl}&sortOrder=asc`);
+        return response.data.data;
+    }
+
     useEffect(() => {
         async function getMoviesList() {
             setIsLoading(true);
             try {
-                const response = await axios.get(
-                    `http://localhost:4000/movies?limit=12&searchBy=title&search=${filters.searchQuery}&filter=${filters.selectedGenre}&sortBy=${filters.selectedSortControl}&sortOrder=asc`);
-                setMovieList(response.data.data);
+                const movies = await fetchMovies(filters);
+                setMovieList(movies);
             }
             catch (error) {
-                console.log("Error getting movie list ", error);
+                console.log("Error getting movie list: ", error);
             } finally {
                 setIsLoading(false);
             }
         }
         getMoviesList();
-    }, [filters.searchQuery, filters.selectedGenre, filters.selectedSortControl]);
+    }, [filters]);
 
     function updateFilters(key: "searchQuery" | "selectedGenre" | "selectedSortControl", value: string) {
         setFilters((prevState) => ({
@@ -66,7 +71,6 @@ export default function MovieListPage() {
     function handleTileClick(movieDetails: MovieDetailsData) {
         setSelectedMovie(movieDetails);
     }
-
 
     function handleToggleDialog() {
         setShowDialog(!showDialog);

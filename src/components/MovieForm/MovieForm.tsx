@@ -23,14 +23,14 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
 
         const movieData = {
             id,
-            imageUrl: initialMovieInfo?.imageUrl || "",
+            poster_path: initialMovieInfo?.poster_path || "",
             title: formDataObject.title,
-            releaseDate: formDataObject.releaseDate,
+            release_date: formDataObject.release_date,
             movieUrl: formDataObject.movieUrl,
-            rating: formDataObject.rating,
+            vote_average: formDataObject.vote_average,
             genres,
             runtime: formDataObject.runtime,
-            description: formDataObject.description,
+            overview: formDataObject.overview,
         };
 
         handleSubmit(movieData);
@@ -53,9 +53,9 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
             <InputField id="releaseDate"
                         label="Release Date"
                         type="date"
-                        name="releaseDate"
+                        name="release_date"
                         placeholder="Select Date"
-                        defaultValue={initialMovieInfo?.releaseDate || ""}
+                        defaultValue={initialMovieInfo?.release_date || ""}
                         required={true}
                         ariaLabel="Release Date"
             />
@@ -73,9 +73,9 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
             <InputField id="rating"
                         label="Rating"
                         type="number"
-                        name="rating"
+                        name="vote_average"
                         placeholder="7.8"
-                        defaultValue={initialMovieInfo?.rating || ""}
+                        defaultValue={initialMovieInfo?.vote_average || ""}
                         required={true}
                         ariaLabel="Movie Rating"
             />
@@ -94,13 +94,13 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
 
             <div className={styles.overviewContainer}>
                 <label className={styles.inputLabel}
-                       htmlFor="description">Overview</label>
+                       htmlFor="overview">Overview</label>
                 <textarea className={styles.input}
-                          id="description"
-                          name="description"
-                          aria-label="Movie Description"
-                          defaultValue={initialMovieInfo?.description || ""}
-                          placeholder="Movie description"
+                          id="overview"
+                          name="overview"
+                          aria-label="Movie overview"
+                          defaultValue={initialMovieInfo?.overview || ""}
+                          placeholder="Movie overview"
                 />
             </div>
 

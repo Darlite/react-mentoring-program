@@ -1,4 +1,4 @@
-import ModalContent from "../ModalContent/ModalContent";
+import ModalContent from "../../components/ModalContent/ModalContent";
 import {render, screen} from "@testing-library/react";
 import {DialogType} from "../../constants/DialogType";
 import {mockMoviesData} from "../../mocks/mockMoviesData";
@@ -6,6 +6,7 @@ import {mockMoviesData} from "../../mocks/mockMoviesData";
 describe("ModalContent", () => {
     it("matches snapshot for Add Movie dialog", () => {
         const { container } = render(<ModalContent currentDialog={DialogType.AddMovie}
+                                                   selectedMovie={mockMoviesData}
                                                    handleSubmit={jest.fn()}/>
         );
 
@@ -32,7 +33,10 @@ describe("ModalContent", () => {
 
     it('renders MovieForm for Add Movie dialog', () => {
         render(
-            <ModalContent currentDialog={DialogType.AddMovie} handleSubmit={jest.fn()} />
+            <ModalContent currentDialog={DialogType.AddMovie}
+                          handleSubmit={jest.fn()}
+                          selectedMovie={mockMoviesData}
+            />
         );
 
         expect(screen.getByPlaceholderText("Movie title")).toBeInTheDocument();
@@ -53,10 +57,20 @@ describe("ModalContent", () => {
     it('renders MovieForm for Delete Movie dialog', () => {
         render(
             <ModalContent currentDialog={DialogType.DeleteMovie}
+                          selectedMovie={mockMoviesData}
                           handleSubmit={jest.fn()} />
         );
 
-        expect(screen.getByText("Are you sure you want to delete this movie?")).toBeInTheDocument();
+        expect(screen.getByText(/Are you sure you want to delete/)).toBeInTheDocument();
         expect(screen.getByRole("button", { name: "Confirm" })).toBeInTheDocument();
     });
+
+    it('renders nothing if the proper DialogType is not provided', () => {
+        const { container } = render(<ModalContent currentDialog={""}
+                                                   selectedMovie={mockMoviesData}
+                                                   handleSubmit={jest.fn()} />
+        );
+
+        expect(container).toBeEmptyDOMElement();
+    })
 })

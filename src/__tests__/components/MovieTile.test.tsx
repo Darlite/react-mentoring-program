@@ -1,8 +1,9 @@
-import MovieTile from "../MovieTile/MovieTile";
+import MovieTile from "../../components/MovieTile/MovieTile";
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {mockMoviesData} from "../../mocks/mockMoviesData";
+import placeholderImage from "../../assets/images/placeholderPoster.jpg";
 
 describe("MovieTile", () => {
     it("renders correctly", () => {
@@ -20,7 +21,7 @@ describe("MovieTile", () => {
             onClick={() => {}}
             handleDelete={() => {}}
             handleEdit={() => {}} />);
-        const movieTile = screen.getByTestId("movieTile");
+        const movieTile = screen.getByTestId("movie-tile");
         userEvent.hover(movieTile);
         expect(screen.getByText("︙")).toBeInTheDocument();
         userEvent.unhover(movieTile);
@@ -32,18 +33,18 @@ describe("MovieTile", () => {
                           onClick={() => {}}
                           handleDelete={() => {}}
                           handleEdit={() => {}} />);
-        const movieTile = screen.getByTestId("movieTile");
+        const movieTile = screen.getByTestId("movie-tile");
         userEvent.hover(movieTile);
 
         const kebabMenu = screen.getByText("︙");
         userEvent.click(kebabMenu);
-        expect(screen.getByTestId("contextMenu")).toBeInTheDocument();
+        expect(screen.getByTestId("context-menu")).toBeInTheDocument();
         expect(screen.getByText("Edit")).toBeInTheDocument();
         expect(screen.getByText("Delete")).toBeInTheDocument();
 
         const closeButton = screen.getByText("X");
         userEvent.click(closeButton);
-        expect(screen.queryByTestId("contextMenu")).not.toBeInTheDocument();
+        expect(screen.queryByTestId("context-menu")).not.toBeInTheDocument();
     });
 
     it("handle click on the movie tile image", () => {
@@ -54,6 +55,34 @@ describe("MovieTile", () => {
                           handleEdit={() => {}} />);
         userEvent.click(screen.getByRole("img"));
         expect(onClick).toBeCalled();
+    });
+
+    it("renders with fallback image on error", () => {
+        render(<MovieTile
+            movieDetails={mockMoviesData}
+            onClick={() => {}}
+            handleDelete={() => {}}
+            handleEdit={() => {}} />);
+
+        const image = screen.getByAltText(mockMoviesData.title);
+        expect(image).toHaveAttribute("src", mockMoviesData.poster_path);
+        fireEvent.error(image);
+        expect(image).toHaveAttribute("src", placeholderImage);
+    });
+
+    it("renders with fallback image on null", () => {
+        const mockMoviesDataWithNullPoster = {
+            ...mockMoviesData,
+            poster_path: null,
+        }
+        render(<MovieTile
+            movieDetails={mockMoviesDataWithNullPoster}
+            onClick={() => {}}
+            handleDelete={() => {}}
+            handleEdit={() => {}} />);
+
+        const image = screen.getByAltText(mockMoviesData.title);
+        expect(image).toHaveAttribute("src", placeholderImage);
     });
 
 })

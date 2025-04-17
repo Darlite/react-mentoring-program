@@ -1,0 +1,20 @@
+.movieListPageContainer {
+    background-color: #232323;
+    color: #FFFFFF;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.movieListPageContainerBlured {
+    filter: blur(2px);
+}
+
+.genreAndSortControls {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 60px;
+}

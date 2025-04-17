@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import {fn} from "@storybook/test";
 import MovieDetails from "./MovieDetails";
 import {mockMoviesData} from "../../mocks/mockMoviesData";
 
@@ -19,5 +20,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         movieDetails: mockMoviesData,
+        handleBackToSearch: fn(),
     },
 };

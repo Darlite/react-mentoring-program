@@ -12,6 +12,13 @@ interface MovieListProps {
 }
 
 const MovieList: React.FC<MovieListProps> = ({movieList, handleTileClick, handleEditMovie, handleDeleteMovie}) => {
+    const handleEdit = (movie: MovieDetailsData)=> {
+        handleEditMovie(DialogType.EditMovie, movie)
+    }
+
+    const handleDelete = (movie: MovieDetailsData)=> {
+        handleDeleteMovie(DialogType.DeleteMovie, movie)
+    }
 
     return (
         <div data-testid="movie-list"
@@ -20,8 +27,8 @@ const MovieList: React.FC<MovieListProps> = ({movieList, handleTileClick, handle
                 <MovieTile key={movie.id}
                        movieDetails={movie}
                        onClick={handleTileClick}
-                       handleEdit={() => handleEditMovie(DialogType.EditMovie, movie)}
-                       handleDelete={() => handleDeleteMovie(DialogType.DeleteMovie, movie)}
+                       handleEdit={() => handleEdit(movie)}
+                       handleDelete={() => handleDelete(movie)}
                 />
             ))}
         </div>)

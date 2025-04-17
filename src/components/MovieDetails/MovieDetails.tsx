@@ -14,7 +14,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({movieDetails, handleBackToSe
     return (
         <div className={styles.movieDetails}>
             <img className={styles.movieDetailsImage}
-                 src={poster_path}
+                 src={!poster_path ? placeholderImage : poster_path}
                  alt={title}
                  onError={(e) => {
                      e.currentTarget.src = placeholderImage;

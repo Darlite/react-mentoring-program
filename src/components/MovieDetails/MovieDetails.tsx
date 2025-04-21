@@ -9,18 +9,20 @@ interface MovieDetailsProps {
     handleBackToSearch: () => void;
 }
 
+const handleImageError = (e :  React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = placeholderImage;
+    e.currentTarget.onerror = null;
+}
+
 const MovieDetails: React.FC<MovieDetailsProps> = ({movieDetails, handleBackToSearch}) => {
     const {poster_path, title, release_date, genres, runtime, vote_average, overview} = movieDetails;
+
     return (
         <div className={styles.movieDetails} data-testid="movie-details">
             <img className={styles.movieDetailsImage}
                  src={!poster_path ? placeholderImage : poster_path}
                  alt={title}
-                 onError={(e) => {
-                     e.currentTarget.src = placeholderImage;
-                     e.currentTarget.onerror = null;
-                 }
-                }
+                 onError={handleImageError}
             />
             <div className={styles.movieInfo}>
                 <h1 className={styles.movieTitle}>{title}</h1>

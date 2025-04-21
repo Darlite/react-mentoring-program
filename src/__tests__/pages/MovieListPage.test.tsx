@@ -73,7 +73,7 @@ describe('MovieListPage', () => {
 
     it("should open edit dialog window and submit", async () => {
         const movie = mockMovieList[0];
-        const consoleLogSpy = jest.spyOn(console, "error");
+        const consoleLogSpy = jest.spyOn(console, "log");
 
         render(<MovieListPage />);
 
@@ -106,9 +106,9 @@ describe('MovieListPage', () => {
         userEvent.click(submitButton);
 
         await waitFor(() => {
-            expect(mockedAxios.get).toHaveBeenCalledWith(
-                expect.stringContaining(`search=${movieToSearch}`)
-            );
+            expect(mockedAxios.get.mock.calls.some(
+                ([url]) => url.includes(`search=${movieToSearch}`),
+            )).toBe(true);
         });
     });
 
@@ -120,9 +120,9 @@ describe('MovieListPage', () => {
         userEvent.click(genre);
 
         await waitFor(() => {
-            expect(mockedAxios.get).toHaveBeenCalledWith(
-                expect.stringContaining(`filter=${documentaryGenre}`)
-            );
+            expect(mockedAxios.get.mock.calls.some(
+                ([url]) => url.includes(`filter=${documentaryGenre}`),
+            )).toBe(true);
         });
     });
 
@@ -133,9 +133,9 @@ describe('MovieListPage', () => {
         userEvent.selectOptions(sortControlSelect, "Title");
 
         await waitFor(() => {
-            expect(mockedAxios.get).toHaveBeenCalledWith(
-                expect.stringContaining("sortBy=title")
-            );
+            expect(mockedAxios.get.mock.calls.some(
+                ([url]) => url.includes(`sortBy=title`),
+            )).toBe(true);
         });
     });
 })

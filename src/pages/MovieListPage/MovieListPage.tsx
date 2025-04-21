@@ -30,7 +30,7 @@ export default function MovieListPage() {
     async function fetchMovies(filters: any, signal: AbortSignal) {
         const response = await axios.get(
             `http://localhost:4000/movies?limit=12&searchBy=title&search=${filters.searchQuery}&filter=${filters.selectedGenre}&sortBy=${filters.selectedSortControl}&sortOrder=asc`,
-            { signal }
+            {signal}
         );
         return response.data.data;
     }
@@ -44,8 +44,7 @@ export default function MovieListPage() {
             try {
                 const movies = await fetchMovies(filters, signal);
                 setMovieList(movies);
-            }
-            catch (error) {
+            } catch (error) {
                 if (axios.isAxiosError(error)) {
                     if (error.name === "Canceled error") {
                         console.log("Previous request has been canceled: ", error.message);
@@ -70,7 +69,7 @@ export default function MovieListPage() {
     function updateFilters(key: "searchQuery" | "selectedGenre" | "selectedSortControl", value: string) {
         setFilters((prevState) => ({
             ...prevState,
-            [key] : value,
+            [key]: value,
         }));
     }
 
@@ -117,7 +116,7 @@ export default function MovieListPage() {
             showDialog
                 ? styles.movieListPageContainer + " " + styles.movieListPageContainerBlured
                 : styles.movieListPageContainer
-            }
+        }
         >
 
             {selectedMovie ? (
@@ -126,7 +125,7 @@ export default function MovieListPage() {
                 <>
                     <SearchForm initialSearch={"What do you want to watch?"}
                                 onSearch={handleSearch}/>
-                    <AddMovieButton handleShowDialog={handleShowDialog} />
+                    <AddMovieButton handleShowDialog={handleShowDialog}/>
                 </>
             )}
 
@@ -138,19 +137,19 @@ export default function MovieListPage() {
                              onSelect={handleSortControlChange}/>
             </div>
 
-            {isLoading ? <p>Loading movies...</p> :
+            {isLoading ? <p>Loading movies...</p> : movieList.length !== 0 ?
                 <MovieList movieList={movieList}
                            handleTileClick={handleTileClick}
                            handleEditMovie={handleShowDialog}
                            handleDeleteMovie={handleShowDialog}
-                />
+                /> : null
             }
             {(!isLoading && movieList.length === 0) && <p>No movies found</p>}
 
             <Dialog dialogTitle={currentDialog}
                     content={<ModalContent currentDialog={currentDialog}
                                            selectedMovie={selectedMovie}
-                                           handleSubmit={handleSubmit} />}
+                                           handleSubmit={handleSubmit}/>}
                     handleToggleDialog={handleToggleDialog}
                     showDialog={showDialog}/>
         </div>

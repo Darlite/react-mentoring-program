@@ -11,6 +11,11 @@ interface MovieTileProps {
     handleDelete: () => void;
 }
 
+const handleImageError = (e :  React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = placeholderImage;
+    e.currentTarget.onerror = null;
+}
+
 const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit, handleDelete}) => {
     const { poster_path, title, release_date, genres } = movieDetails;
 
@@ -34,11 +39,8 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit,
                  src={!poster_path ? placeholderImage : poster_path}
                  alt={title}
                  onClick={() => onClick(movieDetails)}
-                 onError={(e) => {
-                     e.currentTarget.src = placeholderImage;
-                     e.currentTarget.onerror = null;
-                 }
-                 } />
+                 onError={handleImageError}
+            />
             {isHovered && (
                 <span className={styles.kebabMenu}
                       role="button"

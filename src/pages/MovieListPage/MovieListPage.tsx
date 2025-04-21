@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import React, {useState} from "react";
 
 import styles from './MovieListPage.module.css';
 
@@ -14,57 +13,19 @@ import {GenreNames} from "../../constants/GenreNames";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 import AddMovieButton from "../../components/AddMovieButton/AddMovieButton";
 import MovieList from "../../components/MovieList/MovieList";
+import {useMovies} from "../../hooks/useMovies";
 
 export default function MovieListPage() {
-    const [movieList, setMovieList] = useState<MovieDetailsData[]>([]);
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentDialog, setCurrentDialog] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
     const [filters, setFilters] = useState({
         searchQuery: "",
         selectedGenre: "",
         selectedSortControl: "release_date",
     });
 
-    async function fetchMovies(filters: any, signal: AbortSignal) {
-        const response = await axios.get(
-            `http://localhost:4000/movies?limit=12&searchBy=title&search=${filters.searchQuery}&filter=${filters.selectedGenre}&sortBy=${filters.selectedSortControl}&sortOrder=asc`,
-            {signal}
-        );
-        return response.data.data;
-    }
-
-    useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
-
-        async function getMoviesList() {
-            setIsLoading(true);
-            try {
-                const movies = await fetchMovies(filters, signal);
-                setMovieList(movies);
-            } catch (error) {
-                if (axios.isAxiosError(error)) {
-                    if (error.name === "Canceled error") {
-                        console.log("Previous request has been canceled: ", error.message);
-                    } else {
-                        console.log("Axios Error: ", error.message);
-                    }
-                } else {
-                    console.error("Error getting movie list: ", error);
-                }
-            } finally {
-                setIsLoading(false);
-            }
-        }
-
-        getMoviesList();
-
-        return () => {
-            controller.abort();
-        };
-    }, [filters]);
+    const {movieList, isLoading, error} = useMovies(filters);
 
     function updateFilters(key: "searchQuery" | "selectedGenre" | "selectedSortControl", value: string) {
         setFilters((prevState) => ({
@@ -137,6 +98,7 @@ export default function MovieListPage() {
                              onSelect={handleSortControlChange}/>
             </div>
 
+            {error && <p>Error: {error}</p>}
             {isLoading ? <p>Loading movies...</p> : movieList.length !== 0 ?
                 <MovieList movieList={movieList}
                            handleTileClick={handleTileClick}

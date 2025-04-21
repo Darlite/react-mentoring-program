@@ -11,19 +11,18 @@ interface ModalContentProps {
 }
 
 const ModalContent: React.FC<ModalContentProps> = ({ currentDialog, selectedMovie, handleSubmit }) => {
-        if (currentDialog === DialogType.EditMovie && selectedMovie) {
-            return <MovieForm initialMovieInfo={selectedMovie} handleSubmit={handleSubmit} />;
-        }
-
-        if (currentDialog === DialogType.AddMovie) {
-            return <MovieForm handleSubmit={handleSubmit} />
-        }
-
-        if (currentDialog === DialogType.DeleteMovie && selectedMovie) {
-            return <DeleteDialog movieToDelete={selectedMovie} />;
-        }
-
-        return null
+    switch (currentDialog) {
+        case (DialogType.AddMovie) :
+            return <MovieForm handleSubmit={handleSubmit} />;
+        case (DialogType.EditMovie) :
+            return selectedMovie ? (<MovieForm initialMovieInfo={selectedMovie} handleSubmit={handleSubmit} />
+            ) : null;
+        case (DialogType.DeleteMovie) :
+            return selectedMovie ? (<DeleteDialog movieToDelete={selectedMovie} />
+            ) : null;
+        default:
+            return null;
+    }
 }
 
 export default ModalContent;

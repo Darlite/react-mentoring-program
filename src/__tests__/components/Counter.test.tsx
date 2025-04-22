@@ -1,7 +1,7 @@
 /// <reference types="jest" />
 
 import React from 'react';
-import Counter from '../Counter/Counter';
+import Counter from '../../components/Counter/Counter';
 import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import userEvent from "@testing-library/user-event";

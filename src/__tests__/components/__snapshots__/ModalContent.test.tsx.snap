@@ -38,7 +38,7 @@ exports[`ModalContent matches snapshot for Add Movie dialog 1`] = `
         aria-label="Release Date"
         class="input"
         id="releaseDate"
-        name="releaseDate"
+        name="release_date"
         placeholder="Select Date"
         required=""
         type="date"
@@ -78,7 +78,7 @@ exports[`ModalContent matches snapshot for Add Movie dialog 1`] = `
         aria-label="Movie Rating"
         class="input"
         id="rating"
-        name="rating"
+        name="vote_average"
         placeholder="7.8"
         required=""
         type="number"
@@ -154,16 +154,16 @@ exports[`ModalContent matches snapshot for Add Movie dialog 1`] = `
     >
       <label
         class="inputLabel"
-        for="description"
+        for="overview"
       >
         Overview
       </label>
       <textarea
-        aria-label="Movie Description"
+        aria-label="Movie overview"
         class="input"
-        id="description"
-        name="description"
-        placeholder="Movie description"
+        id="overview"
+        name="overview"
+        placeholder="Movie overview"
       />
     </div>
     <div
@@ -193,7 +193,16 @@ exports[`ModalContent matches snapshot for Delete Movie dialog 1`] = `
   <p
     class="deleteMessage"
   >
-    Are you sure you want to delete this movie?
+    Are you sure you want to delete
+    <span
+      aria-label="movie title"
+      class="movieToDeleteTitle"
+    >
+       
+      Pulp Fiction
+       
+    </span>
+    movie?
   </p>
   <button
     aria-label="Confirm"
@@ -242,7 +251,7 @@ exports[`ModalContent matches snapshot for Edit Movie dialog 1`] = `
         aria-label="Release Date"
         class="input"
         id="releaseDate"
-        name="releaseDate"
+        name="release_date"
         placeholder="Select Date"
         required=""
         type="date"
@@ -282,7 +291,7 @@ exports[`ModalContent matches snapshot for Edit Movie dialog 1`] = `
         aria-label="Movie Rating"
         class="input"
         id="rating"
-        name="rating"
+        name="vote_average"
         placeholder="7.8"
         required=""
         type="number"
@@ -360,16 +369,16 @@ exports[`ModalContent matches snapshot for Edit Movie dialog 1`] = `
     >
       <label
         class="inputLabel"
-        for="description"
+        for="overview"
       >
         Overview
       </label>
       <textarea
-        aria-label="Movie Description"
+        aria-label="Movie overview"
         class="input"
-        id="description"
-        name="description"
-        placeholder="Movie description"
+        id="overview"
+        name="overview"
+        placeholder="Movie overview"
       >
         Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra
       </textarea>

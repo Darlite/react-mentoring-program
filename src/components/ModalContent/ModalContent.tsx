@@ -6,26 +6,23 @@ import DeleteDialog from "../DeleteDialog/DeleteDialog";
 
 interface ModalContentProps {
     currentDialog: string,
-    selectedMovie?: MovieDetailsData | null,
+    selectedMovie: MovieDetailsData | null,
     handleSubmit: (MovieData: MovieDetailsData) => void,
 }
 
 const ModalContent: React.FC<ModalContentProps> = ({ currentDialog, selectedMovie, handleSubmit }) => {
-    return (
-        <>
-            {
-                currentDialog === DialogType.EditMovie ? (
-                    <MovieForm initialMovieInfo={selectedMovie}
-                               handleSubmit={handleSubmit}/>
-                ) :
-                currentDialog === DialogType.AddMovie ? (
-                    <MovieForm handleSubmit={handleSubmit}/>
-                ) : (
-                    <DeleteDialog/>
-                )
-            }
-        </>
-    )
+    switch (currentDialog) {
+        case (DialogType.AddMovie) :
+            return <MovieForm handleSubmit={handleSubmit} />;
+        case (DialogType.EditMovie) :
+            return selectedMovie ? (<MovieForm initialMovieInfo={selectedMovie} handleSubmit={handleSubmit} />
+            ) : null;
+        case (DialogType.DeleteMovie) :
+            return selectedMovie ? (<DeleteDialog movieToDelete={selectedMovie} />
+            ) : null;
+        default:
+            return null;
+    }
 }
 
 export default ModalContent;

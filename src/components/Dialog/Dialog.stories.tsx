@@ -39,6 +39,7 @@ export const DeleteMovie: Story = {
     args: {
         dialogTitle: DialogType.DeleteMovie,
         content: <ModalContent currentDialog={DialogType.DeleteMovie}
+                               selectedMovie={mockMoviesData}
                                handleSubmit={fn()} /> ,
         handleToggleDialog: fn(),
         showDialog: true,

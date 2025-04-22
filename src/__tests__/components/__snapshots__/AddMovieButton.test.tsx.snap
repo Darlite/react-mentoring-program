@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddMovieButton renders correctly 1`] = `
+<div>
+  <span
+    class="addMovieButton"
+    id="addMovieButton"
+    role="button"
+  >
+    + Add movie
+  </span>
+</div>
+`;

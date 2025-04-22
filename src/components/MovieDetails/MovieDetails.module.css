@@ -1,7 +1,7 @@
 .movieDetails {
     display: flex;
     gap: 50px;
-    width: 1080px;
+    width: 1200px;
     align-items: flex-start;
 }
 
@@ -53,10 +53,24 @@
     font-weight: 300;
 }
 
-.description {
+.overview {
     font-size: 20px;
     line-height: 24px;
     font-weight: 300;
     color: #b0b0b0;
     margin: 25px 0 0;
+}
+
+.searchButton {
+    background: url("../../assets/images/searchIcon.svg") 100% 50% no-repeat;
+    width: 130px;
+    height: 50px;
+    line-height: 24px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-top: 30px;
+}
+
+.movieDetailsImage {
+    width: 323px;
 }

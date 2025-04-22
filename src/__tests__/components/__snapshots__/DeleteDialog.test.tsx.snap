@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteDialog renders correctly 1`] = `
+<div>
+  <p
+    class="deleteMessage"
+  >
+    Are you sure you want to delete
+    <span
+      aria-label="movie title"
+      class="movieToDeleteTitle"
+    >
+       
+      Pulp Fiction
+       
+    </span>
+    movie?
+  </p>
+  <button
+    aria-label="Confirm"
+    class="confirmDeleteMovieButton"
+  >
+    Confirm
+  </button>
+</div>
+`;

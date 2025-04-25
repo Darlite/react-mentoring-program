@@ -11,6 +11,7 @@ const SearchForm: React.FC<SearchFormProps> = ({initialSearch}) => {
     const search = searchParams.get("search") || "";
     const filter = searchParams.get("filter") || "";
     const sortBy = searchParams.get("sortBy") || "releaseDate";
+    const sortOrder = searchParams.get("sortOrder") || "asc";
 
 
     return (
@@ -27,6 +28,7 @@ const SearchForm: React.FC<SearchFormProps> = ({initialSearch}) => {
                           search: input.value,
                           filter,
                           sortBy,
+                          sortOrder
                       });
                   }}>
                 <input name="searchInput"

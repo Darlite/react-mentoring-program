@@ -22,18 +22,20 @@ export default function MovieListPage() {
     const search = searchParams.get("search") || "";
     const filter = searchParams.get("filter") || "";
     const sortBy = searchParams.get("sortBy") || "releaseDate";
+    const sortOrder = searchParams.get("sortOrder") || "asc";
 
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentDialog, setCurrentDialog] = useState("");
 
-    const {movieList, isLoading, error} = useMovies(search, filter, sortBy);
+    const {movieList, isLoading, error} = useMovies(search, filter, sortBy, sortOrder);
 
     function handleGenreSelect(genre: string) {
         setSearchParams({
             search,
             filter: genre === "All" ? "" : genre,
-            sortBy
+            sortBy,
+            sortOrder,
         });
     }
 
@@ -42,6 +44,17 @@ export default function MovieListPage() {
             search,
             filter,
             sortBy: option,
+            sortOrder
+        });
+    }
+
+    function toggleSortOrder() {
+        const sorting = sortOrder === "asc" ? "desc" : "asc";
+        setSearchParams({
+            search,
+            filter,
+            sortBy,
+            sortOrder: sorting,
         });
     }
 
@@ -93,7 +106,9 @@ export default function MovieListPage() {
                            selectedGenre={filter}
                            onSelect={handleGenreSelect}/>
                 <SortControl currentSelection={sortBy}
-                             onSelect={handleSortControlChange}/>
+                             onSelect={handleSortControlChange}
+                             sortOrder={sortOrder}
+                             onSortOrderChange={toggleSortOrder}/>
             </div>
 
             {error && <p>Error: {error}</p>}

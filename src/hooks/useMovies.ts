@@ -2,7 +2,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {MovieDetailsData} from "../types/MovieDetailsData";
 
-export function useMovies(searchQuery: string, selectedGenre: string, selectedSortControl :string) {
+export function useMovies(searchQuery: string, selectedGenre: string, selectedSortControl :string, sortOrder: string) {
     const [movieList, setMovieList] = useState<MovieDetailsData[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -16,7 +16,7 @@ export function useMovies(searchQuery: string, selectedGenre: string, selectedSo
             setError(null);
             try {
                 const response = await axios.get(
-                    `http://localhost:4000/movies?limit=12&searchBy=title&search=${searchQuery}&filter=${selectedGenre}&sortBy=${selectedSortControl}&sortOrder=asc`,
+                    `http://localhost:4000/movies?limit=12&searchBy=title&search=${searchQuery}&filter=${selectedGenre}&sortBy=${selectedSortControl}&sortOrder=${sortOrder}`,
                     {signal}
                 );
                 setMovieList(response.data.data);
@@ -40,7 +40,7 @@ export function useMovies(searchQuery: string, selectedGenre: string, selectedSo
         return () => {
             controller.abort();
         };
-    }, [searchQuery, selectedGenre, selectedSortControl]);
+    }, [searchQuery, selectedGenre, selectedSortControl, sortOrder]);
 
     return {movieList, isLoading, error};
 }

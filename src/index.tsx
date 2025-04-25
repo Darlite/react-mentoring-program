@@ -2,13 +2,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
+import MovieDetailsWrapper from "./components/MovieDetails/MovieDetailsWrapper";
+import {movieDetailsLoader} from "./loaders/movieDetailsLoader";
+import SearchForm from "./components/SearchForm/SearchForm";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route
-            path={"/"}
-            element={<App/>}
-        />
+        <Route path={"/"} element={<App/>} >
+            <Route path={"/"} element={<SearchForm />} />
+            <Route path={"movies/:movieId"}
+                   element={<MovieDetailsWrapper />}
+                   loader={movieDetailsLoader} />
+        </Route>
     )
 )
 

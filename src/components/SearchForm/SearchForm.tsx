@@ -3,10 +3,10 @@ import React from "react";
 import {Form, useSearchParams} from "react-router-dom";
 
 interface SearchFormProps {
-    initialSearch: string;
+    initialSearch?: string;
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({initialSearch}) => {
+const SearchForm: React.FC<SearchFormProps> = ({initialSearch = "What do you want to watch?"}) => {
     let [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || "";
     const filter = searchParams.get("filter") || "";

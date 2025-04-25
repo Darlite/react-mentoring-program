@@ -2,9 +2,7 @@ import React, {useState} from "react";
 
 import styles from './MovieListPage.module.css';
 
-import SearchForm from "../../components/SearchForm/SearchForm";
 import GenreSort from "../../components/GenreSort/GenreSort";
-import MovieDetails from "../../components/MovieDetails/MovieDetails";
 import SortControl from "../../components/SortControl/SortControl";
 import Dialog from "../../components/Dialog/Dialog";
 import ModalContent from "../../components/ModalContent/ModalContent";
@@ -14,7 +12,7 @@ import {MovieDetailsData} from "../../types/MovieDetailsData";
 import AddMovieButton from "../../components/AddMovieButton/AddMovieButton";
 import MovieList from "../../components/MovieList/MovieList";
 import {useMovies} from "../../hooks/useMovies";
-import {useSearchParams} from "react-router-dom";
+import {Outlet, useMatch, useNavigate, useSearchParams} from "react-router-dom";
 
 
 export default function MovieListPage() {
@@ -27,6 +25,10 @@ export default function MovieListPage() {
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentDialog, setCurrentDialog] = useState("");
+
+    const navigate = useNavigate();
+
+    const isRoot = useMatch({path: "/", end: true});
 
     const {movieList, isLoading, error} = useMovies(search, filter, sortBy, sortOrder);
 
@@ -59,7 +61,7 @@ export default function MovieListPage() {
     }
 
     function handleTileClick(movieDetails: MovieDetailsData) {
-        setSelectedMovie(movieDetails);
+        navigate(`movies/${movieDetails.id}${window.location.search}`);
     }
 
     function handleToggleDialog() {
@@ -80,10 +82,6 @@ export default function MovieListPage() {
         console.log(MovieData);
     }
 
-    function handleBackToSearch() {
-        setSelectedMovie(null);
-    }
-
     return (
         <div className={
             showDialog
@@ -91,15 +89,9 @@ export default function MovieListPage() {
                 : styles.movieListPageContainer
         }
         >
+            <Outlet/>
 
-            {selectedMovie ? (
-                <MovieDetails movieDetails={selectedMovie} handleBackToSearch={handleBackToSearch}/>
-            ) : (
-                <>
-                    <SearchForm initialSearch={"What do you want to watch?"} />
-                    <AddMovieButton handleShowDialog={handleShowDialog}/>
-                </>
-            )}
+            {isRoot && <AddMovieButton handleShowDialog={handleShowDialog}/>}
 
             <div className={styles.genreAndSortControls}>
                 <GenreSort genreNames={GenreNames}

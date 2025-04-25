@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import SearchForm from "./SearchForm";
-import {fn} from "@storybook/test";
 
 
 const meta = {
@@ -19,6 +18,5 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         initialSearch: "What do you want to watch?",
-        onSearch: fn(),
     },
 };

@@ -1,6 +1,16 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
+
+const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route
+            path={"/"}
+            element={<App/>}
+        />
+    )
+)
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
@@ -8,4 +18,6 @@ if (!rootElement) {
 }
 const root = ReactDOM.createRoot(rootElement);
 
-root.render(<App />);
+root.render(
+    <RouterProvider router={router}/>
+);

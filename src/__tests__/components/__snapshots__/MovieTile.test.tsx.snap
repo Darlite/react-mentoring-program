@@ -21,12 +21,14 @@ exports[`MovieTile renders correctly 1`] = `
       </h2>
       <span
         class="year"
+        data-cy="movie-tile-release-date"
       >
         1994
       </span>
     </span>
     <p
       class="genres"
+      data-cy="movie-tile-genres"
     >
       <span>
         Crime

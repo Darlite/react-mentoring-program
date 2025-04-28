@@ -255,7 +255,7 @@ exports[`ModalContent matches snapshot for Edit Movie dialog 1`] = `
         placeholder="Select Date"
         required=""
         type="date"
-        value="1994-09-23"
+        value="1994-09-10"
       />
     </div>
     <div
@@ -295,7 +295,7 @@ exports[`ModalContent matches snapshot for Edit Movie dialog 1`] = `
         placeholder="7.8"
         required=""
         type="number"
-        value="8.9"
+        value="8.3"
       />
     </div>
     <div
@@ -361,7 +361,7 @@ exports[`ModalContent matches snapshot for Edit Movie dialog 1`] = `
         placeholder="minutes"
         required=""
         type="text"
-        value="2h 34m"
+        value="2h 34min"
       />
     </div>
     <div

@@ -58,9 +58,10 @@ const MovieTile: React.FC<MovieTileProps> = ({movieDetails, onClick, handleEdit,
             )}
             <span className={styles.movieTitleAndYear}>
                 <h2 className={styles.title}>{title}</h2>
-                <span className={styles.year}>{release_date.slice(0, 4)}</span>
+                <span className={styles.year}
+                      data-cy="movie-tile-release-date">{release_date.slice(0, 4)}</span>
             </span>
-            <p className={styles.genres}>
+            <p className={styles.genres} data-cy="movie-tile-genres">
                 {genres.map((genre: GenreType) => (
                     <span key={genre}>{genre} </span>
                 ))}

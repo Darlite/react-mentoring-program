@@ -10,7 +10,7 @@ const SearchForm: React.FC<SearchFormProps> = ({initialSearch = "What do you wan
     let [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || "";
     const filter = searchParams.get("filter") || "";
-    const sortBy = searchParams.get("sortBy") || "releaseDate";
+    const sortBy = searchParams.get("sortBy") || "release_date";
     const sortOrder = searchParams.get("sortOrder") || "asc";
 
 
@@ -32,6 +32,7 @@ const SearchForm: React.FC<SearchFormProps> = ({initialSearch = "What do you wan
                       });
                   }}>
                 <input name="searchInput"
+                       data-cy="search-input"
                        className={styles.searchFormInput}
                        type="search"
                        autoComplete="none"

@@ -12,7 +12,8 @@ const router = createBrowserRouter(
             <Route path={"/"} element={<SearchForm />} />
             <Route path={"movies/:movieId"}
                    element={<MovieDetailsWrapper />}
-                   loader={movieDetailsLoader} />
+                   loader={movieDetailsLoader}
+                   errorElement={<p>Movie has not been found</p>}/>
         </Route>
     )
 )

@@ -19,7 +19,7 @@ export default function MovieListPage() {
     let [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || "";
     const filter = searchParams.get("filter") || "";
-    const sortBy = searchParams.get("sortBy") || "releaseDate";
+    const sortBy = searchParams.get("sortBy") || "release_date";
     const sortOrder = searchParams.get("sortOrder") || "asc";
 
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);

@@ -12,7 +12,8 @@ const SortControl: React.FC<SortControlProps> = ({currentSelection, onSelect, so
     return (
         <div className={styles.sortControl}>
             <label>Sort By</label>
-            <select onChange={(event) => onSelect(event.target.value)}
+            <select data-cy="sort-select"
+                    onChange={(event) => onSelect(event.target.value)}
                     value={currentSelection}>
                 <option value="release_date">Release Date</option>
                 <option value="title">Title</option>

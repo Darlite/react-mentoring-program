@@ -12,10 +12,10 @@ describe('Dialog test', () => {
 
         cy.get('form').should('exist');
         cy.get('input[name=title]').should('exist');
-        cy.get('input[name=releaseDate]').should('exist');
+        cy.get('input[name=release_date]').should('exist');
         cy.get('input[name=movieUrl]').should('exist');
-        cy.get('input[name=rating]').should('exist');
+        cy.get('input[name=vote_average]').should('exist');
         cy.get('select[name=genres]').should('exist');
-        cy.get('textarea[name=description]').should('exist');
+        cy.get('textarea[name=overview]').should('exist');
     });
 })

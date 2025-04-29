@@ -8,7 +8,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es2015",
-    "types": [],
+    "types": ["jest", "node"],
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"

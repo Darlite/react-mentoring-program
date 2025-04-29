@@ -10,6 +10,7 @@ const config: Config.InitialOptions = {
         '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
         '\\.(gif|ttf|eot|svg|png|jpg)$': '<rootDir>/src/__mocks__/fileMock.ts',
         'axios$': 'axios/dist/node/axios.cjs',
+        '^react-router-dom$': '<rootDir>/node_modules/react-router',
     },
     moduleFileExtensions: [ 'js', 'jsx', 'ts', 'tsx'],
 };

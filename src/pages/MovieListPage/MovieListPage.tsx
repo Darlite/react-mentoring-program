@@ -85,7 +85,7 @@ export default function MovieListPage() {
     return (
         <div className={
             showDialog
-                ? styles.movieListPageContainer + " " + styles.movieListPageContainerBlured
+                ? `${styles.movieListPageContainer} ${styles.movieListPageContainerBlured}`
                 : styles.movieListPageContainer
         }
         >

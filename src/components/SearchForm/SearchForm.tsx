@@ -7,11 +7,23 @@ interface SearchFormProps {
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({initialSearch = "What do you want to watch?"}) => {
-    let [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || "";
     const filter = searchParams.get("filter") || "";
     const sortBy = searchParams.get("sortBy") || "release_date";
     const sortOrder = searchParams.get("sortOrder") || "asc";
+
+    function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const input = form.elements.namedItem("searchInput") as HTMLInputElement;
+        setSearchParams({
+            search: input.value,
+            filter,
+            sortBy,
+            sortOrder
+        });
+    }
 
 
     return (
@@ -20,17 +32,7 @@ const SearchForm: React.FC<SearchFormProps> = ({initialSearch = "What do you wan
             <Form className={styles.searchForm}
                   name="search"
                   role="search"
-                  onSubmit={(e) => {
-                      e.preventDefault();
-                      const form = e.target as HTMLFormElement;
-                      const input = form.elements.namedItem("searchInput") as HTMLInputElement;
-                      setSearchParams({
-                          search: input.value,
-                          filter,
-                          sortBy,
-                          sortOrder
-                      });
-                  }}>
+                  onSubmit={handleOnSubmit}>
                 <input name="searchInput"
                        data-cy="search-input"
                        className={styles.searchFormInput}

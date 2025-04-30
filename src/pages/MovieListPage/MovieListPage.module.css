@@ -15,6 +15,16 @@
     display: flex;
     flex-basis: 100%;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 60px;
+    column-gap: 60px;
+    row-gap: 30px;
+}
+
+.moviesFound {
+    flex-basis: 60%;
+}
+
+.moviesFoundCount {
+    font-weight: bold;
 }

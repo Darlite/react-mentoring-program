@@ -30,7 +30,7 @@ export default function MovieListPage() {
 
     const isRoot = useMatch({path: "/", end: true});
 
-    const {movieList, isLoading, error} = useMovies(search, filter, sortBy, sortOrder);
+    const {moviesFound, movieList, isLoading, error} = useMovies(search, filter, sortBy, sortOrder);
 
     function handleGenreSelect(genre: string) {
         setSearchParams({
@@ -101,6 +101,9 @@ export default function MovieListPage() {
                              onSelect={handleSortControlChange}
                              sortOrder={sortOrder}
                              onSortOrderChange={toggleSortOrder}/>
+                <div className={styles.moviesFound}>
+                    <span className={styles.moviesFoundCount}>{moviesFound}</span> movies found
+                </div>
             </div>
 
             {error && <p>Error: {error}</p>}

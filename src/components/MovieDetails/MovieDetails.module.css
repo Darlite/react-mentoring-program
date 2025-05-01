@@ -51,6 +51,7 @@
     color: #F65261;
     font-size: 24px;
     font-weight: 300;
+    flex-basis: 70%;
 }
 
 .overview {

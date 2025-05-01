@@ -9,7 +9,7 @@ interface MovieDetailsProps {
     handleBackToSearch: () => void;
 }
 
-const handleImageError = (e :  React.SyntheticEvent<HTMLImageElement, Event>) => {
+const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = placeholderImage;
     e.currentTarget.onerror = null;
 }
@@ -25,17 +25,23 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({movieDetails, handleBackToSe
                  onError={handleImageError}
             />
             <div className={styles.movieInfo}>
-                <h1 className={styles.movieTitle}>{title}</h1>
-                <span className={styles.rating}>{vote_average}</span>
-                <p className={styles.genres}>
+                <h1 className={styles.movieTitle}
+                    data-cy="movie-details-title">{title}</h1>
+                <span className={styles.rating}
+                      data-cy="movie-details-rating">{vote_average}</span>
+                <p className={styles.genres} data-cy="movie-details-genres">
                     {genres.map(genre => (
                         <span key={genre}>{genre} </span>
                     ))}
                 </p>
-                <span className={styles.releaseDate}>{release_date}</span>
-                <span className={styles.runtime}>{formatRuntime(runtime)}</span>
-                <p className={styles.overview}>{overview}</p>
+                <span className={styles.releaseDate}
+                      data-cy="movie-details-release-date">{release_date}</span>
+                <span className={styles.runtime}
+                      data-cy="movie-details-runtime">{formatRuntime(runtime)}</span>
+                <p className={styles.overview}
+                   data-cy="movie-details-overview">{overview}</p>
                 <span className={styles.searchButton}
+                      data-cy="movie-details-back-button"
                       role="button"
                       onClick={handleBackToSearch}>Back to the search</span>
             </div>

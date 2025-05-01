@@ -1,6 +1,7 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {action} from "@storybook/addon-actions";
 import SortControl from "./SortControl";
+import {fn} from "@storybook/test";
 
 const meta = {
     component: SortControl,
@@ -25,5 +26,7 @@ export const Default: Story = {
     args: {
         currentSelection: "Release Date",
         onSelect: action("onSelect"),
+        sortOrder: "asc",
+        onSortOrderChange: fn(),
     },
 };

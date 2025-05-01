@@ -2,13 +2,8 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {MovieDetailsData} from "../types/MovieDetailsData";
 
-interface Filters {
-    searchQuery: string;
-    selectedGenre: string;
-    selectedSortControl: string;
-}
-
-export function useMovies(filters: Filters) {
+export function useMovies(searchQuery: string, selectedGenre: string, selectedSortControl :string, sortOrder: string) {
+    const [moviesFound, setMoviesFound] = useState(0);
     const [movieList, setMovieList] = useState<MovieDetailsData[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -22,10 +17,11 @@ export function useMovies(filters: Filters) {
             setError(null);
             try {
                 const response = await axios.get(
-                    `http://localhost:4000/movies?limit=12&searchBy=title&search=${filters.searchQuery}&filter=${filters.selectedGenre}&sortBy=${filters.selectedSortControl}&sortOrder=asc`,
+                    `http://localhost:4000/movies?limit=12&searchBy=title&search=${searchQuery}&filter=${selectedGenre}&sortBy=${selectedSortControl}&sortOrder=${sortOrder}`,
                     {signal}
                 );
                 setMovieList(response.data.data);
+                setMoviesFound(response.data.totalAmount);
             } catch (error) {
                 if (axios.isAxiosError(error)) {
                     if (error.name === "CanceledError") {
@@ -46,9 +42,9 @@ export function useMovies(filters: Filters) {
         return () => {
             controller.abort();
         };
-    }, [filters]);
+    }, [searchQuery, selectedGenre, selectedSortControl, sortOrder]);
 
-    return {movieList, isLoading, error};
+    return {moviesFound, movieList, isLoading, error};
 }
 
 

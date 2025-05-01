@@ -2,9 +2,7 @@ import React, {useState} from "react";
 
 import styles from './MovieListPage.module.css';
 
-import SearchForm from "../../components/SearchForm/SearchForm";
 import GenreSort from "../../components/GenreSort/GenreSort";
-import MovieDetails from "../../components/MovieDetails/MovieDetails";
 import SortControl from "../../components/SortControl/SortControl";
 import Dialog from "../../components/Dialog/Dialog";
 import ModalContent from "../../components/ModalContent/ModalContent";
@@ -14,40 +12,56 @@ import {MovieDetailsData} from "../../types/MovieDetailsData";
 import AddMovieButton from "../../components/AddMovieButton/AddMovieButton";
 import MovieList from "../../components/MovieList/MovieList";
 import {useMovies} from "../../hooks/useMovies";
+import {Outlet, useMatch, useNavigate, useSearchParams} from "react-router-dom";
+
 
 export default function MovieListPage() {
+    let [searchParams, setSearchParams] = useSearchParams();
+    const search = searchParams.get("search") || "";
+    const filter = searchParams.get("filter") || "";
+    const sortBy = searchParams.get("sortBy") || "release_date";
+    const sortOrder = searchParams.get("sortOrder") || "asc";
+
     const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentDialog, setCurrentDialog] = useState("");
-    const [filters, setFilters] = useState({
-        searchQuery: "",
-        selectedGenre: "",
-        selectedSortControl: "release_date",
-    });
 
-    const {movieList, isLoading, error} = useMovies(filters);
+    const navigate = useNavigate();
 
-    function updateFilters(key: "searchQuery" | "selectedGenre" | "selectedSortControl", value: string) {
-        setFilters((prevState) => ({
-            ...prevState,
-            [key]: value,
-        }));
-    }
+    const isRoot = useMatch({path: "/", end: true});
 
-    function handleSearch(searchInput: string) {
-        updateFilters("searchQuery", searchInput);
-    }
+    const {moviesFound, movieList, isLoading, error} = useMovies(search, filter, sortBy, sortOrder);
 
     function handleGenreSelect(genre: string) {
-        updateFilters("selectedGenre", genre === "All" ? "" : genre);
+        setSearchParams({
+            search,
+            filter: genre === "All" ? "" : genre,
+            sortBy,
+            sortOrder,
+        });
     }
 
     function handleSortControlChange(option: string) {
-        updateFilters("selectedSortControl", option);
+        setSearchParams({
+            search,
+            filter,
+            sortBy: option,
+            sortOrder
+        });
+    }
+
+    function toggleSortOrder() {
+        const sorting = sortOrder === "asc" ? "desc" : "asc";
+        setSearchParams({
+            search,
+            filter,
+            sortBy,
+            sortOrder: sorting,
+        });
     }
 
     function handleTileClick(movieDetails: MovieDetailsData) {
-        setSelectedMovie(movieDetails);
+        navigate(`movies/${movieDetails.id}${window.location.search}`);
     }
 
     function handleToggleDialog() {
@@ -68,34 +82,28 @@ export default function MovieListPage() {
         console.log(MovieData);
     }
 
-    function handleBackToSearch() {
-        setSelectedMovie(null);
-    }
-
     return (
         <div className={
             showDialog
-                ? styles.movieListPageContainer + " " + styles.movieListPageContainerBlured
+                ? `${styles.movieListPageContainer} ${styles.movieListPageContainerBlured}`
                 : styles.movieListPageContainer
         }
         >
+            <Outlet/>
 
-            {selectedMovie ? (
-                <MovieDetails movieDetails={selectedMovie} handleBackToSearch={handleBackToSearch}/>
-            ) : (
-                <>
-                    <SearchForm initialSearch={"What do you want to watch?"}
-                                onSearch={handleSearch}/>
-                    <AddMovieButton handleShowDialog={handleShowDialog}/>
-                </>
-            )}
+            {isRoot && <AddMovieButton handleShowDialog={handleShowDialog}/>}
 
             <div className={styles.genreAndSortControls}>
                 <GenreSort genreNames={GenreNames}
-                           selectedGenre={filters.selectedGenre}
+                           selectedGenre={filter}
                            onSelect={handleGenreSelect}/>
-                <SortControl currentSelection={filters.selectedSortControl}
-                             onSelect={handleSortControlChange}/>
+                <SortControl currentSelection={sortBy}
+                             onSelect={handleSortControlChange}
+                             sortOrder={sortOrder}
+                             onSortOrderChange={toggleSortOrder}/>
+                <div className={styles.moviesFound}>
+                    <span className={styles.moviesFoundCount}>{moviesFound}</span> movies found
+                </div>
             </div>
 
             {error && <p>Error: {error}</p>}

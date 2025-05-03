@@ -1,44 +1,40 @@
 import styles from "../MovieForm/MovieForm.module.css";
-import React, {FormEvent} from "react";
+import React from "react";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
-import {GenreType} from "../../constants/GenreType";
 import InputField from "../InputField/InputField";
 import GenreSelect from "../GenreSelect/GenreSelect";
+import {useForm, SubmitHandler} from "react-hook-form";
 
 interface MovieFormProps {
     initialMovieInfo?: MovieDetailsData | null,
-    handleSubmit: (movieData: MovieDetailsData) => void;
+    onMovieSubmit: (movieData: MovieDetailsData) => void;
 }
 
-const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit }) => {
-    function onSubmit(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        const form = e.target as HTMLFormElement;
-        const formData = new FormData(form);
-        const formDataObject = Object.fromEntries(formData) as Record<string, string>;
-
-        const genres = formData.getAll("genres") as string[] as GenreType[];
+const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) => {
+    const {register, handleSubmit} = useForm<MovieDetailsData>();
+    const onSubmit: SubmitHandler<MovieDetailsData> = (data) => {
+        console.log(data);
 
         const id = initialMovieInfo?.id ?? Math.floor(Math.random() * 10000);
 
         const movieData = {
             id,
             poster_path: initialMovieInfo?.poster_path || "",
-            title: formDataObject.title,
-            release_date: formDataObject.release_date,
-            movieUrl: formDataObject.movieUrl,
-            vote_average: formDataObject.vote_average,
-            genres,
-            runtime: formDataObject.runtime,
-            overview: formDataObject.overview,
+            title: data.title,
+            release_date: data.release_date,
+            movieUrl: data.movieUrl,
+            vote_average: data.vote_average,
+            genres: data.genres,
+            runtime: data.runtime,
+            overview: data.overview,
         };
 
-        handleSubmit(movieData);
+        onMovieSubmit(movieData);
     }
 
     return (
         <form className={styles.movieForm}
-              onSubmit={onSubmit}
+            onSubmit={handleSubmit(onSubmit)}
         >
             <InputField id="movieTitle"
                         label="Title"
@@ -48,6 +44,7 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
                         defaultValue={initialMovieInfo?.title || ""}
                         required={true}
                         ariaLabel="Movie title"
+                        register={register}
             />
 
             <InputField id="releaseDate"
@@ -58,6 +55,7 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
                         defaultValue={initialMovieInfo?.release_date || ""}
                         required={true}
                         ariaLabel="Release Date"
+                        register={register}
             />
 
             <InputField id="movieUrl"
@@ -68,6 +66,7 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
                         defaultValue={initialMovieInfo?.movieUrl || ""}
                         required={true}
                         ariaLabel="Movie URL"
+                        register={register}
             />
 
             <InputField id="rating"
@@ -75,12 +74,14 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
                         type="number"
                         name="vote_average"
                         placeholder="7.8"
+                        step="0.1"
                         defaultValue={initialMovieInfo?.vote_average || ""}
                         required={true}
                         ariaLabel="Movie Rating"
+                        register={register}
             />
 
-            <GenreSelect defaultOptions={initialMovieInfo?.genres} />
+            <GenreSelect defaultOptions={initialMovieInfo?.genres} register={register}/>
 
             <InputField id="runtime"
                         label="Runtime"
@@ -90,6 +91,7 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
                         defaultValue={initialMovieInfo?.runtime || ""}
                         required={true}
                         ariaLabel="Movie Runtime"
+                        register={register}
             />
 
             <div className={styles.overviewContainer}>
@@ -97,10 +99,10 @@ const MovieForm: React.FC<MovieFormProps> = ({ initialMovieInfo, handleSubmit })
                        htmlFor="overview">Overview</label>
                 <textarea className={styles.input}
                           id="overview"
-                          name="overview"
                           aria-label="Movie overview"
                           defaultValue={initialMovieInfo?.overview || ""}
                           placeholder="Movie overview"
+                          {...register("overview")}
                 />
             </div>
 

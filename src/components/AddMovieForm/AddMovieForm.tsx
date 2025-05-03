@@ -9,7 +9,7 @@ function AddMovieForm() {
     return <Dialog dialogTitle={DialogType.AddMovie}
                    content={<ModalContent currentDialog={DialogType.AddMovie}
                                           selectedMovie={null}
-                                          handleSubmit={() => console.log("Submitted a movie from a AddMovieForm")}/>}
+                                          handleSubmit={(movie) => console.log(`Submitted a ${movie.title} movie from a AddMovieForm`)}/>}
                    handleToggleDialog={() => navigate(-1)}
                    showDialog={true}/>
 }

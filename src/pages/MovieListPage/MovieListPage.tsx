@@ -79,7 +79,7 @@ export default function MovieListPage() {
     }
 
     function handleSubmit(MovieData: MovieDetailsData) {
-        console.log(MovieData);
+        console.log("Movie List Page: ", MovieData);
     }
 
     function handleAddMovieButtonClick() {

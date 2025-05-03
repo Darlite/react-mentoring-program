@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const AddMovie: Story = {
     args: {
         dialogTitle: DialogType.AddMovie,
-        content: <MovieForm handleSubmit={fn()}/>,
+        content: <MovieForm onMovieSubmit={fn()}/>,
         handleToggleDialog: fn(),
         showDialog: true,
     },
@@ -29,7 +29,7 @@ export const AddMovie: Story = {
 export const EditMovie: Story = {
     args: {
         dialogTitle: DialogType.EditMovie,
-        content: <MovieForm initialMovieInfo={mockMoviesData} handleSubmit={fn()}/>,
+        content: <MovieForm initialMovieInfo={mockMoviesData} onMovieSubmit={fn()}/>,
         handleToggleDialog: fn(),
         showDialog: true,
     },

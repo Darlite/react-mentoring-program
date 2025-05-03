@@ -4,11 +4,12 @@ import React from "react";
 
 interface GenreSelectProps {
     defaultOptions?: GenreType[],
+    register?: any,
 }
 
 const GenreSelect: React.FC<GenreSelectProps> = ({
-    defaultOptions
-}) => {
+                                                     defaultOptions, register
+                                                 }) => {
     return (
         <div className={styles.labelAndInputContainer}>
             <label className={styles.inputLabel}
@@ -20,6 +21,7 @@ const GenreSelect: React.FC<GenreSelectProps> = ({
                     defaultValue={defaultOptions || [""]}
                     multiple={true}
                     required={true}
+                    {...(register ? register("genres") : {})}
             >
                 {
                     Object.values(GenreType).map((genre) => (

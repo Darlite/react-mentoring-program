@@ -5,24 +5,36 @@ import InputField from "../InputField/InputField";
 import GenreSelect from "../GenreSelect/GenreSelect";
 import {useForm, SubmitHandler} from "react-hook-form";
 import {MovieDetailsPost} from "../../types/MovieDetailsPost";
+import {z} from "zod";
+import {movieFormSchema} from "../../types/MovieFormSchema";
+import {GenreType} from "../../constants/GenreType";
+import {zodResolver} from "@hookform/resolvers/zod";
 
 interface MovieFormProps {
     initialMovieInfo?: MovieDetailsData | null,
     onMovieSubmit: (movieData: MovieDetailsPost) => void;
 }
 
+type MovieFormSchema = z.infer<typeof movieFormSchema>
+
 const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) => {
-    const {register, handleSubmit} = useForm<MovieDetailsPost>();
-    const onSubmit: SubmitHandler<MovieDetailsPost> = (data) => {
+    const {
+        register,
+        handleSubmit,
+        formState: {errors},
+    } = useForm<MovieFormSchema>({
+        resolver: zodResolver(movieFormSchema)
+    });
+    const onSubmit: SubmitHandler<MovieFormSchema> = (data) => {
         console.log(data);
 
         const movieData = {
             poster_path: initialMovieInfo?.poster_path || data.poster_path,
             title: data.title,
             release_date: data.release_date,
-            vote_average: Number(data.vote_average),
-            genres: data.genres,
-            runtime: Number(data.runtime),
+            vote_average: data.vote_average,
+            genres: data.genres as GenreType[],
+            runtime: data.runtime,
             overview: data.overview,
         };
 
@@ -31,7 +43,7 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
 
     return (
         <form className={styles.movieForm}
-            onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(onSubmit)}
         >
             <InputField id="movieTitle"
                         label="Title"
@@ -39,9 +51,9 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
                         name="title"
                         placeholder="Movie title"
                         defaultValue={initialMovieInfo?.title || ""}
-                        required={true}
                         ariaLabel="Movie title"
                         register={register}
+                        errorMessage={errors.title?.message}
             />
 
             <InputField id="releaseDate"
@@ -50,9 +62,9 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
                         name="release_date"
                         placeholder="Select Date"
                         defaultValue={initialMovieInfo?.release_date || ""}
-                        required={true}
                         ariaLabel="Release Date"
                         register={register}
+                        errorMessage={errors.release_date?.message}
             />
 
             <InputField id="posterPath"
@@ -61,9 +73,9 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
                         name="poster_path"
                         placeholder="https://"
                         defaultValue={initialMovieInfo?.poster_path || ""}
-                        required={true}
                         ariaLabel="Poster Path"
                         register={register}
+                        errorMessage={errors.poster_path?.message}
             />
 
             <InputField id="rating"
@@ -73,12 +85,15 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
                         placeholder="7.8"
                         step="0.1"
                         defaultValue={initialMovieInfo?.vote_average || ""}
-                        required={true}
                         ariaLabel="Movie Rating"
                         register={register}
+                        registerOptions={{valueAsNumber: true}}
+                        errorMessage={errors.vote_average?.message}
             />
 
-            <GenreSelect defaultOptions={initialMovieInfo?.genres} register={register}/>
+            <GenreSelect defaultOptions={initialMovieInfo?.genres}
+                         register={register}
+                         errorMessage={errors.genres?.message}/>
 
             <InputField id="runtime"
                         label="Runtime"
@@ -86,9 +101,10 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
                         name="runtime"
                         placeholder="minutes"
                         defaultValue={initialMovieInfo?.runtime || ""}
-                        required={true}
                         ariaLabel="Movie Runtime"
                         register={register}
+                        registerOptions={{valueAsNumber: true}}
+                        errorMessage={errors.runtime?.message}
             />
 
             <div className={styles.overviewContainer}>
@@ -101,6 +117,7 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
                           placeholder="Movie overview"
                           {...register("overview")}
                 />
+                {errors.overview && <span className={styles.errorMessage}>{errors.overview.message}</span>}
             </div>
 
             <div className={styles.buttonsContainer}>

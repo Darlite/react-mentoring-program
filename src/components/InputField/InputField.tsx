@@ -8,10 +8,11 @@ interface InputFieldProps {
     name: string;
     placeholder: string;
     defaultValue?: string;
-    required?: boolean;
     ariaLabel?: string;
     register?: any;
+    registerOptions?: any,
     step?: string;
+    errorMessage?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -21,10 +22,11 @@ const InputField: React.FC<InputFieldProps> = ({
                                                    name,
                                                    placeholder,
                                                    defaultValue,
-                                                   required,
                                                    ariaLabel,
                                                    register,
+                                                   registerOptions,
                                                    step,
+                                                   errorMessage,
                                                }) => {
     return (
         <div className={styles.labelAndInputContainer}>
@@ -36,11 +38,11 @@ const InputField: React.FC<InputFieldProps> = ({
                    name={name}
                    placeholder={placeholder}
                    defaultValue={defaultValue}
-                   required={required}
                    aria-label={ariaLabel || label}
-                   {...(register ? register(name) : {})}
+                   {...(register ? register(name, registerOptions) : {})}
                    step={step}
             />
+            {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
         </div>
     )
 }

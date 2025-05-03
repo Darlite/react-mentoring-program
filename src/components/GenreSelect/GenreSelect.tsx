@@ -5,10 +5,11 @@ import React from "react";
 interface GenreSelectProps {
     defaultOptions?: GenreType[],
     register?: any,
+    errorMessage?: string,
 }
 
 const GenreSelect: React.FC<GenreSelectProps> = ({
-                                                     defaultOptions, register
+                                                     defaultOptions, register, errorMessage
                                                  }) => {
     return (
         <div className={styles.labelAndInputContainer}>
@@ -20,7 +21,6 @@ const GenreSelect: React.FC<GenreSelectProps> = ({
                     aria-label="Movie Genres"
                     defaultValue={defaultOptions || [""]}
                     multiple={true}
-                    required={true}
                     {...(register ? register("genres") : {})}
             >
                 {
@@ -31,6 +31,7 @@ const GenreSelect: React.FC<GenreSelectProps> = ({
                     ))
                 }
             </select>
+            {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
         </div>
     )
 }

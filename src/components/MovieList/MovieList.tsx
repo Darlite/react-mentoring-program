@@ -7,13 +7,13 @@ import {DialogType} from "../../constants/DialogType";
 interface MovieListProps {
     movieList: MovieDetailsData[];
     handleTileClick: (movie: MovieDetailsData) => void;
-    handleEditMovie: (dialogType: DialogType, movie: MovieDetailsData) => void;
+    handleEditMovie: (movie: MovieDetailsData) => void;
     handleDeleteMovie: (dialogType: DialogType, movie: MovieDetailsData) => void;
 }
 
 const MovieList: React.FC<MovieListProps> = ({movieList, handleTileClick, handleEditMovie, handleDeleteMovie}) => {
     const handleEdit = (movie: MovieDetailsData) => {
-        handleEditMovie(DialogType.EditMovie, movie)
+        handleEditMovie(movie)
     }
 
     const handleDelete = (movie: MovieDetailsData) => {

@@ -29,7 +29,8 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
         console.log(data);
 
         const movieData = {
-            poster_path: initialMovieInfo?.poster_path || data.poster_path,
+            id: initialMovieInfo?.id,
+            poster_path: data.poster_path,
             title: data.title,
             release_date: data.release_date,
             vote_average: data.vote_average,

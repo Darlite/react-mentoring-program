@@ -4,8 +4,6 @@ import styles from './MovieListPage.module.css';
 
 import GenreSort from "../../components/GenreSort/GenreSort";
 import SortControl from "../../components/SortControl/SortControl";
-import Dialog from "../../components/Dialog/Dialog";
-import ModalContent from "../../components/ModalContent/ModalContent";
 
 import {GenreNames} from "../../constants/GenreNames";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
@@ -79,12 +77,12 @@ export default function MovieListPage() {
         handleToggleDialog();
     }
 
-    function handleSubmit(MovieData: MovieDetailsPost) {
-        console.log("Movie List Page: ", MovieData);
-    }
-
     function handleAddMovieButtonClick() {
         navigate(`/new${window.location.search}`);
+    }
+
+    function handleEditMovieButtonClick(movieDetails: MovieDetailsData) {
+        navigate(`movies/${movieDetails.id}/edit${window.location.search}`);
     }
 
     return (
@@ -115,18 +113,18 @@ export default function MovieListPage() {
             {isLoading ? <p>Loading movies...</p> : movieList.length !== 0 ?
                 <MovieList movieList={movieList}
                            handleTileClick={handleTileClick}
-                           handleEditMovie={handleShowDialog}
+                           handleEditMovie={handleEditMovieButtonClick}
                            handleDeleteMovie={handleShowDialog}
                 /> : null
             }
             {(!isLoading && movieList.length === 0) && <p>No movies found</p>}
 
-            <Dialog dialogTitle={currentDialog}
-                    content={<ModalContent currentDialog={currentDialog}
-                                           selectedMovie={selectedMovie}
-                                           handleSubmit={handleSubmit}/>}
-                    handleToggleDialog={handleToggleDialog}
-                    showDialog={showDialog}/>
+            {/*<Dialog dialogTitle={currentDialog}*/}
+            {/*        content={<ModalContent currentDialog={currentDialog}*/}
+            {/*                               selectedMovie={selectedMovie}*/}
+            {/*                               handleSubmit={handleSubmit}/>}*/}
+            {/*        handleToggleDialog={handleToggleDialog}*/}
+            {/*        showDialog={showDialog}/>*/}
         </div>
     );
 }

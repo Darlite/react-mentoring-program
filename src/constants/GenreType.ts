@@ -1,7 +1,16 @@
 export enum GenreType {
     Action = "Action",
+    Adventure = "Adventure",
+    Comedy = "Comedy",
     Crime = "Crime",
     Documentary = "Documentary",
-    Thriller = "Thriller",
+    Drama = "Drama",
+    Fantasy = "Fantasy",
+    Horror = "Horror",
     Musical = "Musical",
+    Mystery = "Mystery",
+    Romance = "Romance",
+    ScienceFiction = "Science Fiction",
+    Thriller = "Thriller",
+    War = "War",
 }

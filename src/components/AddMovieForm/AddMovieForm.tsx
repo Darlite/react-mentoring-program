@@ -6,23 +6,26 @@ import axios from "axios";
 import {MovieDetailsPost} from "../../types/MovieDetailsPost";
 
 async function postMovie(movie: MovieDetailsPost) {
-    try {
-        const response = await axios.post(`http://localhost:4000/movies`,
-            movie
-        );
-        console.log(response);
-    } catch (error) {
-        console.error("Error posting a movie: ", error);
-    }
+    const response = await axios.post(`http://localhost:4000/movies`, movie);
+    return response.data
 }
 
 function AddMovieForm() {
     const navigate = useNavigate();
 
+    async function handleAddMovie(movie: MovieDetailsPost) {
+        try {
+            const newMovie = await postMovie(movie);
+            navigate(`/movies/${newMovie.id}`);
+        } catch (error) {
+            console.error("Error adding a movie: ", error);
+        }
+    }
+
     return <Dialog dialogTitle={DialogType.AddMovie}
                    content={<ModalContent currentDialog={DialogType.AddMovie}
                                           selectedMovie={null}
-                                          handleSubmit={postMovie}/>}
+                                          handleSubmit={handleAddMovie}/>}
                    handleToggleDialog={() => navigate(-1)}
                    showDialog={true}/>
 }

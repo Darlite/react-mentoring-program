@@ -82,6 +82,10 @@ export default function MovieListPage() {
         console.log(MovieData);
     }
 
+    function handleAddMovieButtonClick() {
+        navigate("/new");
+    }
+
     return (
         <div className={
             showDialog
@@ -91,7 +95,7 @@ export default function MovieListPage() {
         >
             <Outlet/>
 
-            {isRoot && <AddMovieButton handleShowDialog={handleShowDialog}/>}
+            {isRoot && <AddMovieButton handleShowDialog={handleAddMovieButtonClick}/>}
 
             <div className={styles.genreAndSortControls}>
                 <GenreSort genreNames={GenreNames}

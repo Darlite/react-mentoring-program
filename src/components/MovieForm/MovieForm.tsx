@@ -4,28 +4,25 @@ import {MovieDetailsData} from "../../types/MovieDetailsData";
 import InputField from "../InputField/InputField";
 import GenreSelect from "../GenreSelect/GenreSelect";
 import {useForm, SubmitHandler} from "react-hook-form";
+import {MovieDetailsPost} from "../../types/MovieDetailsPost";
 
 interface MovieFormProps {
     initialMovieInfo?: MovieDetailsData | null,
-    onMovieSubmit: (movieData: MovieDetailsData) => void;
+    onMovieSubmit: (movieData: MovieDetailsPost) => void;
 }
 
 const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) => {
-    const {register, handleSubmit} = useForm<MovieDetailsData>();
-    const onSubmit: SubmitHandler<MovieDetailsData> = (data) => {
+    const {register, handleSubmit} = useForm<MovieDetailsPost>();
+    const onSubmit: SubmitHandler<MovieDetailsPost> = (data) => {
         console.log(data);
 
-        const id = initialMovieInfo?.id ?? Math.floor(Math.random() * 10000);
-
         const movieData = {
-            id,
-            poster_path: initialMovieInfo?.poster_path || "",
+            poster_path: initialMovieInfo?.poster_path || data.poster_path,
             title: data.title,
             release_date: data.release_date,
-            movieUrl: data.movieUrl,
-            vote_average: data.vote_average,
+            vote_average: Number(data.vote_average),
             genres: data.genres,
-            runtime: data.runtime,
+            runtime: Number(data.runtime),
             overview: data.overview,
         };
 
@@ -58,14 +55,14 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
                         register={register}
             />
 
-            <InputField id="movieUrl"
-                        label="Movie URL"
+            <InputField id="posterPath"
+                        label="Poster Path"
                         type="url"
-                        name="movieUrl"
+                        name="poster_path"
                         placeholder="https://"
-                        defaultValue={initialMovieInfo?.movieUrl || ""}
+                        defaultValue={initialMovieInfo?.poster_path || ""}
                         required={true}
-                        ariaLabel="Movie URL"
+                        ariaLabel="Poster Path"
                         register={register}
             />
 

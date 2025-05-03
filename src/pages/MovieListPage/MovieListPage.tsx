@@ -13,6 +13,7 @@ import AddMovieButton from "../../components/AddMovieButton/AddMovieButton";
 import MovieList from "../../components/MovieList/MovieList";
 import {useMovies} from "../../hooks/useMovies";
 import {Outlet, useMatch, useNavigate, useSearchParams} from "react-router-dom";
+import {MovieDetailsPost} from "../../types/MovieDetailsPost";
 
 
 export default function MovieListPage() {
@@ -78,7 +79,7 @@ export default function MovieListPage() {
         handleToggleDialog();
     }
 
-    function handleSubmit(MovieData: MovieDetailsData) {
+    function handleSubmit(MovieData: MovieDetailsPost) {
         console.log("Movie List Page: ", MovieData);
     }
 

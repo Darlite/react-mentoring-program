@@ -84,7 +84,7 @@ export default function MovieListPage() {
     }
 
     function handleAddMovieButtonClick() {
-        navigate("/new");
+        navigate(`/new${window.location.search}`);
     }
 
     return (

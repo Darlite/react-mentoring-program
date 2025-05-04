@@ -7,6 +7,7 @@ import {movieDetailsLoader} from "./loaders/movieDetailsLoader";
 import SearchForm from "./components/SearchForm/SearchForm";
 import AddMovieForm from "./components/AddMovieForm/AddMovieForm";
 import EditMovieForm from "./components/EditMovieForm/EditMovieForm";
+import DeleteMovieForm from "./components/DeleteMovieForm/DeleteMovieForm";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -20,6 +21,9 @@ const router = createBrowserRouter(
                    errorElement={<p>Movie has not been found</p>}>
                 <Route path="edit"
                        element={<EditMovieForm/>}
+                       loader={movieDetailsLoader}/>
+                <Route path="delete"
+                       element={<DeleteMovieForm/>}
                        loader={movieDetailsLoader}/>
             </Route>
         </Route>

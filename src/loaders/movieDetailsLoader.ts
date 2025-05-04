@@ -4,7 +4,6 @@ import axios from "axios";
 export async function movieDetailsLoader({params}: LoaderFunctionArgs) {
     const {movieId} = params;
 
-    console.log("movieDetailsLoader: ", movieId);
     if (!movieId) throw new Response ("Not found", {
         status: 404,
     });

@@ -6,9 +6,9 @@ export default function MovieDetailsWrapper() {
     const {movieDetails} = useLoaderData() as { movieDetails: MovieDetailsData }
     const navigate = useNavigate();
 
-    return <div>
+    return <>
         <MovieDetails movieDetails={movieDetails}
                       handleBackToSearch={() => navigate(-1)}/>
-        <Outlet />
-    </div>
+        <Outlet/>
+    </>
 }

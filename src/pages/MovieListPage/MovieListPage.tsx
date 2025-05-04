@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 import styles from './MovieListPage.module.css';
 
@@ -11,7 +11,6 @@ import AddMovieButton from "../../components/AddMovieButton/AddMovieButton";
 import MovieList from "../../components/MovieList/MovieList";
 import {useMovies} from "../../hooks/useMovies";
 import {Outlet, useMatch, useNavigate, useSearchParams} from "react-router-dom";
-import {MovieDetailsPost} from "../../types/MovieDetailsPost";
 
 
 export default function MovieListPage() {
@@ -20,10 +19,6 @@ export default function MovieListPage() {
     const filter = searchParams.get("filter") || "";
     const sortBy = searchParams.get("sortBy") || "release_date";
     const sortOrder = searchParams.get("sortOrder") || "asc";
-
-    const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
-    const [showDialog, setShowDialog] = useState(false);
-    const [currentDialog, setCurrentDialog] = useState("");
 
     const navigate = useNavigate();
 
@@ -63,20 +58,6 @@ export default function MovieListPage() {
         navigate(`movies/${movieDetails.id}${window.location.search}`);
     }
 
-    function handleToggleDialog() {
-        setShowDialog(!showDialog);
-    }
-
-    function handleShowDialog(dialogOption: string, movieDetails?: MovieDetailsData) {
-        setCurrentDialog(dialogOption);
-
-        if (movieDetails) {
-            setSelectedMovie(movieDetails);
-        }
-
-        handleToggleDialog();
-    }
-
     function handleAddMovieButtonClick() {
         navigate(`/new${window.location.search}`);
     }
@@ -85,13 +66,12 @@ export default function MovieListPage() {
         navigate(`movies/${movieDetails.id}/edit${window.location.search}`);
     }
 
+    function handleDeleteMovieButtonClick(movieDetails: MovieDetailsData) {
+        navigate(`movies/${movieDetails.id}/delete${window.location.search}`);
+    }
+
     return (
-        <div className={
-            showDialog
-                ? `${styles.movieListPageContainer} ${styles.movieListPageContainerBlured}`
-                : styles.movieListPageContainer
-        }
-        >
+        <div className={styles.movieListPageContainer}>
             <Outlet/>
 
             {isRoot && <AddMovieButton handleShowDialog={handleAddMovieButtonClick}/>}
@@ -114,17 +94,10 @@ export default function MovieListPage() {
                 <MovieList movieList={movieList}
                            handleTileClick={handleTileClick}
                            handleEditMovie={handleEditMovieButtonClick}
-                           handleDeleteMovie={handleShowDialog}
+                           handleDeleteMovie={handleDeleteMovieButtonClick}
                 /> : null
             }
             {(!isLoading && movieList.length === 0) && <p>No movies found</p>}
-
-            {/*<Dialog dialogTitle={currentDialog}*/}
-            {/*        content={<ModalContent currentDialog={currentDialog}*/}
-            {/*                               selectedMovie={selectedMovie}*/}
-            {/*                               handleSubmit={handleSubmit}/>}*/}
-            {/*        handleToggleDialog={handleToggleDialog}*/}
-            {/*        showDialog={showDialog}/>*/}
         </div>
     );
 }

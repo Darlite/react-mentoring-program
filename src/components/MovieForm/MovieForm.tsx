@@ -21,13 +21,11 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
     const {
         register,
         handleSubmit,
-        formState: {errors},
+        formState: {errors, isSubmitting},
     } = useForm<MovieFormSchema>({
         resolver: zodResolver(movieFormSchema)
     });
-    const onSubmit: SubmitHandler<MovieFormSchema> = (data) => {
-        console.log(data);
-
+    const onSubmit: SubmitHandler<MovieFormSchema> = async (data) => {
         const movieData = {
             id: initialMovieInfo?.id,
             poster_path: data.poster_path,
@@ -39,7 +37,7 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
             overview: data.overview,
         };
 
-        onMovieSubmit(movieData);
+        await onMovieSubmit(movieData);
     }
 
     return (
@@ -131,8 +129,9 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
                 <button className={styles.submitButton}
                         type="submit"
                         aria-label="Submit"
+                        disabled={isSubmitting}
                 >
-                    Submit
+                    {isSubmitting ? "Loading..." : "Submit"}
                 </button>
             </div>
         </form>

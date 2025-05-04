@@ -2,7 +2,6 @@ import {render, screen} from "@testing-library/react";
 import MovieList from "../../components/MovieList/MovieList";
 import {mockMovieList} from "../../mocks/mockMovieList";
 import userEvent from "@testing-library/user-event";
-import {DialogType} from "../../constants/DialogType";
 
 describe('MovieList', () => {
     it("renders correctly", () => {
@@ -34,7 +33,7 @@ describe('MovieList', () => {
         userEvent.click(editButton);
 
         expect(handleEditMovie).toBeCalledTimes(1);
-        expect(handleEditMovie).toBeCalledWith(DialogType.EditMovie, firstMovieFromTheList);
+        expect(handleEditMovie).toBeCalledWith(firstMovieFromTheList);
     });
 
     it("handles the delete movie click", () => {
@@ -56,6 +55,6 @@ describe('MovieList', () => {
         userEvent.click(deleteButton);
 
         expect(handleDeleteMovie).toBeCalledTimes(1);
-        expect(handleDeleteMovie).toBeCalledWith(DialogType.DeleteMovie, firstMovieFromTheList);
+        expect(handleDeleteMovie).toBeCalledWith(firstMovieFromTheList);
     });
 });

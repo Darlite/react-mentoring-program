@@ -9,7 +9,7 @@ exports[`MovieDetails renders correctly 1`] = `
     <img
       alt="Pulp Fiction"
       class="movieDetailsImage"
-      src="images/Pulp_Fiction.png"
+      src="https://www.movieposters.com/cdn/shop/files/PulpFiction.Ver1_480x.progressive.jpg?v=1741192018"
     />
     <div
       class="movieInfo"
@@ -49,7 +49,7 @@ exports[`MovieDetails renders correctly 1`] = `
         class="runtime"
         data-cy="movie-details-runtime"
       >
-        0h 2min
+        2h 47min
       </span>
       <p
         class="overview"

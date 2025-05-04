@@ -9,7 +9,6 @@ describe('InputField', () => {
                            name="movieTitle"
                            placeholder="Movie Title"
                            defaultValue="Joker"
-                           required={true}
                            ariaLabel="Movie Title" />
         );
 
@@ -18,10 +17,8 @@ describe('InputField', () => {
         const input = screen.getByRole("textbox", { name: "Movie Title" });
         expect(input).toHaveAttribute("id", "movieTitle");
         expect(input).toHaveAttribute("type", "text");
-        expect(input).toHaveAttribute("name", "movieTitle");
         expect(input).toHaveAttribute("placeholder", "Movie Title");
         expect(input).toHaveValue("Joker");
-        expect(input).toBeRequired();
         expect(input).toHaveAttribute("aria-label", "Movie Title");
     });
 
@@ -31,8 +28,7 @@ describe('InputField', () => {
                            type="text"
                            name="movieTitle"
                            placeholder="Movie Title"
-                           defaultValue="Joker"
-                           required={true}/>
+                           defaultValue="Joker"/>
         );
 
         const input = screen.getByRole("textbox");

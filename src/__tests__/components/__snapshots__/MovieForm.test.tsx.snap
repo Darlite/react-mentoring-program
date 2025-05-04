@@ -20,7 +20,6 @@ exports[`MovieForm component renders correctly 1`] = `
         id="movieTitle"
         name="title"
         placeholder="Movie title"
-        required=""
         type="text"
         value=""
       />
@@ -40,7 +39,6 @@ exports[`MovieForm component renders correctly 1`] = `
         id="releaseDate"
         name="release_date"
         placeholder="Select Date"
-        required=""
         type="date"
         value=""
       />
@@ -50,17 +48,16 @@ exports[`MovieForm component renders correctly 1`] = `
     >
       <label
         class="inputLabel"
-        for="movieUrl"
+        for="posterPath"
       >
-        Movie URL
+        Poster Path
       </label>
       <input
-        aria-label="Movie URL"
+        aria-label="Poster Path"
         class="input"
-        id="movieUrl"
-        name="movieUrl"
+        id="posterPath"
+        name="poster_path"
         placeholder="https://"
-        required=""
         type="url"
         value=""
       />
@@ -80,7 +77,7 @@ exports[`MovieForm component renders correctly 1`] = `
         id="rating"
         name="vote_average"
         placeholder="7.8"
-        required=""
+        step="0.1"
         type="number"
         value=""
       />
@@ -100,12 +97,21 @@ exports[`MovieForm component renders correctly 1`] = `
         id="genres"
         multiple=""
         name="genres"
-        required=""
       >
         <option
           value="Action"
         >
           Action
+        </option>
+        <option
+          value="Adventure"
+        >
+          Adventure
+        </option>
+        <option
+          value="Comedy"
+        >
+          Comedy
         </option>
         <option
           value="Crime"
@@ -118,14 +124,49 @@ exports[`MovieForm component renders correctly 1`] = `
           Documentary
         </option>
         <option
-          value="Thriller"
+          value="Drama"
         >
-          Thriller
+          Drama
+        </option>
+        <option
+          value="Fantasy"
+        >
+          Fantasy
+        </option>
+        <option
+          value="Horror"
+        >
+          Horror
         </option>
         <option
           value="Musical"
         >
           Musical
+        </option>
+        <option
+          value="Mystery"
+        >
+          Mystery
+        </option>
+        <option
+          value="Romance"
+        >
+          Romance
+        </option>
+        <option
+          value="Science Fiction"
+        >
+          Science Fiction
+        </option>
+        <option
+          value="Thriller"
+        >
+          Thriller
+        </option>
+        <option
+          value="War"
+        >
+          War
         </option>
       </select>
     </div>
@@ -144,7 +185,6 @@ exports[`MovieForm component renders correctly 1`] = `
         id="runtime"
         name="runtime"
         placeholder="minutes"
-        required=""
         type="text"
         value=""
       />
@@ -177,7 +217,7 @@ exports[`MovieForm component renders correctly 1`] = `
         Reset
       </button>
       <button
-        aria-label="Submit"
+        aria-label="Submit new movie"
         class="submitButton"
         type="submit"
       >

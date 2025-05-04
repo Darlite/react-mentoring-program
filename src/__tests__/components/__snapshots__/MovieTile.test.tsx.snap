@@ -9,7 +9,7 @@ exports[`MovieTile renders correctly 1`] = `
     <img
       alt="Pulp Fiction"
       class="movieTileImage"
-      src="images/Pulp_Fiction.png"
+      src="https://www.movieposters.com/cdn/shop/files/PulpFiction.Ver1_480x.progressive.jpg?v=1741192018"
     />
     <span
       class="movieTitleAndYear"

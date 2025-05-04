@@ -128,7 +128,7 @@ const MovieForm: React.FC<MovieFormProps> = ({initialMovieInfo, onMovieSubmit}) 
                 </button>
                 <button className={styles.submitButton}
                         type="submit"
-                        aria-label="Submit"
+                        aria-label="Submit new movie"
                         disabled={isSubmitting}
                 >
                     {isSubmitting ? "Loading..." : "Submit"}

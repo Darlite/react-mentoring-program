@@ -4,9 +4,15 @@ import {MovieDetailsData} from "../../types/MovieDetailsData";
 
 interface DeleteDialogProps {
     movieToDelete: MovieDetailsData,
+    onDelete: (id: number) => void,
 }
 
-const DeleteDialog: React.FC<DeleteDialogProps> = ({ movieToDelete }) => {
+const DeleteDialog: React.FC<DeleteDialogProps> = ({ movieToDelete, onDelete }) => {
+    function handleOnClick(e: React.MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        onDelete(movieToDelete.id);
+    }
+
     return (
         <>
             <p className={styles.deleteMessage}>
@@ -16,6 +22,7 @@ const DeleteDialog: React.FC<DeleteDialogProps> = ({ movieToDelete }) => {
             </p>
             <button className={styles.confirmDeleteMovieButton}
                     aria-label="Confirm"
+                    onClick={handleOnClick}
             >
                 Confirm
             </button>

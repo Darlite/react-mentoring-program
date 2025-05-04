@@ -1,12 +1,11 @@
 import {GenreType} from "../constants/GenreType";
 
-export interface MovieDetailsData {
-    id: number;
+export type MovieDetailsPost = {
     poster_path: string | null;
     title: string;
     release_date: string;
     genres: GenreType[];
-    runtime: string;
-    vote_average: string;
+    runtime: number;
+    vote_average: number;
     overview: string;
 }

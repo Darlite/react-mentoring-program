@@ -2,22 +2,21 @@ import styles from "./MovieList.module.css";
 import React from "react";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
 import MovieTile from "../MovieTile/MovieTile";
-import {DialogType} from "../../constants/DialogType";
 
 interface MovieListProps {
     movieList: MovieDetailsData[];
     handleTileClick: (movie: MovieDetailsData) => void;
-    handleEditMovie: (dialogType: DialogType, movie: MovieDetailsData) => void;
-    handleDeleteMovie: (dialogType: DialogType, movie: MovieDetailsData) => void;
+    handleEditMovie: (movie: MovieDetailsData) => void;
+    handleDeleteMovie: (movie: MovieDetailsData) => void;
 }
 
 const MovieList: React.FC<MovieListProps> = ({movieList, handleTileClick, handleEditMovie, handleDeleteMovie}) => {
     const handleEdit = (movie: MovieDetailsData) => {
-        handleEditMovie(DialogType.EditMovie, movie)
+        handleEditMovie(movie)
     }
 
     const handleDelete = (movie: MovieDetailsData) => {
-        handleDeleteMovie(DialogType.DeleteMovie, movie)
+        handleDeleteMovie(movie)
     }
 
     return (

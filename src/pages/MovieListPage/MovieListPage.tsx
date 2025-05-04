@@ -1,11 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 
 import styles from './MovieListPage.module.css';
 
 import GenreSort from "../../components/GenreSort/GenreSort";
 import SortControl from "../../components/SortControl/SortControl";
-import Dialog from "../../components/Dialog/Dialog";
-import ModalContent from "../../components/ModalContent/ModalContent";
 
 import {GenreNames} from "../../constants/GenreNames";
 import {MovieDetailsData} from "../../types/MovieDetailsData";
@@ -21,10 +19,6 @@ export default function MovieListPage() {
     const filter = searchParams.get("filter") || "";
     const sortBy = searchParams.get("sortBy") || "release_date";
     const sortOrder = searchParams.get("sortOrder") || "asc";
-
-    const [selectedMovie, setSelectedMovie] = useState<MovieDetailsData | null>(null);
-    const [showDialog, setShowDialog] = useState(false);
-    const [currentDialog, setCurrentDialog] = useState("");
 
     const navigate = useNavigate();
 
@@ -64,34 +58,23 @@ export default function MovieListPage() {
         navigate(`movies/${movieDetails.id}${window.location.search}`);
     }
 
-    function handleToggleDialog() {
-        setShowDialog(!showDialog);
+    function handleAddMovieButtonClick() {
+        navigate(`/new${window.location.search}`);
     }
 
-    function handleShowDialog(dialogOption: string, movieDetails?: MovieDetailsData) {
-        setCurrentDialog(dialogOption);
-
-        if (movieDetails) {
-            setSelectedMovie(movieDetails);
-        }
-
-        handleToggleDialog();
+    function handleEditMovieButtonClick(movieDetails: MovieDetailsData) {
+        navigate(`movies/${movieDetails.id}/edit${window.location.search}`);
     }
 
-    function handleSubmit(MovieData: MovieDetailsData) {
-        console.log(MovieData);
+    function handleDeleteMovieButtonClick(movieDetails: MovieDetailsData) {
+        navigate(`movies/${movieDetails.id}/delete${window.location.search}`);
     }
 
     return (
-        <div className={
-            showDialog
-                ? `${styles.movieListPageContainer} ${styles.movieListPageContainerBlured}`
-                : styles.movieListPageContainer
-        }
-        >
+        <div className={styles.movieListPageContainer}>
             <Outlet/>
 
-            {isRoot && <AddMovieButton handleShowDialog={handleShowDialog}/>}
+            {isRoot && <AddMovieButton handleShowDialog={handleAddMovieButtonClick}/>}
 
             <div className={styles.genreAndSortControls}>
                 <GenreSort genreNames={GenreNames}
@@ -110,18 +93,11 @@ export default function MovieListPage() {
             {isLoading ? <p>Loading movies...</p> : movieList.length !== 0 ?
                 <MovieList movieList={movieList}
                            handleTileClick={handleTileClick}
-                           handleEditMovie={handleShowDialog}
-                           handleDeleteMovie={handleShowDialog}
+                           handleEditMovie={handleEditMovieButtonClick}
+                           handleDeleteMovie={handleDeleteMovieButtonClick}
                 /> : null
             }
             {(!isLoading && movieList.length === 0) && <p>No movies found</p>}
-
-            <Dialog dialogTitle={currentDialog}
-                    content={<ModalContent currentDialog={currentDialog}
-                                           selectedMovie={selectedMovie}
-                                           handleSubmit={handleSubmit}/>}
-                    handleToggleDialog={handleToggleDialog}
-                    showDialog={showDialog}/>
         </div>
     );
 }

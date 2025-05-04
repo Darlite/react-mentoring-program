@@ -5,7 +5,6 @@ import MovieForm from "../MovieForm/MovieForm";
 import React from "react";
 import {mockMoviesData} from "../../mocks/mockMoviesData";
 import {DialogType} from "../../constants/DialogType";
-import ModalContent from "../ModalContent/ModalContent";
 
 const meta = {
     component: Dialog,
@@ -20,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const AddMovie: Story = {
     args: {
         dialogTitle: DialogType.AddMovie,
-        content: <MovieForm handleSubmit={fn()}/>,
+        content: <MovieForm onMovieSubmit={fn()}/>,
         handleToggleDialog: fn(),
         showDialog: true,
     },
@@ -29,7 +28,7 @@ export const AddMovie: Story = {
 export const EditMovie: Story = {
     args: {
         dialogTitle: DialogType.EditMovie,
-        content: <MovieForm initialMovieInfo={mockMoviesData} handleSubmit={fn()}/>,
+        content: <MovieForm initialMovieInfo={mockMoviesData} onMovieSubmit={fn()}/>,
         handleToggleDialog: fn(),
         showDialog: true,
     },
@@ -38,9 +37,8 @@ export const EditMovie: Story = {
 export const DeleteMovie: Story = {
     args: {
         dialogTitle: DialogType.DeleteMovie,
-        content: <ModalContent currentDialog={DialogType.DeleteMovie}
-                               selectedMovie={mockMoviesData}
-                               handleSubmit={fn()} /> ,
+        content: <MovieForm initialMovieInfo={mockMoviesData}
+                            onMovieSubmit={fn()} /> ,
         handleToggleDialog: fn(),
         showDialog: true,
     },

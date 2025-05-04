@@ -58,3 +58,7 @@
     border: none;
     border-radius: 4px;
 }
+
+.errorMessage {
+    color: #F65261;
+}

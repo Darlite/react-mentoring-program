@@ -5,7 +5,7 @@ export type MovieDetailsPost = {
     title: string;
     release_date: string;
     genres: GenreType[];
-    runtime: Number;
-    vote_average: Number;
+    runtime: number;
+    vote_average: number;
     overview: string;
 }

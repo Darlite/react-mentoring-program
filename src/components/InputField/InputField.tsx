@@ -1,5 +1,6 @@
 import styles from "../InputField/InputField.module.css";
 import React from "react";
+import {RegisterOptions, UseFormRegister} from "react-hook-form";
 
 interface InputFieldProps {
     id: string;
@@ -9,8 +10,8 @@ interface InputFieldProps {
     placeholder: string;
     defaultValue?: string;
     ariaLabel?: string;
-    register?: any;
-    registerOptions?: any,
+    register?: UseFormRegister<any>;
+    registerOptions?: RegisterOptions<any>,
     step?: string;
     errorMessage?: string;
 }
@@ -35,7 +36,6 @@ const InputField: React.FC<InputFieldProps> = ({
             <input className={styles.input}
                    id={id}
                    type={type}
-                   name={name}
                    placeholder={placeholder}
                    defaultValue={defaultValue}
                    aria-label={ariaLabel || label}

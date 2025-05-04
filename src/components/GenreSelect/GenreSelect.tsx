@@ -1,10 +1,11 @@
+import { UseFormRegister } from "react-hook-form";
 import {GenreType} from "../../constants/GenreType";
 import styles from "../GenreSelect/GenreSelect.module.css";
 import React from "react";
 
 interface GenreSelectProps {
     defaultOptions?: GenreType[],
-    register?: any,
+    register?: UseFormRegister<any>,
     errorMessage?: string,
 }
 
@@ -17,7 +18,6 @@ const GenreSelect: React.FC<GenreSelectProps> = ({
                    htmlFor="genres">Genre</label>
             <select className={styles.input}
                     id="genres"
-                    name="genres"
                     aria-label="Movie Genres"
                     defaultValue={defaultOptions || [""]}
                     multiple={true}
